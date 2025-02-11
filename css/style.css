@@ -3,6 +3,7 @@ all - body
  **************************/
 body{
     font-family: monospace;
+    min-font-size: 10px;
 }
 
 /***************************
@@ -58,9 +59,14 @@ all - searchbar
     box-sizing: border-box;
 }
 
+.searchbar label{
+    width: 80%;
+    flex: 1 1 80%;
+}
+
 .searchbar input {
     background: transparent;
-    flex: 1;
+    flex: 1 1 20%;
     border: 0;
     outline: none;
     /*padding top/bottom, left/right*/
