@@ -1,16 +1,16 @@
 /***************************
-body
+all - body
  **************************/
 body{
     font-family: monospace;
 }
 
 /***************************
-header
+all - header
  **************************/
 
 header {
-    width: 100%;
+    width: 100vw;
     padding: 2%;
     color: rgba(71,74,215,0.9);
     box-sizing: border-box;
@@ -26,7 +26,7 @@ header {
     box-sizing: border-box;
 }
 /***************************
-header logo
+all - header logo
  **************************/
 .hp-header-container a{
     flex: 1 1 20%;
@@ -38,12 +38,13 @@ header logo
 }
 
 /***************************
-searchbar
+all - searchbar
  **************************/
 .search{
     align-self: center;
     width: 50%;
     flex: 1 1 50%;
+    box-sizing: border-box;
 }
 
 .searchbar{
@@ -53,7 +54,7 @@ searchbar
     justify-content: space-between;
     align-items: center;
     border-radius: 60px;
-    padding: 0.2vw 0.4vw;
+    padding: 1vh 1vw 1vh 1vw;
     box-sizing: border-box;
 }
 
@@ -74,7 +75,8 @@ searchbar
 }
 
 .searchbar button img {
-    width: 25px;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .searchbar button {
@@ -84,10 +86,11 @@ searchbar
     height: 60px;
     background: #c6c2ec;
     cursor: pointer;
+
 }
 
 /***************************
-navigation
+all - navigation
  **************************/
 
 .navbar {
@@ -98,13 +101,13 @@ navigation
 
 .navbar ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     list-style-type: none;
 }
 
 header nav ul li {
-    padding: 2%;
+    padding: 5%;
 }
 
 
@@ -131,7 +134,7 @@ header nav ul li a:active{
 /*Ende links in nav*/
 
 /***************************
-main
+all - main
  **************************/
 
 main {
@@ -139,7 +142,7 @@ main {
 }
 
 /***************************
-main introduction
+homepage - main introduction
  **************************/
 
 #hp-introduction{
@@ -151,7 +154,7 @@ main introduction
 
 
 /***************************
-main cards
+homepage - main cards
  **************************/
 
 #hp-main-container{
@@ -185,7 +188,7 @@ main cards
 
 
 /***************************
-footer
+all - footer
  **************************/
 
 footer{
@@ -218,4 +221,15 @@ footer a:active{
     text-decoration: none;
     color: white;
     font-family: monospace;
+}
+
+
+
+
+/***************************
+about us - impressum
+ **************************/
+
+#impressum-container{
+    font-size: 4.5vh;
 }
