@@ -1,9 +1,22 @@
 /***************************
+root
+ **************************/
+
+:root{
+    --text-font-family: monospace;
+    --ui-blue: #474ad7e6;
+    --ui-cyan: #1ec1f7;
+    --ui-pink: #ca59c5;
+    --ui-purple: #852bcc;
+    --ui-dark-blue: #3d23a9;
+}
+
+/***************************
 all - body
  **************************/
 body{
-    font-family: monospace;
-    min-font-size: 10px;
+    font-family: var(--text-font-family);
+    font-size: clamp(10px, 1rem, 18px);
 }
 
 /***************************
@@ -11,30 +24,33 @@ all - header
  **************************/
 
 header {
-    width: 100vw;
-    padding: 2%;
-    color: rgba(71,74,215,0.9);
     box-sizing: border-box;
+    color: var(--ui-blue);
+    font-size: 1.5rem;
+    padding: 2%;
+    /*position: fixed;*/
+    width: 100%;
 }
 
 .hp-header-container{
-    max-width: 100%;
-    margin: 0 auto;
+    align-items: center;
+    box-sizing: border-box;
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
+    margin: 0 auto;
+    max-width: 100%;
 }
 /***************************
 all - header logo
  **************************/
 .hp-header-container a{
-    flex: 1 1 20%;
     box-sizing: border-box;
+    flex: 1 1 20%;
 }
 
 .hp-header-container a img{
+    min-width: 2rem;
     max-width: 30%;
 }
 
@@ -43,56 +59,61 @@ all - searchbar
  **************************/
 .search{
     align-self: center;
-    width: 50%;
-    flex: 1 1 50%;
     box-sizing: border-box;
+    flex: 1 1 50%;
+    width: 40%;
 }
 
 .searchbar{
-    width: 90%;
-    background-color: rgba(71,74,215,0.9);
+    align-items: center;
+    background-color: var(--ui-blue);
+    border-radius: 60px;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-radius: 60px;
-    padding: 1vh 1vw 1vh 1vw;
-    box-sizing: border-box;
+    padding: 0.5rem;
+    width: 90%;
 }
 
 .searchbar label{
-    width: 80%;
     flex: 1 1 80%;
+    width: 80%;
 }
 
 .searchbar input {
     background: transparent;
-    flex: 1 1 20%;
     border: 0;
+    color: white;
+    flex: 1 1 20%;
+    font-size: 1.5rem;
     outline: none;
     /*padding top/bottom, left/right*/
     padding: 2vh 2vh;
-    font-size: 2.5vh;
-    color: #ffffff;
 }
 
 /*change placeholder-text color*/
-.search ::placeholder{
+.search input::placeholder{
     color: white;
 }
 
 .searchbar button img {
-    width: 60%;
     margin: 0 auto;
+    width: 60%;
 }
 
 .searchbar button {
+    background: #c6c2ec;
     border: 0;
     border-radius: 50%; /* ergibt kreis*/
-    width: 60px;
-    height: 60px;
-    background: #c6c2ec;
     cursor: pointer;
+    height: 60px;
+    width: 60px;
+}
 
+@media screen and (max-width: 800px){
+    .searchbar button {
+        display: none;
+    }
 }
 
 /***************************
@@ -100,33 +121,37 @@ all - navigation
  **************************/
 
 .navbar {
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 1 20%;
+    font-family: var(--text-font-family);
+    font-size: 1.5rem;
+    justify-content: space-between;
     width: 25%;
-    font-size: 2.5vh;
-    flex: 1 1 30%;
  }
 
 .navbar ul {
+    box-sizing: border-box;
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
     list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 header nav ul li {
-    padding: 5%;
+    padding: 10%;
 }
-
 
 /* links in nav*/
 header nav ul li a:link {
-    font-family: monospace;
-    font-size: 2.5vh;
-    color: rgba(71,74,215,0.9);
+    color: var(--ui-blue);
+    font-size: 1.5rem;
     text-decoration: none;
 }
 
 header nav ul li a:visited {
-    color: rgba(71,74,215,0.9);
+    color: var(--ui-blue);
 }
 
 header nav ul li a:hover {
@@ -134,17 +159,16 @@ header nav ul li a:hover {
 }
 
 header nav ul li a:active{
-    color: rgba(71,74,215,1);
+    color: var(--ui-blue);
 }
 
-/*Ende links in nav*/
 
 /***************************
 all - main
  **************************/
 
 main {
-    max-width: 100vw;
+    max-width: 100%;
 }
 
 /***************************
@@ -152,81 +176,111 @@ homepage - main introduction
  **************************/
 
 #hp-introduction{
-    max-width: 100%;
-    font-size: 5vh;
-    text-align: center;
+    font-size: 2.8rem;
     margin: 15vh 8vw;
+    max-width: 100%;
+    text-align: center;
 }
-
 
 /***************************
 homepage - main cards
  **************************/
 
 #hp-main-container{
-    max-width: 100%;
-    margin: 0 auto;
     display: flex;
     flex-flow: row wrap; /* flex-direction and flex-wrap*/
+    margin: 0 auto;
+    max-width: 100%;
 }
 
 .hp-main-cards{
-    width: 50%;
+    align-items: center;
     box-sizing: border-box;
-    flex: 1 1 50%;
-
     display: flex;
+    flex: 1 1 50%;
     flex-flow: column wrap;
     justify-content: center;
-    align-items: center;
+    width: 50%;
 }
 
-.hp-main-cards h2{
-    font-size: 4.5vh;
+.button-hp {
+    appearance: none;
+    background-color: var(--ui-blue);
+    border: 2px solid var(--ui-blue);
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    font-family: var(--text-font-family);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 auto;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
     text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    touch-action: manipulation;
+    width:45%;
+    will-change: transform;
+}
 
+.button-hp:disabled {
+    pointer-events: none;
+}
+
+.button-hp:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.button-hp:active {
+    box-shadow: none;
+    transform: translateY(0);
 }
 
 .hp-main-cards p{
-    font-size: 3vh ;
+    font-size: 1.5rem;
     text-align: center;
 }
-
 
 /***************************
 all - footer
  **************************/
 
 footer{
-    max-width: 100vw;
-    margin-top: 5vh;
-    padding: 1% 2%;
-    background-color: rgba(71,74,215,0.9);;
+    background-color: var(--ui-blue);
     color: white;
+    margin-top: 5vh;
+    max-width: 100vw;
+    padding: 1% 2%;
 }
 
 footer a:link{
-    text-decoration: none;
     color: white;
-    font-family: monospace;
+    font-family: var(--text-font-family);
+    text-decoration: none;
 }
 
 footer a:visited{
-    text-decoration: none;
     color: white;
-    font-family: monospace;
+    font-family: var(--text-font-family);
+    text-decoration: none;
 }
 
 footer a:hover{
-    text-decoration: none;
     color: rgba(170, 170, 170, 0.67);
-    font-family: monospace;
+    font-family: var(--text-font-family);
+    text-decoration: none;
 }
 
 footer a:active{
-    text-decoration: none;
     color: white;
-    font-family: monospace;
+    font-family: var(--text-font-family);
+    text-decoration: none;
 }
 
 
@@ -237,5 +291,73 @@ about us - impressum
  **************************/
 
 #impressum-container{
-    font-size: 4.5vh;
+    font-size: 2rem;
 }
+
+
+/***************************
+share
+ **************************/
+
+.share-main{
+    width: 100%;
+}
+
+.share-container-upload{
+    border-color: var(--ui-blue);
+    border-radius: 15px;
+    border-style: dotted;
+    margin: 0 auto;
+    min-width: 400px;
+    width: 70%;
+}
+
+.share-container-upload form{
+    background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
+    border-radius: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    width: 100%;
+}
+
+.upload-card{
+    background-color: white;
+    border-color: var(--ui-purple);
+    border-radius: 15px;
+    border-style: dotted;
+    font-size: 1.5rem;
+    margin: 5%;
+    padding: 2%;
+
+}
+
+.share-container-upload input{
+    background-color: #efeafa;
+    border-style: none;
+    box-sizing: border-box;
+    font-size: 1.1rem;
+    padding: 1%;
+    width: 100%;
+}
+
+.share-container-upload input:focus{
+    background-color: white;
+    outline-color: var(--ui-purple);
+}
+
+.share-container-upload input::placeholder{
+    font-family: var(--text-font-family);
+    font-size: 1rem;
+}
+
+.upload-button{
+    align-items: center;
+    display: flex;
+    margin: 1% auto;
+    width: 100%;
+}
+
+
+
