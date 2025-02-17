@@ -1,0 +1,3 @@
+- EJS still fulfilling HTML requirement?
+- Static pages --> no EJS?
+- All servers on one machine?

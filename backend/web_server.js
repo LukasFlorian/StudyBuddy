@@ -15,7 +15,7 @@ const server = http.createServer((req, res) => {
       })
     );
   } else {
-    res.end("TEST");
+    res.end("NEW");
   }
 });
 
