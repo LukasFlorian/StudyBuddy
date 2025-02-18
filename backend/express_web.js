@@ -18,4 +18,5 @@ app.get("/browse", (req, res) => {
     res.render("browse")
     console.log("Browse page")
 })
+
 app.listen(PORT, () => console.log(`Server running on port ${PORT}!`));

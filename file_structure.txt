@@ -1,0 +1,51 @@
+/your-project-name
+|-- /config
+|   |-- config.js
+|   |-- nginx.conf
+|
+|-- /src
+|   |-- /controllers
+|   |   |-- userController.js
+|   |   |-- productController.js
+|   |
+|   |-- /models
+|   |   |-- userModel.js
+|   |   |-- productModel.js
+|   |
+|   |-- /routes
+|   |   |-- userRoutes.js
+|   |   |-- productRoutes.js
+|   |
+|   |-- /views
+|   |   |-- index.ejs
+|   |   |-- user.ejs
+|   |   |-- product.ejs
+|   |
+|   |-- /middleware
+|   |   |-- authMiddleware.js
+|   |   |-- errorHandling.js
+|   |
+|   |-- /utils
+|   |   |-- helper.js
+|   |
+|   |-- app.js
+|
+|-- /public
+|   |-- /css
+|   |   |-- main.css
+|   |
+|   |-- /js
+|   |   |-- app.js
+|   |
+|   |-- /images
+|   |   |-- logo.png
+|
+|-- /scripts
+|   |-- migrate.js
+|   |-- seed.js
+|
+|-- .env
+|-- .gitignore
+|-- package.json
+|-- package-lock.json
+|-- README.md
