@@ -21,7 +21,7 @@ html{
 body{
     min-height: 100vh;
     overflow: hidden; /*not a scrollable website*/
-    background-image: url("../html/img/login_background.jpg");
+    background-color: red;
     background-size: cover;
     background-position: right;
 }
