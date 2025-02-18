@@ -3,6 +3,7 @@
 Suggestion for restructuring the repo in web_server branch.
 Suggested file structure:
 
+~~~
 /StudyBuddy
 |-- /config
 |   |-- config.js
@@ -55,3 +56,4 @@ Suggested file structure:
 |-- package.json
 |-- package-lock.json
 |-- README.md
+~~~
