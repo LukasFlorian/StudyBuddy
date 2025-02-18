@@ -16,11 +16,6 @@
 |   |   |-- userRoutes.js
 |   |   |-- productRoutes.js
 |   |
-|   |-- /views
-|   |   |-- index.ejs
-|   |   |-- user.ejs
-|   |   |-- product.ejs
-|   |
 |   |-- /middleware
 |   |   |-- authMiddleware.js
 |   |   |-- errorHandling.js
@@ -35,7 +30,7 @@
 |   |   |-- main.css
 |   |
 |   |-- /js
-|   |   |-- app.js
+|   |   |-- main.js
 |   |
 |   |-- /images
 |   |   |-- logo.png
@@ -43,6 +38,12 @@
 |-- /scripts
 |   |-- migrate.js
 |   |-- seed.js
+|
+|-- /static
+|   |-- /html
+|   |   |-- index.html
+|   |   |-- user.html
+|   |   |-- product.html
 |
 |-- .env
 |-- .gitignore
