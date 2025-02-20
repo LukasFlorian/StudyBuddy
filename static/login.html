@@ -12,7 +12,7 @@
 
 <body>
 <header class="hp-header-container">
-    <a href="./homepage.html" class="logo">
+    <a href="./homepage" class="logo">
         <img id="logo" src="../public/img/logo.png" alt="Logo">
     </a>
     <div class="search">
@@ -25,9 +25,9 @@
     </div>
     <nav class="navbar">
         <ul>
-            <li class="nav-items"><a href="./share.html">Share</a></li>
-            <li class="nav-items"><a href="./browse.html">Browse</a></li>
-            <li class="nav-items"><a href="./login.html">Login</a></li>
+            <li class="nav-items"><a href="./share">Share</a></li>
+            <li class="nav-items"><a href="./browse">Browse</a></li>
+            <li class="nav-items"><a href="./login">Login</a></li>
         </ul>
     </nav>
 </header>
@@ -36,7 +36,8 @@
         <div class="signup">
             <h1>Login</h1>
             <p id="error-message"></p>
-            <form id="login-form">
+            <!-- important: method (POST) -->
+            <form id="login-form" method = "POST">
                 <div >
                     <label for="email-input">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280 320-200v-80L480-520 160-720v80l320 200Z"/></svg>
@@ -51,7 +52,7 @@
                 </div>
                 <button type="submit" class="login-button">Login</button>
             </form>
-            <p>New? <a href="./signup.html">Create an account</a> </p>
+            <p>New? <a href="./signup">Create an account</a> </p>
         </div>
     </div>
 </main>
