@@ -15,7 +15,7 @@
             <img id="logo" src="../public/img/logo.png" alt="Logo">
         </a>
         <div class="search">
-            <form action="" class="searchbar">
+            <form action="" class="searchbar" method="post">
                 <label>
                     <input type="text" placeholder="search for notes" name="s">
                 </label>
@@ -27,6 +27,7 @@
                 <li class="nav-items"><a href="./share">Share</a></li>
                 <li class="nav-items"><a href="./browse">Browse</a></li>
                 <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
+
             </ul>
         </nav>
     </header>
@@ -36,6 +37,26 @@
             <h1>Browse through our collection.</h1>
         </section>
 
+        <div class="browse-search">
+            <form action="" class="searchbar" method="post">
+                <label>
+                    <input type="text" placeholder="search for notes" name="s">
+                </label>
+                <button type="submit"> <img src="../public/img/search.png" alt=""> </button>
+            </form>
+        </div>
+
+        <div class="browse-results">
+            <h1>Search results</h1>
+        </div>
+
+        <div class="browse-card-container"> <!--hier Java Script für Suchergebnisse -->
+            <div class="browse-card">
+                <img src="../public/img/browse_placeholder.png" alt="search result">
+                <p id="browse-card-title">Title</p>
+                <p id="browse-card-description">Description</p>
+            </div>
+        </div>
     </main>
 
     <footer>
