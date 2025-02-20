@@ -7,7 +7,8 @@
     <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
     <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
-    <script type="text/javascript" src="../client/validation.js" defer></script>
+    <script type="text/javascript" src="../public/js/validation.js" defer></script>
+    <script src="../public/js/navbar.js" defer></script>
 </head>
 
 <body>
@@ -27,7 +28,7 @@
         <ul>
             <li class="nav-items"><a href="./share">Share</a></li>
             <li class="nav-items"><a href="./browse">Browse</a></li>
-            <li class="nav-items"><a href="./login">Login</a></li>
+            <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
         </ul>
     </nav>
 </header>
@@ -36,7 +37,8 @@
         <div class="signup">
             <h1>Login</h1>
             <p id="error-message"></p>
-            <form id="login-form">
+            <!-- important: method (POST) -->
+            <form id="login-form" method = "POST">
                 <div >
                     <label for="email-input">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm320-280 320-200v-80L480-520 160-720v80l320 200Z"/></svg>
