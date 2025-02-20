@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Share</title>
-        <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
-        <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
-        <script src="../public/js/navbar.js" defer></script>
-    </head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+    <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
+    <script src="../public/js/navbar.js" defer></script>
 </head>
 <body>
 <header class="hp-header-container">
@@ -38,17 +36,17 @@
     </section>
     <div class="share-container-upload">
         <form action="" method="post" enctype="multipart/form-data">
-            <div class="upload-card">
-                <label for="titel">Titel:</label><br>
-                <input type="text" id="titel" name="titel" placeholder="Your title..."/>
+            <div class="share-upload-card">
+                <label for="title">Titel:</label><br>
+                <input type="text" id="title" name="title" placeholder="Your title..."/>
             </div>
-            <div class="upload-card">
+            <div class="share-upload-card">
                 <label for="description">Description:</label><br>
-                <input type="text" id="description" name="descripion" placeholder="A short description of your file, e.g. The Pythagorean Theorem, exercises, ..."/>
+                <input type="text" id="description" name="description" placeholder="A short description of your file, e.g. The Pythagorean Theorem, exercises, ..."/>
             </div>
-            <div class="upload-card">
-                <label for="description">File:</label><br>
-                <input type="file" name="uploaddatei" accept="image/*" >
+            <div class="share-upload-card">
+                <label for="upload">File:</label><br>
+                <input type="file" id="upload" name="uploadFile" accept="image/*, application/pdf" />
             </div>
             <div class="upload-button">
                 <button type="submit" class="button-hp">Share</button>
