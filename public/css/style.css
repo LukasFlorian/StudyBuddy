@@ -3,8 +3,7 @@ root
  **************************/
 
 :root{
-    --accent-color: #1ec1f7;
-    --base-color: white;
+    --ui-base-color: white;
     --text-font-family: monospace;
     --ui-blue: #474ad7e6;
     --ui-cyan: #1ec1f7;
@@ -90,7 +89,7 @@ all - searchbar
 .searchbar input {
     background: transparent;
     border: 0;
-    color: white;
+    color: var(--ui-base-color);
     font-size: max(1.2rem, 2vw);
     outline: none;
     /*padding top/bottom, left/right*/
@@ -99,7 +98,7 @@ all - searchbar
 
 /*change placeholder-text color*/
 .search input::placeholder{
-    color: white;
+    color: var(--ui-base-color);
 }
 
 
@@ -282,6 +281,15 @@ footer h2{
     margin-bottom: 1rem;
 }
 
+footer a{
+    display: block;
+    width: fit-content;
+}
+
+footer a p{
+    width: fit-content;
+}
+
 footer a:link{
     color: white;
     font-family: var(--text-font-family), monospace;
@@ -341,7 +349,7 @@ share
     width: 100%;
 }
 
-.upload-card{
+.share-upload-card{
     background-color: white;
     border-color: var(--ui-purple);
     border-radius: 15px;
@@ -349,7 +357,10 @@ share
     font-size: 1.5rem;
     margin: 5%;
     padding: 2%;
+}
 
+.share-upload-card #upload::file-selector-button{
+    display: none;
 }
 
 .share-container-upload input{
@@ -392,7 +403,7 @@ sign up / login
     align-items: center;
     animation: fadeIn 0.5s ease-in-out;
     background: rgba(256,256,256,0.7);
-    border-color: var(--base-color);
+    border-color: var(--ui-base-color);
     border-radius: 15px;
     border-style: dotted;
     display: flex;
@@ -425,7 +436,7 @@ sign up / login
 
 .signup form label{
     align-items: center;
-    background-color: var(--accent-color);
+    background-color: var(--ui-cyan);
     border-radius: 10px 0 0 10px;
     display: flex;
     flex-shrink: 0;
@@ -435,8 +446,8 @@ sign up / login
 }
 
 .signup form input{
-    background-color: var(--base-color);
-    border: 2px solid var(--base-color);
+    background-color: var(--ui-base-color);
+    border: 2px solid var(--ui-base-color);
     border-left: none;
     border-radius: 0 10px 10px 0;
     box-sizing: border-box;
@@ -472,8 +483,8 @@ from this we take the direct child label*/
     margin: 10px auto;
     border: none;
     border-radius: 15px;
-    background-color: var(--accent-color);
-    color: var(--base-color);
+    background-color: var(--ui-cyan);
+    color: var(--ui-base-color);
     font: inherit;
     font-size: max(1.6rem, 1.5vw);
     padding: 1rem 2rem;
@@ -500,17 +511,6 @@ from this we take the direct child label*/
     color: #f06272;
 }
 
-/***************************
-sign up - responsive
- **************************/
-
-@media (max-width: 1100px) {
-    .signup{
-        width: min(600px, 100%);
-    }
-}
-
-
 
 /***************************
 responsive
@@ -526,6 +526,9 @@ responsive
     }
     .searchbar button {
         display: none;
+    }
+    .signup{
+        width: min(500px, 100%);
     }
 
 }

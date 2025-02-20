@@ -1,0 +1,38 @@
+/***************************
+root
+ **************************/
+
+:root{
+    --ui-base-color: white;
+    --text-font-family: monospace;
+    --ui-blue: #474ad7e6;
+    --ui-cyan: #1ec1f7;
+    --ui-pink: #ca59c5;
+    --ui-purple: #852bcc;
+    --ui-dark-blue: #3d23a9;
+    --ui-font-size: max(1.2rem, 2vw);
+}
+
+.browse-card-container{
+    font-family: var(--text-font-family) monospace;
+    font-size: var(--ui-font-size);
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.browse-card{
+    height: max(200px, 50%);
+    flex: 1 1 30%;
+    max-width: 30%;
+    background: linear-gradient(var(--ui-base-color), var(--ui-base-color)) padding-box,
+    linear-gradient(145deg, transparent 5%,var(--ui-pink),var(--ui-purple), var(--ui-dark-blue)) border-box;
+    border: 3px solid transparent;
+    border-radius: 15px;
+}
+.browse-card img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+}
+
