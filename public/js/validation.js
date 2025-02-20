@@ -1,62 +1,65 @@
-const form = document.getElementById("form")
-const firstname_input = document.getElementById("firstname-input")
-const email_input = document.getElementById("email-input")
-const password_input = document.getElementById("password-input")
-const repeat_password_input = document.getElementById("repeat-password-input")
-const error_message = document.getElementById("error-message")
+// /public/js/validation.js
 
-form.addEventListener("submit", (e) => {
-    let errors = []
-
-    if(firstname_input){
-        //if there's a firstname input -> sign-up static
-        errors = getSignupFormErrors(firstname_input.value, email_input.value, password_input.value, repeat_password_input.value)
+document.addEventListener('DOMContentLoaded', () => {
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
+  
+    if (signupForm) {
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const firstname = document.getElementById('firstname-input').value;
+        const email = document.getElementById('email-input').value;
+        const password = document.getElementById('password-input').value;
+  
+        try {
+          const res = await fetch('http://localhost:3000/api/users/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ firstname, email, password })
+          });
+          
+          const data = await res.json();
+          if (res.ok) {
+            alert('Registrierung erfolgreich!');
+            window.location.href = './login.html';
+          } else {
+            alert(`Fehler: ${data.message}`);
+          }
+        } catch (error) {
+          alert('Serverfehler!');
+          console.error('Fehler beim Signup:', error);
+        }
+      });
     }
-    else{
-        //if we don't have a firstname input -> login static
-        errors = getLoginFormErrors(email_input.value, password_input.value)
+  
+    if (loginForm) {
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email-input').value;
+        const password = document.getElementById('password-input').value;
+  
+        try {
+          const res = await fetch('http://localhost:3000/api/users/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+          });
+          
+          const data = await res.json();
+          if (res.ok) {
+            // data enthält jetzt { message: "Login erfolgreich", firstname: "..." }
+            localStorage.setItem("firstname", data.firstname);
+          
+            alert("Login erfolgreich!");
+            window.location.href = "./homepage.html";
+          } else {
+            alert(`Fehler: ${data.message}`);
+          }
+        } catch (error) {
+          alert('Serverfehler!');
+          console.error('Fehler beim Login:', error);
+        }
+      });
     }
-
-    if(errors.length > 0){
-        //if there are any errors
-        e.preventDefault()
-        error_message.innerText = errors.join(". ")
-        //shows error message seperated by .[space]
-    }
-})
-
-function getSignupFormErrors(firstname, email, password, repeatPassword){
-    let errors = []
-
-    if(firstname === "" || firstname == null ){
-        //no input in firstname
-        errors.push("Firstname is required")
-    }
-
-    if(email === "" || email == null ){
-        //no input in firstname
-        errors.push("Email is required")
-    }
-
-    if(password === "" || password == null ){
-        //no input in firstname
-        errors.push("Password is required")
-    }
-
-    if(password!== repeatPassword){
-        errors.push("Password does not match repeated password")
-    }
-    return errors;
-}
-
-function getLoginFormErrors(email, password){
-    let errors = []
-
-    if(email === '' || email == null){
-        errors.push('Email is required')
-    }
-    if(password === '' || password == null){
-        errors.push('Password is required')
-    }
-    return errors;
-}
+  });
+  
