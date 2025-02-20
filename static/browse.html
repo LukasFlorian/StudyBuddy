@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
         <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
+        <script src="../public/js/navbar.js" defer></script>
     </head>
 <body>
     <header class="hp-header-container">
@@ -25,7 +26,8 @@
             <ul>
                 <li class="nav-items"><a href="./share">Share</a></li>
                 <li class="nav-items"><a href="./browse">Browse</a></li>
-                <li class="nav-items"><a href="./login">Login</a></li>
+                <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
+
             </ul>
         </nav>
     </header>
@@ -35,8 +37,8 @@
             <h1>Browse through our collection.</h1>
         </section>
 
-        <div class="search">
-            <form action="" class="searchbar">
+        <div class="browse-search">
+            <form action="" class="searchbar" method="post">
                 <label>
                     <input type="text" placeholder="search for notes" name="s">
                 </label>
@@ -44,10 +46,17 @@
             </form>
         </div>
 
-        <div class="browse-card-container">
-            <!--Einfügen der einzelnen Suchergebnisse mit JS -->
+        <div class="browse-results">
+            <h1>Search results</h1>
         </div>
 
+        <div class="browse-card-container"> <!--hier Java Script für Suchergebnisse -->
+            <div class="browse-card">
+                <img src="../public/img/browse_placeholder.png" alt="search result">
+                <p id="browse-card-title">Title</p>
+                <p id="browse-card-description">Description</p>
+            </div>
+        </div>
     </main>
 
     <footer>

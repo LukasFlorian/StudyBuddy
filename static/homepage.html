@@ -3,11 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StudyBuddy</title>
     <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
     <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
+    <script src="../public/js/navbar.js" defer></script>
 </head>
 
 <body>
@@ -16,7 +17,7 @@
             <img id="logo" src="../public/img/logo.png" alt="Logo">
         </a>
         <div class="search">
-            <form action="" class="searchbar">
+            <form action="" class="searchbar" method="post">
                 <label>
                     <input type="text" placeholder="search for notes" name="s">
                 </label>
@@ -27,7 +28,7 @@
             <ul>
                 <li class="nav-items"><a href="./share">Share</a></li>
                 <li class="nav-items"><a href="./browse">Browse</a></li>
-                <li class="nav-items"><a href="./login">Login</a></li>
+                <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
             </ul>
         </nav>
     </header>
