@@ -7,4 +7,4 @@ const docSchema = new mongoose.Schema({
   description: { type: String },
 });
 
-module.exports = mongoose.model("Doc", docSchema);
+module.exports = mongoose.model("Document", docSchema);
