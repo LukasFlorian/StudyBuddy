@@ -1,6 +1,10 @@
 const express = require("express")
 const path = require("path")
 const bodyParser = require("body-parser")
+require("dotenv").config();
+const mongoose = require("mongoose");
+const cors = require("cors");
+const userRoutes = require("./routes/userRoutes");
 
 // subpages:
 const browse = require('./routes/browse')
@@ -10,18 +14,33 @@ const login = require('./routes/login')
 const share = require('./routes/share')
 const signup = require('./routes/signup')
 
-
 const app = express()
-const port = 3000
 
-// app.use(express.static("./static/"))
+// Statische Dokumente bereitstellen (CSS, Bilder)
+// app.use(express.static(path.join(__dirname, "../static"))); // HTML-Dateien
+app.use("/public", express.static(path.join(__dirname, "../public"))); // Statische Assets (CSS, JS, Images)
+
+// API-Routen für User (Login & Signup)
+app.use("/api/users", userRoutes);
+
+
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/yourdatabase";
 
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.use(express.static("../public/img/"))
 
+// Middleware
+app.use(express.json());
+app.use(cors());
+
+// Verbindung zur MongoDB
+mongoose
+.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+.then(() => console.log("Verbunden mit MongoDB"))
+.catch((err) => console.error("Fehler bei der Verbindung zu MongoDB:", err));
 
 // Chiara muss links anpassen
 app.use("/", homepage)
@@ -30,21 +49,14 @@ app.use("/login", login)
 app.use("/signup", signup)
 app.use("/impressum", impressum)
 app.use("/share", share)
-/*
-app.get("/", (req, res) => {
-    res.send("<h1>Hello World</h1>")
-})
-*/
-app.get('/public/css/style.css', function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/css", "style.css"));
-});
 
-app.post('/public/img/', function(req, res) {
-    console.log(req.body)
-    res.sendFile(path.join(__dirname, "../public/img/*"));
+
+
+// Server starten
+app.listen(PORT, () => {
+  console.log(`Server läuft auf http://localhost:${PORT}`);
 });
 
 
 
-app.listen(port)
 
