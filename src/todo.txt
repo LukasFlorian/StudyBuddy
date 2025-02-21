@@ -1,2 +1,8 @@
 - userRoutes currently throwing error when user tries to sign up with existing email
 - fistname to camelcase
+
+
+Lukas:
+- Saving uploaded documents (for now WITHOUT required User attribute)
+- Sending document on card click
+- Sending documents for specified request

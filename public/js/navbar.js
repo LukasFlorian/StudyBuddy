@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Füge einen Event-Listener für den Abmelden-Button hinzu
     document.getElementById("logout-btn").addEventListener("click", () => {
       // Entferne den gespeicherten Benutzernamen
-      localStorage.removeItem("firstName");
+      localStorage.removeItem("firstname");
       // Leite den Nutzer zur Login-Seite weiter (oder lade die Seite neu)
       window.location.href = "./login";
     });
