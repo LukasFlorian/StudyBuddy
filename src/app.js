@@ -14,7 +14,7 @@ const login = require('./routes/login')
 const share = require('./routes/share')
 const signup = require('./routes/signup')
 const userRoutes = require("./routes/api/userRoutes");
-const documentRoutes = require("./routes/api/documentRoutes")
+const doctRoutes = require("./routes/api/docRoutes")
 
 const app = express()
 
@@ -33,7 +33,7 @@ app.use("/public", express.static(path.join(__dirname, "../public"))); // Statis
 
 // API-Routen für User (Login & Signup)
 app.use("/api/users", userRoutes);
-app.use("/api/documents", documentRoutes);
+app.use("/api/documents", doctRoutes);
 
 // Routen für subpages
 app.use("/", homepage)
@@ -45,7 +45,7 @@ app.use("/share", share)
 
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/yourdatabase";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/StudyBuddy";
 
 // Verbindung zur MongoDB
 mongoose
