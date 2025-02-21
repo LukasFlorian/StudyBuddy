@@ -130,7 +130,7 @@ all - navigation
 .navbar {
     box-sizing: border-box;
     flex: 1 1 30%;
- }
+}
 
 .navbar ul {
     box-sizing: border-box;
@@ -393,6 +393,26 @@ share
     font-size: 1rem;
 }
 
+.share-upload-card h2, p{
+    font-size: 1.5rem;
+    font-weight: inherit;
+    margin: 0;
+}
+
+.share-upload-card p{
+    font-size: 1.1rem;
+    text-align: left;
+}
+
+.share-upload-checkbox{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding-top: 2%;
+    text-align: center;
+}
+
 .upload-button{
     align-items: center;
     display: flex;
@@ -410,16 +430,58 @@ browse
     margin: 0 1rem;
 }
 
+.browse-container{
+    display: flex;
+    height: 100vh;
+    margin: 40px 0;
+}
+
+.browse-sidebar{
+    animation: slideInLR 1s ease-in-out;
+    background-color: var(--ui-purple);
+    border-radius: 0 15px 15px 0;
+    box-shadow: 3px 1px 9px 0px rgba(0,0,0,0.4);
+    box-sizing: border-box;
+    color: var(--ui-base-color-light);
+    display: flex;
+    flex-flow: column;
+    flex: 1 1 18%;
+    font-size: max(0.8rem, 1.6vw);
+    height: 100%;
+    margin: 0 max(20px, 3vw) 15px 0;
+    padding: 2% 1% 0;
+}
+
+.browse-sidebar h2{
+    font-size: max(1.2rem, 2vw);
+    margin-bottom: 1rem;
+}
+.browse-sidebar div{
+    padding-top: 1rem;
+}
+
+.browse-main{
+    flex: 1 1 82%;
+}
+
 .browse-results{
-    margin: 4% auto;
+    margin: 0 0 15px 0;
     width: 100%;
 }
 
 .browse-card-container{
-    box-sizing: border-box;
+    /*box-sizing: border-box;*/
     display: flex;
     font-family: var(--text-font-family) monospace;
     font-size: var(--ui-font-size);
+    width: 100%;
+}
+
+.browse-grid-container{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 100%;
+    height: auto;
     width: 100%;
 }
 
@@ -430,17 +492,43 @@ browse
     border: 3px solid transparent;
     border-radius: 15px;
     display: flex;
-    flex: 1 1 30%;
     flex-flow: column nowrap;
-    height: max(200px, 50%);
+    grid-area: 1 / 1 / 1 / 1;
+    height: auto;
     justify-content: center;
     max-width: 30%;
+    position: relative;
+    overflow: hidden;
 }
 
+.browse-card:hover{
+    background-color: #292626;
+
+}
 .browse-card img{
     max-width: 100%;
-    height: auto;
     border-radius: 12px;
+    display: block;
+}
+
+.browse-card-container button{
+    background-color: var(--ui-base-color-dark);
+    border-radius: 15px;
+    color: var(--ui-base-color-light);
+    cursor: pointer;
+    font-family: var(--text-font-family), monospace;
+    grid-area: 1 / 1 / 1 / 1;
+    margin: 0;
+    max-width: 31%;
+    opacity: 0;
+    position: relative;
+    z-index: 2;
+}
+
+
+.browse-card-container button:hover{
+    opacity: 0.9;
+    transition: opacity 0.5s;
 }
 
 
@@ -454,6 +542,7 @@ sign up / login
     height: 80vh;
     justify-content: center;
 }
+
 .signup{
     align-items: center;
     animation: fadeIn 0.5s ease-in-out;
@@ -621,7 +710,7 @@ responsive
 
     .hp-main-cards p{
         font-size: 0.8rem;
-         }
+    }
 }
 
 /***************************
