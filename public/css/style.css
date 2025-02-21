@@ -420,7 +420,7 @@ browse
     animation: slideInLR 1s ease-in-out;
     background-color: var(--ui-purple);
     border-radius: 0 15px 15px 0;
-    box-shadow: 3px 1px 9px 0px rgba(0,0,0,0.4);
+    box-shadow: 3px 1px 9px 0 rgba(0,0,0,0.4);
     box-sizing: border-box;
     color: var(--ui-base-color-light);
     display: flex;
@@ -568,7 +568,7 @@ sign up / login
     width: 50px;
 }
 
-.signup form input{
+.signup form input {
     background-color: var(--ui-base-color-light);
     border: 2px solid var(--ui-base-color-light);
     border-left: none;
@@ -582,153 +582,163 @@ sign up / login
     transition: 150ms ease;
 
 
-.signup form input:hover{
-    border-color: var(--ui-cyan);
+    .signup form input:hover {
+        border-color: var(--ui-cyan);
+    }
+
+    .signup form input:focus {
+        outline: none;
+        border-color: var(--ui-dark-blue)
+    }
+
+    /*parent selector: we access the div, that has an input-child with applied focus
+    from this we take the direct child label*/
+
+    .signup div:has(input:focus) > label {
+        background-color: var(--ui-dark-blue);
+    }
+
+    .signup form input::placeholder {
+        font-family: monospace;
+        opacity: 0.9; /*Deckkraft der Textfarbe erhöhen*/
+    }
+
+    .signup .login-button {
+        margin: 10px auto;
+        border: none;
+        border-radius: 15px;
+        background-color: var(--ui-cyan);
+        color: var(--ui-base-color-light);
+        font: inherit;
+        font-size: max(1.6rem, 1.5vw);
+        padding: 1rem 2rem;
+    }
+
+    .signup .login-button:hover {
+        background-color: var(--ui-dark-blue);
+    }
+
+    .signup .login-button:focus {
+        outline: none;
+        background-color: var(--ui-dark-blue);
+    }
+
+    .signup a {
+        text-decoration: none;
+        color: var(--ui-cyan);
+    }
+
+    .signup a:hover {
+        color: var(--ui-dark-blue);
+    }
+
+    #error-message {
+        color: #f06272;
+    }
+
+
+    /***************************
+    responsive
+     **************************/
+
+
+    @media screen and (min-width: 426px) and (max-width: 768px) {
+        html {
+            font-size: 12px;
+        }
+
+        .search {
+            flex: 1 1 30%;
+        }
+
+        .searchbar button {
+            display: none;
+        }
+
+        .signup {
+            width: min(500px, 100%);
+        }
+
+    }
+    @media screen and (max-width: 426px) {
+        .search {
+            display: none;
+        }
+
+        .navbar {
+            box-sizing: border-box;
+            flex: 1 1 70%;
+        }
+
+        #hp-main-container {
+            flex-flow: column wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hp-main-cards {
+            width: 100%;
+        }
+
+        div.hp-main-cards {
+            background-color: rgba(256, 256, 256, 0.7);
+            height: 50%;
+            position: absolute;
+            width: 100%;
+            z-index: 2;
+        }
+
+        div.hp-main-cards:nth-of-type(2) {
+            top: 50%
+        }
+
+        .button-hp {
+            font-size: 0.8rem;
+            padding: 5px;
+        }
+
+        .hp-main-cards p {
+            font-size: 0.8rem;
+        }
+    }
+
+    /***************************
+    animations
+     **************************/
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideInY {
+        from {
+            transform: translateY(-70%);
+        }
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInLR {
+        from {
+            transform: translateX(-70%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRL {
+        from {
+            transform: translateX(70%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
 }
-
-.signup form input:focus{
-    outline: none;
-    border-color: var(--ui-dark-blue)
-}
-
-/*parent selector: we access the div, that has an input-child with applied focus
-from this we take the direct child label*/
-.signup div:has(input:focus) > label{
-    background-color: var(--ui-dark-blue);
-}
-
-.signup form input::placeholder{
-    font-family: monospace;
-    opacity: 0.9; /*Deckkraft der Textfarbe erhöhen*/
-}
-.signup .login-button{
-    margin: 10px auto;
-    border: none;
-    border-radius: 15px;
-    background-color: var(--ui-cyan);
-    color: var(--ui-base-color-light);
-    font: inherit;
-    font-size: max(1.6rem, 1.5vw);
-    padding: 1rem 2rem;
-}
-
-.signup .login-button:hover{
-    background-color: var(--ui-dark-blue);
-}
-
-.signup .login-button:focus{
-    outline: none;
-    background-color: var(--ui-dark-blue);
-}
-
-.signup a{
-    text-decoration: none;
-    color: var(--ui-cyan);
-}
-.signup a:hover{
-    color: var(--ui-dark-blue);
-}
-
-#error-message{
-    color: #f06272;
-}
-
-
-/***************************
-responsive
- **************************/
-
-
-@media screen and (min-width: 426px) and (max-width: 768px){
-    html{
-        font-size: 12px;
-    }
-    .search{
-        flex: 1 1 30%;
-    }
-    .searchbar button {
-        display: none;
-    }
-    .signup{
-        width: min(500px, 100%);
-    }
-
-}
-@media screen and (max-width: 426px){
-    .search {
-        display: none;
-    }
-    .navbar {
-        box-sizing: border-box;
-        flex: 1 1 70%;
-    }
-    #hp-main-container{
-        flex-flow: column wrap;
-        position: relative;
-        z-index: 1;
-    }
-    .hp-main-cards{
-        width: 100%;
-    }
-    div.hp-main-cards{
-        background-color: rgba(256,256,256,0.7);
-        height: 50%;
-        position: absolute;
-        width: 100%;
-        z-index: 2;
-    }
-
-    div.hp-main-cards:nth-of-type(2){
-        top: 50%
-    }
-
-    .button-hp {
-        font-size: 0.8rem;
-        padding: 5px;
-    }
-
-    .hp-main-cards p{
-        font-size: 0.8rem;
-         }
-}
-
-/***************************
-animations
- **************************/
-
-@keyframes fadeIn {
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
-}
-
-@keyframes slideInY {
-    from{
-        transform: translateY(-70%);
-    }
-    to{
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideInLR {
-    from{
-        transform: translateX(-70%);
-    }
-    to{
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideInRL {
-    from{
-        transform: translateX(70%);
-    }
-    to{
-        transform: translateX(0);
-    }
-}
-
