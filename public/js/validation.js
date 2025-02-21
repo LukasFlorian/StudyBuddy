@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const data = await res.json();
           if (res.ok) {
             alert('Registrierung erfolgreich!');
-            window.location.href = './login.html';
+            window.location.href = './login';
           } else {
             alert(`Fehler: ${data.message}`);
           }
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem("firstname", data.firstname);
           
             alert("Login erfolgreich!");
-            window.location.href = "./homepage.html";
+            window.location.href = "./homepage";
           } else {
             alert(`Fehler: ${data.message}`);
           }

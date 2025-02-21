@@ -22,7 +22,7 @@ router.post('/signup', async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     user = new User({
-      firstname,
+      firstName: firstname,
       email,
       password: hashedPassword
     });
@@ -52,7 +52,7 @@ router.post("/login", async (req, res) => {
     }
 
     // Beispiel: Wenn du den "firstname" aus userModel zurückgeben willst:
-    const firstname = user.firstname;
+    const firstname = user.firstName;
 
     // Oder du willst nur das Email-Präfix (alles vor dem "@"):
     const emailPrefix = email.split("@")[0];
