@@ -1,20 +1,26 @@
+// External modules
+require("dotenv").config();
 const express = require("express")
 const path = require("path")
 const bodyParser = require("body-parser")
-require("dotenv").config();
 const mongoose = require("mongoose");
 const cors = require("cors");
-const userRoutes = require("./routes/userRoutes");
 
-// subpages:
+// Routes:
 const browse = require('./routes/browse')
 const homepage = require('./routes/homepage')
 const impressum = require('./routes/impressum')
 const login = require('./routes/login')
 const share = require('./routes/share')
 const signup = require('./routes/signup')
+const userRoutes = require("./routes/userRoutes");
 
 const app = express()
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
 // Statische Dokumente bereitstellen (CSS, Bilder)
 // app.use(express.static(path.join(__dirname, "../static"))); // HTML-Dateien
@@ -27,11 +33,6 @@ app.use("/api/users", userRoutes);
 const PORT = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/yourdatabase";
 
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
-app.use(bodyParser.json());
-
 // Middleware
 app.use(express.json());
 app.use(cors());
@@ -42,7 +43,7 @@ mongoose
 .then(() => console.log("Verbunden mit MongoDB"))
 .catch((err) => console.error("Fehler bei der Verbindung zu MongoDB:", err));
 
-// Chiara muss links anpassen
+// Routen für subpages
 app.use("/", homepage)
 app.use("/browse", browse)
 app.use("/login", login)
@@ -56,7 +57,4 @@ app.use("/share", share)
 app.listen(PORT, () => {
   console.log(`Server läuft auf http://localhost:${PORT}`);
 });
-
-
-
 

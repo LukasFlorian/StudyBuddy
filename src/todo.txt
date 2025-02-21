@@ -1,0 +1,2 @@
+- userRoutes currently throwing error when user tries to sign up with existing email
+- fistname to camelcase
