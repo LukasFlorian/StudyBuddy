@@ -3,13 +3,14 @@ root
  **************************/
 
 :root{
-    --ui-base-color: white;
-    --text-font-family: monospace;
+    --ui-base-color-light: white;
+    --ui-base-color-dark: #292626;
     --ui-blue: #474ad7e6;
     --ui-cyan: #1ec1f7;
     --ui-pink: #ca59c5;
     --ui-purple: #852bcc;
     --ui-dark-blue: #3d23a9;
+    --text-font-family: monospace;
     --ui-font-size: max(1.2rem, 2vw);
 }
 
@@ -32,10 +33,14 @@ all - header
  **************************/
 
 header {
+    background: linear-gradient(180deg, var(--ui-base-color-light) 80%, transparent 100%);
     box-sizing: border-box;
     font-size: max(1.2rem, 2vw);
     padding: 2%;
+    position: sticky;
+    top: 0;
     width: 100%;
+    z-index: 3;
 }
 
 .hp-header-container{
@@ -90,7 +95,7 @@ all - searchbar
 .searchbar input {
     background: transparent;
     border: 0;
-    color: var(--ui-base-color);
+    color: var(--ui-base-color-light);
     font-size: max(1.2rem, 2vw);
     outline: none;
     /*padding top/bottom, left/right*/
@@ -99,7 +104,7 @@ all - searchbar
 
 /*change placeholder-text color*/
 .searchbar input::placeholder{
-    color: var(--ui-base-color);
+    color: var(--ui-base-color-light);
 }
 
 .searchbar button {
@@ -411,7 +416,7 @@ browse
 
 .browse-card {
     align-items: center;
-    background: linear-gradient(var(--ui-base-color), var(--ui-base-color)) padding-box,
+    background: linear-gradient(var(--ui-base-color-light), var(--ui-base-color-light)) padding-box,
     linear-gradient(145deg, transparent 0%,var(--ui-pink),var(--ui-purple), var(--ui-dark-blue)) border-box;
     border: 3px solid transparent;
     border-radius: 15px;
@@ -444,7 +449,7 @@ sign up / login
     align-items: center;
     animation: fadeIn 0.5s ease-in-out;
     background: rgba(256,256,256,0.7);
-    border-color: var(--ui-base-color);
+    border-color: var(--ui-base-color-light);
     border-radius: 15px;
     border-style: dotted;
     display: flex;
@@ -487,8 +492,8 @@ sign up / login
 }
 
 .signup form input{
-    background-color: var(--ui-base-color);
-    border: 2px solid var(--ui-base-color);
+    background-color: var(--ui-base-color-light);
+    border: 2px solid var(--ui-base-color-light);
     border-left: none;
     border-radius: 0 10px 10px 0;
     box-sizing: border-box;
@@ -517,7 +522,6 @@ from this we take the direct child label*/
 
 .signup form input::placeholder{
     font-family: monospace;
-    color: var(--text-color);
     opacity: 0.9; /*Deckkraft der Textfarbe erhöhen*/
 }
 .signup .login-button{
@@ -525,7 +529,7 @@ from this we take the direct child label*/
     border: none;
     border-radius: 15px;
     background-color: var(--ui-cyan);
-    color: var(--ui-base-color);
+    color: var(--ui-base-color-light);
     font: inherit;
     font-size: max(1.6rem, 1.5vw);
     padding: 1rem 2rem;
