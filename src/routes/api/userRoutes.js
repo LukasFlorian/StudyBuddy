@@ -1,6 +1,6 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
-const User = require("../models/userModel");
+const User = require("../../models/userModel");
 
 const router = express.Router();
 
@@ -53,13 +53,15 @@ router.post("/login", async (req, res) => {
 
     // Beispiel: Wenn du den "firstname" aus userModel zurückgeben willst:
     const firstname = user.firstName;
+    const userID = user._id;
 
     // Oder du willst nur das Email-Präfix (alles vor dem "@"):
     const emailPrefix = email.split("@")[0];
 
     return res.status(200).json({
       message: "Login erfolgreich",
-      firstname: firstname
+      firstname: firstname,
+      userID: userID,
     });
   } catch (error) {
     res.status(500).json({ message: "Serverfehler" });
