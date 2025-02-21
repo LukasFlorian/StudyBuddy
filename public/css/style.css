@@ -393,26 +393,6 @@ share
     font-size: 1rem;
 }
 
-.share-upload-card h2, p{
-    font-size: 1.5rem;
-    font-weight: inherit;
-    margin: 0;
-}
-
-.share-upload-card p{
-    font-size: 1.1rem;
-    text-align: left;
-}
-
-.share-upload-checkbox{
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-evenly;
-    margin: 0 auto;
-    padding-top: 2%;
-    text-align: center;
-}
-
 .upload-button{
     align-items: center;
     display: flex;
@@ -470,7 +450,7 @@ browse
 }
 
 .browse-card-container{
-    /*box-sizing: border-box;*/
+    box-sizing: border-box;
     display: flex;
     font-family: var(--text-font-family) monospace;
     font-size: var(--ui-font-size);
@@ -492,13 +472,12 @@ browse
     border: 3px solid transparent;
     border-radius: 15px;
     display: flex;
+    flex: 1 1 30%;
     flex-flow: column nowrap;
     grid-area: 1 / 1 / 1 / 1;
     height: auto;
     justify-content: center;
     max-width: 30%;
-    position: relative;
-    overflow: hidden;
 }
 
 .browse-card:hover{
@@ -507,6 +486,7 @@ browse
 }
 .browse-card img{
     max-width: 100%;
+    height: auto;
     border-radius: 12px;
     display: block;
 }
@@ -542,7 +522,6 @@ sign up / login
     height: 80vh;
     justify-content: center;
 }
-
 .signup{
     align-items: center;
     animation: fadeIn 0.5s ease-in-out;
@@ -601,7 +580,7 @@ sign up / login
     min-width: 0;
     padding: 1rem;
     transition: 150ms ease;
-}
+
 
 .signup form input:hover{
     border-color: var(--ui-cyan);
