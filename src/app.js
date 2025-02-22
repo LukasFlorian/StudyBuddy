@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require('express-session');
+const fileUpload = require("express-fileupload");
 
 // Routes:
 const browse = require('./routes/browse')
@@ -15,6 +16,7 @@ const share = require('./routes/share')
 const signup = require('./routes/signup')
 const userRoutes = require("./routes/userRoutes");
 const docRoutes = require("./routes/uploadRoute")
+
 
 const app = express();
 
@@ -27,6 +29,7 @@ app.use(cors({
   origin: "http://localhost:3000",
   credentials: true
 }));
+app.use(fileUpload()); // Es ist erforderlich express-fileupload zu verwenden, um Dateien hochzuladen
 
 // Session-Management – WICHTIG: Das muss VOR den Routeneinbindungen stehen!
 app.use(session({
@@ -41,7 +44,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 
 // API-Routen für User (Login & Signup)
 app.use("/api/users", userRoutes);
-app.use("/api/upload", docRoutes);
+app.use("/api/upload", docRoutes); /* Hier wird der Upload-Route eingebunden */
 
 // Routen für Subpages
 app.use("/", homepage);

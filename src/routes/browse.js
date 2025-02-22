@@ -1,32 +1,28 @@
 const express = require("express");
-const path = require("path")
+const path = require("path");
 const Doc = require("../models/docModel");
 const User = require("../models/userModel");
 
-router = express.Router()
+const router = express.Router();
 
 /*
 GET-Request für Suche
-•⁠  ⁠User schickt GET-Request mit Suchbegriff und Tags als Query
-•⁠  ⁠⁠Antwort ist Status 200 und Dokumentinfos im Format {“numDocs”: numDocs, “documents”: [document attributes docID, docTitle, docDescription, docTag, docAuthor, docDate]}, wenn es das Dokument gibt
-•⁠  ⁠⁠Status 200 und numDocs = 0 und documents = [] wenn es keine Ergebnisse gibt
-•⁠  ⁠⁠Status 400 für invalide Request
+• User schickt GET-Request mit Suchbegriff und Tags als Query
+• Antwort ist Status 200 und Dokumentinfos im Format {"numDocs": numDocs, "documents": [...]}
+• Falls keine Ergebnisse gefunden werden, wird numDocs = 0 und documents = []
+• Status 400 für invalide Request
 
-auf Route /browse
+Route: /browse
 */
-
-// Lösung: GET-Request sendet Tags und Suchbegriff an die DB -> response ist JSON
-// Bei JSON-Erhalt wird HTML per POST-
 router.get('/', async (req, res) => {
     console.log("User opening browse subpage");
-    //res.sendFile(path.join(__dirname, "../../static/browse.html"));
     try {
         const { searchTerm, tags } = req.query;
         console.log("Searchterm:", searchTerm);
         console.log("Tags:", tags);
 
         var matches = await Doc.find({
-            $or : [
+            $or: [
                 {
                     title: {
                         $regex: ".*" + searchTerm + ".*",
@@ -40,7 +36,7 @@ router.get('/', async (req, res) => {
                     }
                 }
             ],
-            "tag": {
+            tag: {
                 $in: tags
             }
         }, {
@@ -58,40 +54,42 @@ router.get('/', async (req, res) => {
             select: "firstName"
         });
 
-        console.log(matches)
+        console.log(matches);
         res.status(200).json(populatedMatches);
-
     } catch (err) {
         console.log(err);
         res.status(400).json({ numDocs: 0, documents: [] });
     }
-})
+});
 
 router.post("/", (req, res) => {
     res.sendFile(path.join(__dirname, "../../static/browse.html"));
-})
+});
 
 /*
 GET-Request für Download:
-•⁠  ⁠User schickt eine GET-Request mit documentID als Query
-•⁠  ⁠⁠Antwort ist Status 200 und direkt die Datei (Fenster mit Datei öffnet sich), wenn es sie gibt
-•⁠  ⁠⁠Ansonsten Status 400, wenn es die Datei nicht gibt
+- User schickt eine GET-Request mit documentID als Query
+- Antwort ist Status 200 und direkt die Datei (sofern vorhanden)
+- Andernfalls Status 400, wenn die Datei nicht existiert
 
-
-auf Route /browse/download
+Route: /browse/download
 */
 router.get("/download", async (req, res) => {
     try {
         const docID = req.query.docID;
         console.log("User requested " + docID);
         const file = await Doc.findById(docID).exec();
-    
+
         if (!file) {
             return res.status(400).send("The document you requested does not seem to exist");
-        }
-        else {
+        } else {
             console.log(file);
-            res.status(200).sendFile(file.file);
+            // Falls file.file als Buffer gespeichert ist, musst du evtl. Header setzen und den Buffer senden:
+            res.set({
+              "Content-Type": "application/octet-stream",
+              "Content-Disposition": `attachment; filename="${file.title || "document"}"`
+            });
+            res.status(200).send(file.file);
         }
     } catch (err) {
         console.log(err);
@@ -99,4 +97,4 @@ router.get("/download", async (req, res) => {
     }
 });
 
-module.exports = router
+module.exports = router;
