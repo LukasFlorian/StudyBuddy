@@ -17,9 +17,9 @@ auf Route /browse
 
 // Lösung: GET-Request sendet Tags und Suchbegriff an die DB -> response ist JSON
 // Bei JSON-Erhalt wird HTML per POST-
-router.get('/', async (req, res) =>{
+router.get('/', async (req, res) => {
     console.log("User opening browse subpage");
-    res.write(path.join(__dirname, "../../static/browse.html"));
+    //res.sendFile(path.join(__dirname, "../../static/browse.html"));
     try {
         const { searchTerm, tags } = req.query;
         console.log("Searchterm:", searchTerm);
@@ -59,14 +59,16 @@ router.get('/', async (req, res) =>{
         });
 
         console.log(matches)
-        res.write(JSON.stringify(populatedMatches));
-        res.write(200)
-        res.send()
+        res.status(200).json(populatedMatches);
 
     } catch (err) {
         console.log(err);
         res.status(400).json({ numDocs: 0, documents: [] });
     }
+})
+
+router.post("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../../static/browse.html"));
 })
 
 /*
@@ -81,7 +83,7 @@ auf Route /browse/download
 router.get("/download", async (req, res) => {
     try {
         const docID = req.query.docID;
-        console.log(docID);
+        console.log("User requested " + docID);
         const file = await Doc.findById(docID).exec();
     
         if (!file) {
