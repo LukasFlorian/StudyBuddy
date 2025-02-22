@@ -13,8 +13,8 @@ const impressum = require('./routes/impressum')
 const login = require('./routes/login')
 const share = require('./routes/share')
 const signup = require('./routes/signup')
-const userRoutes = require("./routes/api/userRoutes");
-const doctRoutes = require("./routes/api/docRoutes")
+const userRoutes = require("./routes/userRoutes");
+const doctRoutes = require("./routes/uploadRoute")
 
 const app = express()
 
@@ -33,7 +33,7 @@ app.use("/public", express.static(path.join(__dirname, "../public"))); // Statis
 
 // API-Routen für User (Login & Signup)
 app.use("/api/users", userRoutes);
-app.use("/api/documents", doctRoutes);
+app.use("/api/upload", doctRoutes);
 
 // Routen für subpages
 app.use("/", homepage)
