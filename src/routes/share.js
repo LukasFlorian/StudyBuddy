@@ -11,10 +11,4 @@ router.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname, "../../static/share.html"));
 })
 
-
-router.post('/', (req,res) => {
-    body = req.body;
-    console.log(body);
-})
-
 module.exports = router

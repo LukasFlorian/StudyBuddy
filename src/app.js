@@ -40,6 +40,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 
 // API-Routen für User (Login & Signup)
 app.use("/api/users", userRoutes);
+app.use("/api/documents", doctRoutes);
 
 // Routen für Subpages
 app.use("/", homepage);
@@ -50,7 +51,7 @@ app.use("/impressum", impressum);
 app.use("/share", share);
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/yourdatabase";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/StudyBuddy";
 
 // Verbindung zur MongoDB
 mongoose
