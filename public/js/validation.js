@@ -42,14 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
           const res = await fetch('http://localhost:3000/api/users/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
+            credentials: 'include', // WICHTIG: Cookie wird mitgesendet
             body: JSON.stringify({ email, password })
           });
-          
+  
           const data = await res.json();
           if (res.ok) {
-            // data enthält jetzt { message: "Login erfolgreich", firstname: "..." }
-            localStorage.setItem("firstname", data.firstname);
-          
+            // Speichere den Vornamen lokal (für z. B. den Header)
+            localStorage.setItem("firstName", data.firstName);
             alert("Login erfolgreich!");
             window.location.href = "./homepage";
           } else {
@@ -62,4 +62,5 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-  
+
+ 

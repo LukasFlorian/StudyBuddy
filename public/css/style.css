@@ -130,7 +130,8 @@ all - navigation
 .navbar ul {
     box-sizing: border-box;
     display: flex;
-    justify-content: space-evenly;
+    align-items: center; /*vertical alignment*/
+    justify-content: space-evenly; 
     list-style-type: none;
     margin: 0;
     padding: 1%;
@@ -509,6 +510,8 @@ sign up / login
     border-color: var(--ui-dark-blue)
 }
 
+  
+
 /*parent selector: we access the div, that has an input-child with applied focus
 from this we take the direct child label*/
 .signup div:has(input:focus) > label{
@@ -551,7 +554,6 @@ from this we take the direct child label*/
 #error-message{
     color: #f06272;
 }
-
 
 /***************************
 responsive
