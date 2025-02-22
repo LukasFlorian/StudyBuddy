@@ -16,35 +16,42 @@ POST-Request für Upload:
 
 auf Route /api/upload
 */
-router.post("/", async (req, res) => {
+router.post("/", async (req, res) => { 
     try {
         const body = req.body;
 
-        const file = req.files.file;
+        const fileObj = req.files.uploadFile; // Wir verwenden express-fileupload, daher req.files.uploadFile statt req.files.file
+        if (!fileObj) {
+            return res.status(400).json({ message: "File is missing" });
+        }
+        const fileBuffer = fileObj.data;
+        
         const title = body.docTitle;
         const description = body.description;
         const tag = body.tag;
         const userID = body.userID;
+        
         const user = await User.findById(userID).exec();
         if (!user) {
             return res.status(400).json({ message: "Your User ID does not exist" });
-        } else {
-            const uploadDate = new Date();
-            const doc = new Doc({
-                userID,
-                title,
-                uploadDate,
-                description,
-                file,
-                tag,
-            });
-            await doc.save();
-            return res.status(200).json( { message: "Doc saved successfully" });
         }
+
+        const uploadDate = new Date();
+        const doc = new Doc({
+            userID,
+            title,
+            uploadDate,
+            description,
+            file: fileBuffer,
+            tag,
+        });
+
+        await doc.save();
+        return res.status(200).json({ message: "Doc saved successfully" });
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: "Server Error" });
     }
-})
+});
 
 module.exports = router;
