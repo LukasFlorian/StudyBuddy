@@ -34,7 +34,7 @@
     <section id="hp-introduction">
         <h1>Share your notes by uploading them to our collection.</h1>
     </section>
-    <div class="share-container-upload">
+    <div class="share-container">
         <form action="" method="post" enctype="multipart/form-data">
             <div class="share-upload-card">
                 <label for="title">Title:</label><br>
@@ -45,19 +45,19 @@
                 <input type="text" id="description" name="description" placeholder="A short description of your file, e.g. The Pythagorean Theorem, exercises, ..."/>
             </div>
             <div class="share-upload-card">
-                <h2>Tags:</h2><br>
+                <h2>Tags:</h2>
                 <p>Please choose the fitting tag for your file.</p>
-                <div class="share-upload-checkbox">
+                <div class="share-card-radio">
                     <div>
-                        <input type="checkbox" id="tag1" name="tag1" value="exercises">
+                        <input type="radio" id="tag1" name="tag" value="exercises">
                         <label for="tag1">Exercises</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="tag2" name="tag2" value="summary">
+                        <input type="radio" id="tag2" name="tag" value="summary">
                         <label for="tag2">Summary</label>
                     </div>
                     <div>
-                        <input type="checkbox" id="tag3" name="tag3" value="scribbledNotes">
+                        <input type="radio" id="tag3" name="tag" value="scribbledNotes">
                         <label for="tag3">Scribbled Notes</label>
                     </div>
                 </div>
