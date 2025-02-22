@@ -7,14 +7,14 @@ const cors = require("cors");
 const session = require('express-session');
 
 // Routes:
-const browse = require('./routes/browse');
-const homepage = require('./routes/homepage');
-const impressum = require('./routes/impressum');
-const login = require('./routes/login');
-const share = require('./routes/share');
-const signup = require('./routes/signup');
-const userRoutes = require("./routes/api/userRoutes");
-const docRoutes = require("./routes/api/docRoutes");
+const browse = require('./routes/browse')
+const homepage = require('./routes/homepage')
+const impressum = require('./routes/impressum')
+const login = require('./routes/login')
+const share = require('./routes/share')
+const signup = require('./routes/signup')
+const userRoutes = require("./routes/userRoutes");
+const docRoutes = require("./routes/uploadRoute")
 
 const app = express();
 
@@ -41,7 +41,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 
 // API-Routen für User (Login & Signup)
 app.use("/api/users", userRoutes);
-app.use("/api/documents", docRoutes);
+app.use("/api/upload", docRoutes);
 
 // Routen für Subpages
 app.use("/", homepage);
