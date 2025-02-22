@@ -460,6 +460,10 @@ browse
     padding-top: 1rem;
 }
 
+.browse-sidebar button{
+    display: none;
+}
+
 .browse-main{
     flex: 1 1 82%;
 }
@@ -496,7 +500,7 @@ browse
     grid-area: 1 / 1 / 1 / 1;
     height: auto;
     justify-content: center;
-    max-width: 30%;
+    width: 30%;
     position: relative;
     overflow: hidden;
 }
@@ -513,13 +517,14 @@ browse
 
 .browse-card-container button{
     background-color: var(--ui-base-color-dark);
+    border: 3px solid var(--ui-base-color-dark);
     border-radius: 15px;
     color: var(--ui-base-color-light);
     cursor: pointer;
     font-family: var(--text-font-family), monospace;
     grid-area: 1 / 1 / 1 / 1;
     margin: 0;
-    max-width: 31%;
+    width: 30.6%;
     opacity: 0;
     position: relative;
     z-index: 2;
@@ -527,8 +532,9 @@ browse
 
 
 .browse-card-container button:hover{
+    font-size: var(--ui-font-size);
     opacity: 0.9;
-    transition: opacity 0.5s;
+    transition: opacity 0.4s;
 }
 
 
