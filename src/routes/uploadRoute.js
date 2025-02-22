@@ -1,7 +1,7 @@
 const express = require("express");
 
 const router = express.Router();
-const Document = require("../models/docModel");
+const Doc = require("../models/docModel");
 const User = require("../models/userModel");
 
 
@@ -18,31 +18,28 @@ auf Route /api/upload
 */
 router.post("/", async (req, res) => {
     try {
-        const file = req.files.file;
         const body = req.body;
+
+        const file = req.files.file;
         const title = body.docTitle;
         const description = body.description;
-        const exercises = body.exercises;
-        const summary = body.summary;
-        const scribbledNotes = body.scribbledNotes;
+        const tag = body.tag;
         const userID = body.userID;
         const user = await User.findById(userID).exec();
         if (!user) {
             return res.status(400).json({ message: "Your User ID does not exist" });
         } else {
             const uploadDate = new Date();
-            const doc = new Document({
+            const doc = new Doc({
                 userID,
                 title,
                 uploadDate,
                 description,
                 file,
-                exercises,
-                summary,
-                scribbledNotes
+                tag,
             });
             await doc.save();
-            return res.status(200).json( { message: "Document saved successfully" });
+            return res.status(200).json( { message: "Doc saved successfully" });
         }
     } catch (err) {
         console.log(err);
