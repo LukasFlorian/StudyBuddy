@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password-input').value;
   
         try {
-          const res = await fetch('http://localhost:3000/api/users/signup', {
+          const res = await fetch('/api/users/signup', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ firstname, email, password })
@@ -62,5 +62,3 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
   });
-
- 
