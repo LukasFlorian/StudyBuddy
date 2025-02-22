@@ -341,7 +341,7 @@ share
     width: 100%;
 }
 
-.share-container-upload{
+.share-container{
     border-color: var(--ui-blue);
     border-radius: 15px;
     border-style: dotted;
@@ -350,7 +350,7 @@ share
     width: 70%;
 }
 
-.share-container-upload form{
+.share-container form{
     background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
     border-radius: 15px;
     box-sizing: border-box;
@@ -374,7 +374,7 @@ share
     display: none;
 }
 
-.share-container-upload input{
+.share-container input{
     background-color: #efeafa;
     border-style: none;
     box-sizing: border-box;
@@ -383,12 +383,12 @@ share
     width: 100%;
 }
 
-.share-container-upload input:focus{
+.share-container input:focus{
     background-color: white;
     outline-color: var(--ui-purple);
 }
 
-.share-container-upload input::placeholder{
+.share-container input::placeholder{
     font-family: var(--text-font-family), monospace;
     font-size: 1rem;
 }
@@ -404,7 +404,7 @@ share
     text-align: left;
 }
 
-.share-upload-checkbox{
+.share-card-radio{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-evenly;
