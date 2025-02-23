@@ -1,68 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Browse</title>
-        <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
-        <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
-        <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
-        <script src="../public/js/navbar.js" defer></script>
-    </head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Browse</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/style.css" />
+    <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
+    <script src="../public/js/navbar.js" defer></script>
+    <script src="../public/js/frontendBrowse.js" defer></script>
+  </head>
+  <body>
     <header class="hp-header-container">
-        <a href="./homepage" class="logo">
-            <img id="logo" src="../public/img/logo.png" alt="Logo">
-        </a>
-        <div class="search">
-            <!--empty in browse.html-->
-        </div>
-        <nav class="navbar">
-            <ul>
-                <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
-                <li class="nav-items"><a href="./browse">Browse</a></li>
-                <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
-            </ul>
-        </nav>
+      <a href="./homepage" class="logo">
+        <img id="logo" src="../public/img/logo.png" alt="Logo" />
+      </a>
+      <div class="search">
+        <!-- empty in browse.html -->
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
+          <li class="nav-items"><a href="./browse">Browse</a></li>
+          <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
+        </ul>
+      </nav>
     </header>
 
     <main>
         <section class="introduction">
             <h1>Browse through our collection.</h1>
         </section>
-
-    <div class="browse-search">
-        <form action="" class="searchbar" method="get">
-            <label>
-                <input type="text" placeholder="search for notes" name="s">
-            </label>
-            <button type="submit" class="browse-searchbar-button"> <img src="../public/img/search.png" alt=""> </button>
+      <!-- Suchformular – nun mit id "search-form" und dem passenden Namensattribut -->
+      <div class="browse-search">
+        <form id="search-form" class="searchbar" method="get" action="#">
+          <label>
+            <input type="text" placeholder="search for notes" name="searchTerm" required />
+          </label>
+          <button type="submit" class="browse-searchbar-button">
+            <img src="../public/img/search.png" alt="" />
+          </button>
         </form>
     </div>
     <div class="browse-container">
         <div class="browse-sidebar">
-            <h2>Filter:</h2>
-            <form action="">
-                <div>
-                    <input type="radio" id="tag1" name="tag" value="exercises">
-                    <label for="tag1">Exercises</label>
-                </div>
-                <div>
-                    <input type="radio" id="tag2" name="tag" value="summary">
-                    <label for="tag2">Summary</label>
-                </div>
-                <div>
-                    <input type="radio" id="tag3" name="tag" value="scribbledNotes">
-                    <label for="tag3">Scribbled Notes</label>
-                </div>
-                <button type="submit" id="filterButton">Apply Filter</button>
-            </form>
+          <h2>Filter:</h2>
+          <!-- Filter-Formular für Tags -->
+          <form id="filter-form" action="">
+            <div>
+              <input type="radio" id="tag1" name="tag" value="exercises" />
+              <label for="tag1">Exercises</label>
+            </div>
+            <div>
+              <input type="radio" id="tag2" name="tag" value="summary" />
+              <label for="tag2">Summary</label>
+            </div>
+            <div>
+              <input type="radio" id="tag3" name="tag" value="scribbledNotes" />
+              <label for="tag3">Scribbled Notes</label>
+            </div>
+            <button type="submit" id="filterButton">Apply Filter</button>
+          </form>
         </div>
         <div class="browse-main">
-            <div class="browse-results">
+            <!-- Suchergebnisse werden hier dynamisch eingefügt -->
+            <div id="search-results" class="browse-results">
                 <h1>Search results</h1>
             </div>
-            <div class="browse-card-container"> <!--hier Java Script für Suchergebnisse -->
+
+            <!-- Beispielhaft kann hier auch ein Template für Ergebnis-Karten stehen,
+               das per JavaScript ersetzt bzw. ergänzt wird -->
+            <!-- Template für Suchergebnisse: -->
+            <div class="browse-card-container">
                 <div class="browse-grid-container">
                     <div class="browse-card">
                         <img src="../public/img/browse_placeholder.png" alt="search result">

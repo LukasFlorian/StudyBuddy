@@ -6,6 +6,8 @@ const docSchema = new mongoose.Schema({
   uploadDate: { type: Date, required: true },
   description: { type: String, required: true },
   file: {type: Buffer, required: true },
+  fileType: { type: String, required: true },       // neu
+  originalName: { type: String, required: true },     // neu
   tag: { type: String, required: false },
 });
 
