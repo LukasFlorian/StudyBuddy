@@ -2,35 +2,35 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchForm = document.getElementById("search-form");
   const resultsSection = document.getElementById("search-results");
 
-  // Event-Listener für das Suchformular
+  // Event-Listener for the search form
   searchForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(searchForm);
     const searchTerm = formData.get("searchTerm");
-    const tags = formData.get("tags"); // Falls du ein zusätzliches Feld hast
+    const tag = formData.get("tag");
 
-    // URL mit Query-Parametern zusammenbauen
+    // change url to include search term and tag
     let url = `/browse?searchTerm=${encodeURIComponent(searchTerm)}`;
-    if (tags) {
-      url += `&tags=${encodeURIComponent(tags)}`;
+    if (tag) {
+      url += `&tag=${encodeURIComponent(tag)}`;
     }
     
     try {
-      const response = await fetch(url);
-      const data = await response.json();
+      const response = await fetch(url); // fetches the search results  from the server
+      const data = await response.json(); // parses the JSON response
 
-      // Ergebnisbereich leeren
+      // empty the results section
       resultsSection.innerHTML = "";
 
-      if (data.numDocs === 0) {
+      if (data.numDocs === 0) { // if no documents are found
         resultsSection.innerHTML = "<p>No documents found.</p>";
       } else {
-        // Für jedes Dokument wird eine Browse Card erstellt
+        // create browse cards for each document
         data.documents.forEach(doc => {
-          const card = document.createElement("div");
-          card.classList.add("browse-card");
+          const card = document.createElement("div"); // create a div element for each document
+          card.classList.add("browse-card"); // add the class "browse-card" to the div element
 
-          // Hier kannst du das Layout der Card anpassen – wenn mehr Dokumente vorliegen, ggf. unterschiedliche Styles/pagination
+          // set the inner HTML of the card element with the document information
           card.innerHTML = `
             <h2>${doc.docTitle}</h2>
             <p>${doc.docDescription}</p>
@@ -42,16 +42,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }
     } catch (err) {
-      console.error("Error fetching search results:", err);
-      resultsSection.innerHTML = "<p>Error fetching search results.</p>";
+      console.error("Error fetching search results:", err); // log an error message if there is an error fetching the search results
+      resultsSection.innerHTML = "<p>Error fetching search results.</p>"; // display an error message in the results section
     }
   });
 
-  // Download-Button: Beim Klick wird der Download über den Browser gestartet
+  // Donwload button event listener to download the document when button clicked 
   resultsSection.addEventListener("click", (e) => {
     if (e.target.classList.contains("download-btn")) {
-      const docID = e.target.getAttribute("data-id");
-      window.location.href = `/browse/download?docID=${docID}`;
+      const docID = e.target.getAttribute("data-id"); // get the document ID from the data attribute of the button
+      window.location.href = `/browse/download?docID=${docID}`; // redirect to the download route with the document ID as a query parameter
     }
   });
 });

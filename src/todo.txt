@@ -6,3 +6,7 @@ Lukas:
 - Saving uploaded documents (for now WITHOUT required User attribute)
 - Sending document on card click
 - Sending documents for specified request
+
+- Wie können Tag und Title an den Servergeschickt werden, damit beides Suchkriterium für die Suche nach Datein ist?
+- Searchbar aus Header entfernen
+- Suchergenisse als Browsecard klasse anzeigen mit placeholder bild also genau wie das Elemente das unabhängig von der Suche immer da ist (da dann ggf. Author und date ergänzen) und das anfängliche element entfernen.

@@ -14,38 +14,33 @@ GET-Request für Suche
 router.get('/', async (req, res) => {
   console.log("User opening browse subpage");
   try {
-    // Destructuring der Query-Parameter
-    const { searchTerm, tags } = req.query;
+    // CHANGED: Destructuring passt jetzt zu den Formularfeldern der browse.html
+    const { searchTerm, tag } = req.query;
     console.log("Searchterm:", searchTerm);
-    console.log("Tags:", tags);
+    console.log("Tag:", tag);
 
     // Falls kein Suchbegriff übergeben wurde, HTML-Datei zurückliefern
     if (!searchTerm) {
       return res.sendFile(path.join(__dirname, "../../static/browse.html"));
     }
 
-    // Basis-Query für den Suchbegriff (im Titel oder in der Beschreibung)
-    let query = {
+    // CHANGED: Beide Kriterien in Query-Bedingungen berücksichtigen
+    let queryConditions = [];
+    
+    // Suchbedingung: Titel oder Beschreibung muss den Suchbegriff enthalten
+    queryConditions.push({
       $or: [
-        {
-          title: {
-            $regex: ".*" + searchTerm + ".*",
-            $options: "i"
-          }
-        },
-        {
-          description: {
-            $regex: ".*" + searchTerm + ".*",
-            $options: "i"
-          }
-        }
+        { title: { $regex: ".*" + searchTerm + ".*", $options: "i" } },
+        { description: { $regex: ".*" + searchTerm + ".*", $options: "i" } }
       ]
-    };
-
-    // Tag-Bedingung nur hinzufügen, wenn auch Tags übergeben werden
-    if (tags && tags.trim() !== "") {
-      query.tag = { $in: tags.split(",").map(t => t.trim()) };
+    });
+    
+    // Tag-Bedingung hinzufügen, falls ein Tag ausgewählt wurde
+    if (tag && tag.trim() !== "") {
+      queryConditions.push({ tag: tag.trim() });
     }
+    
+    const query = queryConditions.length > 0 ? { $and: queryConditions } : {};
 
     const matches = await Doc.find(query, {
       userID: 1,
@@ -92,23 +87,21 @@ GET-Request für Download:
 • Andernfalls wird Status 400 zurückgegeben
 Route: /browse/download
 */
-router.get("/download", async (req, res) => {
+router.get("/download", async (req, res) => { // route for downloading the document
   try {
-    // Abfrage und Verwendung von "docID" als Query-Parameter 
-    const docID = req.query.docID;
+    const docID = req.query.docID;// get the document ID from the query parameter (docID)
     console.log("User requested " + docID);
     const file = await Doc.findById(docID).exec();
 
     if (!file) {
       return res.status(400).send("The document you requested does not seem to exist");
     } else {
-      console.log(file);
-      // Header setzen, um den Download auszulösen
-      res.set({
-        "Content-Type": "file.fileType", /*"application/octet-stream" wird zu "file.fileType" geändert, um den fileTyp aufzurrufen*/
-        "Content-Disposition": `attachment; filename="${file.originalName}"` // originaler Dateiname
+      console.log(file); // log the file object for debugging
+      res.set({ // set the response headers
+        "Content-Type": file.fileType, // set the content type to the file type of the document
+        "Content-Disposition": `attachment; filename="${file.originalName}"` // set the file name for the download file to the original name of the document 
       });
-      res.status(200).send(file.file);
+      res.status(200).send(file.file); // send the file buffer as the response
     }
   } catch (err) {
     console.log(err);
