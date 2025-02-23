@@ -297,6 +297,133 @@ homepage - main cards
 
 
 /***************************
+login / sign up
+ **************************/
+.signup-container{
+    align-items: center;
+    background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
+    display: flex;
+    height: 80vh;
+    justify-content: center;
+}
+
+.signup{
+    align-items: center;
+    animation: fadeIn 0.5s ease-in-out;
+    background: rgba(256,256,256,0.7);
+    border-color: var(--ui-base-color-light);
+    border-radius: 15px;
+    border-style: dotted;
+    display: flex;
+    flex-direction: column;
+    height: max(40%, 70vh);
+    justify-content: center;
+    width: max(40%, 600px); /*depending on what value is bigger, min width 600 px)*/
+}
+
+.signup h1{
+    font-size: max(1.6rem, 3vw);
+    padding-bottom: 2rem;
+}
+
+.signup form{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--ui-font-size-text);
+    gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: max(300px, 70%);
+}
+
+.signup form > div{ /*child-elements of form*/
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.signup form label{
+    align-items: center;
+    background-color: var(--ui-cyan);
+    border-radius: 10px 0 0 10px;
+    display: flex;
+    flex-shrink: 0;
+    height: max(50px, 3vw);
+    justify-content: center;
+    width: 50px;
+}
+
+.signup form input{
+    background-color: var(--ui-base-color-light);
+    border: 2px solid var(--ui-base-color-light);
+    border-left: none;
+    border-radius: 0 10px 10px 0;
+    box-sizing: border-box;
+    flex-grow: 1;
+    font: inherit;
+    height: max(50px, 3vw);
+    min-width: 0;
+    padding: 1rem;
+    transition: 150ms ease;
+}
+
+.signup form input:hover{
+    border-color: var(--ui-cyan);
+}
+
+.signup form input:focus{
+    outline: none;
+    border-color: var(--ui-dark-blue)
+}
+
+/*parent selector: access the div, that has an input-child with applied focus
+from this we take the direct child label*/
+.signup div:has(input:focus) > label{
+    background-color: var(--ui-dark-blue);
+}
+
+.signup form input::placeholder{
+    opacity: 1; /*increase opacity of text color*/
+}
+.signup .login-button{
+    background-color: var(--ui-cyan);
+    border: none;
+    border-radius: 15px;
+    color: var(--ui-base-color-light);
+    font: inherit;
+    font-size: var(--ui-font-size-small);
+    margin: 10px auto;
+    padding: 1rem 2rem;
+}
+
+.signup .login-button:hover{
+    background-color: var(--ui-dark-blue);
+}
+
+.signup .login-button:focus{
+    background-color: var(--ui-dark-blue);
+    outline: none;
+}
+
+.signup p{
+    font-size: var(--ui-font-size-text);
+}
+
+.signup a{
+    color: var(--ui-cyan);
+    text-decoration: none;
+}
+.signup a:hover{
+    color: var(--ui-dark-blue);
+}
+
+#error-message{
+    color: #f06272;
+}
+
+
+/***************************
 about us - impressum
  **************************/
 
@@ -312,141 +439,6 @@ about us - impressum
     text-align: center;
 }
 
-
-/***************************
-share
- **************************/
-
-.share-main{
-    width: 100%;
-}
-
-.share-container{
-    border-color: var(--ui-blue);
-    border-radius: 15px;
-    border-style: dotted;
-    margin: 0 auto;
-    min-width: 300px;
-    width: 70%;
-}
-
-.share-container form{
-    background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
-    border-radius: 15px;
-    box-sizing: border-box;
-    display: flex;
-    flex-flow: column nowrap;
-    height: 100%;
-    width: 100%;
-}
-
-.share-upload-card{
-    background-color: white;
-    border-color: var(--ui-purple);
-    border-radius: 15px;
-    border-style: dotted;
-    font-size: var(--ui-font-size-big);
-    margin: 5%;
-    padding: 2%;
-}
-
-.share-upload-card #upload::file-selector-button{
-    display: none;
-}
-
-.share-container input{
-    background-color: #efeafa;
-    border-style: none;
-    box-sizing: border-box;
-    font-family: var(--text-font-family), monospace;
-    font-size: var(--ui-font-size-text);
-    padding: 1%;
-    width: 100%;
-}
-
-.share-container input:focus{
-    background-color: white;
-    outline-color: var(--ui-purple);
-}
-
-.share-container input::placeholder{
-    font-size: var(--ui-font-size-text);
-}
-
-.share-upload-card h2{
-    font-size: var(--ui-font-size-big);
-    font-weight: inherit;
-    margin: 0;
-}
-
-.share-upload-card p{
-    font-size: var(--ui-font-size-text);
-    text-align: left;
-}
-
-.share-card-radio{
-    align-self: center;
-    display: flex;
-    flex-flow: row nowrap;
-    font-size: var(--ui-font-size-text);
-    justify-content: space-evenly;
-    margin: 0 auto;
-    padding-top: 2%;
-    text-align: center;
-}
-
-.share-card-radio div{
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.share-card-radio input[type="radio"]{
-    /*hide default radio button*/
-    appearance: none;
-    background-color: transparent;
-
-
-    /*design of new radio button/
-    /*unchecked*/
-    align-self: center;
-    border: 2px solid rgb(135, 134, 134);
-    border-radius: 50%;
-    font: inherit;
-    height: max(0.7rem, 1.4vw);
-    margin-right: 1vw;
-    width: max(0.7rem, 1.4vw);
-
-    /*checked*/
-    display: grid;
-    place-content: center;
-}
-
-*:before{
-    box-sizing: border-box;
-}
-
-/*checked radio.button*/
-.share-card-radio input[type="radio"]::before{
-    box-shadow: inset 1em 1em var(--ui-blue);
-    content:"";
-    border-radius: 50%;
-    height: var(--ui-font-size-text);
-    margin: 1% auto;
-    transform: scale(0);
-    transition: 0.2s transform ease-in-out;
-    width: var(--ui-font-size-text);
-}
-
-.share-card-radio input[type="radio"]:checked::before{
-    transform: scale(0.7);
-}
-
-.upload-button{
-    align-items: center;
-    display: flex;
-    margin: 1% auto;
-    width: 100%;
-}
 
 /***************************
 browse
@@ -484,11 +476,54 @@ browse
     font-size: var(--ui-font-size-text);
     margin-bottom: 1rem;
 }
-.browse-sidebar div{
+
+.browse-filter div{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+.browse-filter input[type="radio"]{
+    /*hide default radio button*/
+    appearance: none;
+    background-color: transparent;
+
+    /*design of new radio button/
+    /*unchecked*/
+    align-self: center;
+    border: 2px solid rgb(135, 134, 134);
+    border-radius: 50%;
+    font: inherit;
+    height: max(0.7rem, 1.4vw);
+    margin-right: 1vw;
+    width: max(0.7rem, 1.4vw);
+
+    /*checked*/
+    display: grid;
+    place-content: center;
+}
+
+/*checked radio button*/
+.browse-filter input[type="radio"]::before{
+    box-shadow: inset 1em 1em var(--ui-blue);
+    content:"";
+    border-radius: 50%;
+    height: var(--ui-font-size-text);
+    margin: 1% auto;
+    transform: scale(0);
+    transition: 0.2s transform ease-in-out;
+    width: var(--ui-font-size-text);
+}
+
+.browse-filter input[type="radio"]:checked::before{
+    transform: scale(0.7);
+}
+
+.browse-filter div{
     padding-top: 1rem;
 }
 
-.browse-sidebar button{
+.browse-filter button{
     display: none;
 }
 
@@ -537,9 +572,9 @@ browse
 
 }
 .browse-card img{
-    max-width: 100%;
     border-radius: 12px;
     display: block;
+    max-width: 100%;
 }
 
 .browse-card-container button{
@@ -556,7 +591,6 @@ browse
     z-index: 2;
 }
 
-
 .browse-card-container button:hover{
     font-size: var(--ui-font-size-big);
     opacity: 0.95;
@@ -565,129 +599,133 @@ browse
 
 
 /***************************
-sign up / login
+share
  **************************/
-.signup-container{
-    align-items: center;
-    display: flex;
-    background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
-    height: 80vh;
-    justify-content: center;
-}
 
-.signup{
-    align-items: center;
-    animation: fadeIn 0.5s ease-in-out;
-    background: rgba(256,256,256,0.7);
-    border-color: var(--ui-base-color-light);
-    border-radius: 15px;
-    border-style: dotted;
-    display: flex;
-    flex-direction: column;
-    height: max(40%, 70vh);
-    justify-content: center;
-    width: max(40%, 600px); /*depending on what value is bigger, min width 600 px)*/
-}
-
-.signup h1{
-    font-size: max(1.6rem, 3vw);
-    padding-bottom: 2rem;
-}
-
-.signup form{
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    font-size: var(--ui-font-size-text);
-    gap: 10px;
-    margin-bottom: 20px;
-    margin-top: 20px;
-    width: max(300px, 70%); /*returns the smaller value*/
-}
-
-.signup form > div{ /*child-Elements of form*/
-    display: flex;
-    justify-content: center;
+.share-main{
     width: 100%;
 }
 
-.signup form label{
-    align-items: center;
-    background-color: var(--ui-cyan);
-    border-radius: 10px 0 0 10px;
-    display: flex;
-    flex-shrink: 0;
-    height: max(50px, 3vw);
-    justify-content: center;
-    width: 50px;
-}
-
-.signup form input{
-    background-color: var(--ui-base-color-light);
-    border: 2px solid var(--ui-base-color-light);
-    border-left: none;
-    border-radius: 0 10px 10px 0;
-    box-sizing: border-box;
-    flex-grow: 1;
-    font: inherit;
-    height: max(50px, 3vw);
-    min-width: 0;
-    padding: 1rem;
-    transition: 150ms ease;
-}
-
-.signup form input:hover{
-    border-color: var(--ui-cyan);
-}
-
-.signup form input:focus{
-    outline: none;
-    border-color: var(--ui-dark-blue)
-}
-
-/*parent selector: we access the div, that has an input-child with applied focus
-from this we take the direct child label*/
-.signup div:has(input:focus) > label{
-    background-color: var(--ui-dark-blue);
-}
-
-.signup form input::placeholder{
-    opacity: 1; /*increase opacity of text color*/
-}
-.signup .login-button{
-    background-color: var(--ui-cyan);
-    border: none;
+.share-container{
+    border-color: var(--ui-blue);
     border-radius: 15px;
-    color: var(--ui-base-color-light);
-    font: inherit;
-    font-size: var(--ui-font-size-small);
-    margin: 10px auto;
-    padding: 1rem 2rem;
+    border-style: dotted;
+    margin: 0 auto;
+    min-width: 300px;
+    width: 70%;
 }
 
-.signup .login-button:hover{
-    background-color: var(--ui-dark-blue);
+.share-container form{
+    background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
+    border-radius: 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+    width: 100%;
 }
 
-.signup .login-button:focus{
-    outline: none;
-    background-color: var(--ui-dark-blue);
+.share-upload-card{
+    background-color: white;
+    border-color: var(--ui-purple);
+    border-radius: 15px;
+    border-style: dotted;
+    font-size: var(--ui-font-size-big);
+    margin: 5%;
+    padding: 2%;
 }
 
-.signup p{
+.share-upload-card #upload::file-selector-button{
+    display: none;
+}
+
+.share-upload-card input{
+    background-color: #efeafa;
+    border-style: none;
+    box-sizing: border-box;
+    font-family: var(--text-font-family), monospace;
+    font-size: var(--ui-font-size-text);
+    padding: 1%;
+    width: 100%;
+}
+
+.share-upload-card input:focus{
+    background-color: white;
+    outline-color: var(--ui-purple);
+}
+
+.share-upload-card input::placeholder{
     font-size: var(--ui-font-size-text);
 }
 
-.signup a{
-    text-decoration: none;
-    color: var(--ui-cyan);
-}
-.signup a:hover{
-    color: var(--ui-dark-blue);
+.share-upload-card h2{
+    font-size: var(--ui-font-size-big);
+    font-weight: inherit;
+    margin: 0;
 }
 
-#error-message{
-    color: #f06272;
+.share-upload-card p{
+    font-size: var(--ui-font-size-text);
+    text-align: left;
+}
+
+.share-card-radio{
+    align-self: center;
+    display: flex;
+    flex-flow: row nowrap;
+    font-size: var(--ui-font-size-text);
+    justify-content: space-evenly;
+    margin: 0 auto;
+    padding-top: 2%;
+    text-align: center;
+}
+
+.share-card-radio div{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.share-card-radio input[type="radio"]{
+    /*hide default radio button*/
+    appearance: none;
+    background-color: transparent;
+
+    /*design of new radio button/
+    /*unchecked*/
+    align-self: center;
+    border: 2px solid rgb(135, 134, 134);
+    border-radius: 50%;
+    font: inherit;
+    height: max(0.7rem, 1.4vw);
+    margin-right: 1vw;
+    width: max(0.7rem, 1.4vw);
+
+    /*checked*/
+    display: grid;
+    place-content: center;
+}
+
+/*checked radio.button*/
+.share-card-radio input[type="radio"]::before{
+    box-shadow: inset 1em 1em var(--ui-blue);
+    content:"";
+    border-radius: 50%;
+    height: var(--ui-font-size-text);
+    margin: 1% auto;
+    transform: scale(0);
+    transition: 0.2s transform ease-in-out;
+    width: var(--ui-font-size-text);
+}
+
+.share-card-radio input[type="radio"]:checked::before{
+    transform: scale(0.7);
+}
+
+.share-upload-button-button{
+    align-items: center;
+    display: flex;
+    margin: 1% auto;
+    width: 100%;
 }
 
 
@@ -721,7 +759,7 @@ responsive
         box-sizing: border-box;
         flex: 1 1 70%;
     }
-    #hp-main-container{
+    .hp-main-container{
         flex-flow: column wrap;
         position: relative;
         z-index: 1;
@@ -761,15 +799,6 @@ animations
     }
     to{
         opacity: 1;
-    }
-}
-
-@keyframes slideInY {
-    from{
-        transform: translateY(-70%);
-    }
-    to{
-        transform: translateY(0);
     }
 }
 
