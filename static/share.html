@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="../public/img/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="../public/img/favicon.svg" />
     <script src="../public/js/navbar.js" defer></script>
+    <script src="../public/js/upload.js" defer></script>
 </head>
 <body>
 <header class="hp-header-container">
@@ -35,10 +36,10 @@
         <h1>Share your notes by uploading them to our collection.</h1>
     </section>
     <div class="share-container">
-        <form action="" method="post" enctype="multipart/form-data">
+        <form id= "upload-form" action="/api/upload" method="post" enctype="multipart/form-data">
             <div class="share-upload-card">
                 <label for="title">Title:</label><br>
-                <input type="text" id="title" name="title" placeholder="Your title..."/>
+                <input type="text" id="title" name="docTitle" placeholder="Your title..."/> 
             </div>
             <div class="share-upload-card">
                 <label for="description">Description:</label><br>

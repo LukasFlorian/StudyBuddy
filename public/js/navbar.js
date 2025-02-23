@@ -1,4 +1,4 @@
-Document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   // 1. Login-Status abfragen
   fetch('/api/users/status', { credentials: 'include' })
     .then(response => response.json())
@@ -7,7 +7,6 @@ Document.addEventListener("DOMContentLoaded", () => {
       
       // Falls eingeloggt, ersetze den Inhalt von #user-menu
       if (data.loggedIn && userMenu) {
-        // Wir erzeugen einen Container mit "Hallo {firstName}" und "Logout" übereinander
         userMenu.innerHTML = `
           <div class="user-hover">
             <span class="greeting">Hallo ${data.user.firstName}</span>
@@ -15,7 +14,6 @@ Document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
         
-        // Logout-Klick:
         const logoutEl = userMenu.querySelector(".logout");
         logoutEl.addEventListener("click", async () => {
           try {
@@ -43,10 +41,8 @@ Document.addEventListener("DOMContentLoaded", () => {
         const response = await fetch('/api/users/status', { credentials: 'include' });
         const data = await response.json();
         if (data.loggedIn) {
-          // Eingeloggt: Direkt zu /share
           window.location.href = "/share";
         } else {
-          // Nicht eingeloggt: Weiterleitung zur Login-Seite mit Redirect
           window.location.href = "/login?redirect=share";
         }
       } catch (error) {
