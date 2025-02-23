@@ -1,5 +1,5 @@
 /***************************
-root
+1 root
 definition of default attributes and variables, that are used frequently
  **************************/
 
@@ -21,7 +21,7 @@ definition of default attributes and variables, that are used frequently
 
 
 /***************************
-all websites
+2 all websites
  **************************/
 
 *{
@@ -31,7 +31,7 @@ all websites
 
 
 /***************************
-all websites - header
+2.1 all websites - header
  **************************/
 .hp-header-container{
     align-items: center;
@@ -51,7 +51,7 @@ all websites - header
 
 
 /***************************
-all - header logo
+2.1.1 all - header logo
  **************************/
 .logo{
     align-content: center;
@@ -67,7 +67,7 @@ all - header logo
 
 
 /***************************
-all - header navigation
+2.1.2 all - header navigation
  **************************/
 
 .navbar {
@@ -110,17 +110,12 @@ all - header navigation
 
 
 /***************************
-all - main
+2.2 all - main  introduction
  **************************/
 
 main {
     width: 100%;
 }
-
-
-/***************************
-all - main introduction
- **************************/
 
 .introduction{
     animation: slideInLR 1s ease-in-out;
@@ -132,7 +127,7 @@ all - main introduction
 
 
 /***************************
-all - footer
+2.3 all - footer
  **************************/
 
 footer{
@@ -180,7 +175,7 @@ footer a:active{
 
 
 /***************************
-homepage - main cards
+3. homepage - main cards
  **************************/
 
 .hp-main-container{
@@ -206,21 +201,17 @@ homepage - main cards
     background-color: var(--ui-blue);
     border: 2px solid var(--ui-blue);
     border-radius: 15px;
-    box-sizing: border-box;
     color: white;
     cursor: pointer;
-    display: inline-block;
     font-size: var(--ui-font-size-big);
     font-weight: 550;
     margin: 0 auto;
     min-height: 60px;
-    min-width: 0;
     outline: none;
     padding: 1rem;
     text-align: center;
     text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    touch-action: manipulation;
+    transition: all 0.3s ease-in-out;
     width:45%;
     will-change: transform;
 }
@@ -243,8 +234,9 @@ homepage - main cards
 
 
 /***************************
-login / sign up
+4. login / sign up
  **************************/
+
 .signup-container{
     align-items: center;
     background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
@@ -370,7 +362,7 @@ from this we take the direct child label*/
 
 
 /***************************
-about us - impressum
+5 about us - impressum
  **************************/
 
 .impressum-container{
@@ -387,12 +379,12 @@ about us - impressum
 
 
 /***************************
-browse
+6 browse
  **************************/
 
 
 /***************************
-browse - searchbar
+6.1 browse - searchbar
  **************************/
 
 .browse-search{
@@ -453,6 +445,11 @@ browse - searchbar
     margin: 40px 0;
 }
 
+
+/***************************
+6.2 browse - sidebar
+ **************************/
+ 
 .browse-sidebar{
     animation: slideInLR 1s ease-in-out;
     background-color: var(--ui-purple);
@@ -524,6 +521,11 @@ browse - searchbar
     display: none;
 }
 
+
+/***************************
+6.3 browse - main
+ **************************/
+ 
 .browse-main{
     flex: 1 1 82%;
 }
@@ -596,7 +598,7 @@ browse - searchbar
 
 
 /***************************
-share
+7 share
  **************************/
 
 .share-main{
@@ -727,7 +729,7 @@ share
 
 
 /***************************
-responsive
+8 responsive design
  **************************/
 
 /*Adjustments for screen sizes: 426px - 768px*/
@@ -777,7 +779,7 @@ responsive
 }
 
 /***************************
-animations
+9 animations
  **************************/
 
 @keyframes fadeIn {
