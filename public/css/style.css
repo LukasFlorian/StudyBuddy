@@ -1,6 +1,6 @@
 /***************************
 root
-Defintion von Standardwerten, die sich auf mehreren Websiten wiederfinden.
+definition of default attributes and variables, that are used frequently
  **************************/
 
 :root{
@@ -299,7 +299,7 @@ about us - impressum
     /*background-image: url("../img/group_picture.png");
     background-size: cover;*/
     width: 100%;
-    height: 90vh;
+    height: 50vh;
     font-size: var(--ui-font-size-big);
 }
 
@@ -469,14 +469,14 @@ browse
     display: flex;
     flex-flow: column;
     flex: 1 1 18%;
-    font-size: max(0.8rem, 1.6vw);
+    font-size: var(--ui-font-size-text);
     height: 100%;
     margin: 0 max(20px, 3vw) 15px 0;
     padding: 2% 1% 0;
 }
 
 .browse-sidebar h2{
-    font-size: max(1.2rem, 2vw);
+    font-size: var(--ui-font-size-text);
     margin-bottom: 1rem;
 }
 .browse-sidebar div{
@@ -499,8 +499,7 @@ browse
 .browse-card-container{
     box-sizing: border-box;
     display: flex;
-
-    font-size: var(--ui-font-size-big);
+    font-size: var(--ui-font-size-text);
     width: 100%;
 }
 
@@ -523,9 +522,9 @@ browse
     grid-area: 1 / 1 / 1 / 1;
     height: auto;
     justify-content: center;
-    width: 30%;
-    position: relative;
     overflow: hidden;
+    position: relative;
+    width: 30%;
 }
 
 .browse-card:hover{
@@ -555,7 +554,7 @@ browse
 
 .browse-card-container button:hover{
     font-size: var(--ui-font-size-big);
-    opacity: 0.9;
+    opacity: 0.95;
     transition: opacity 0.4s;
 }
 
@@ -591,13 +590,14 @@ sign up / login
 }
 
 .signup form{
-    width: min(400px, 100%); /*returns the smaller value*/
-    margin-top: 20px;
-    margin-bottom: 20px;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    font-size: var(--ui-font-size-text);
     gap: 10px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: max(300px, 70%); /*returns the smaller value*/
 }
 
 .signup form > div{ /*child-Elements of form*/
@@ -612,7 +612,7 @@ sign up / login
     border-radius: 10px 0 0 10px;
     display: flex;
     flex-shrink: 0;
-    height: 50px;
+    height: max(50px, 3vw);
     justify-content: center;
     width: 50px;
 }
@@ -625,7 +625,7 @@ sign up / login
     box-sizing: border-box;
     flex-grow: 1;
     font: inherit;
-    height: 50px;
+    height: max(50px, 3vw);
     min-width: 0;
     padding: 1rem;
     transition: 150ms ease;
@@ -647,16 +647,16 @@ from this we take the direct child label*/
 }
 
 .signup form input::placeholder{
-    opacity: 0.9; /*Deckkraft der Textfarbe erhöhen*/
+    opacity: 1; /*increase opacity of text color*/
 }
 .signup .login-button{
-    margin: 10px auto;
+    background-color: var(--ui-cyan);
     border: none;
     border-radius: 15px;
-    background-color: var(--ui-cyan);
     color: var(--ui-base-color-light);
     font: inherit;
-    font-size: max(1.6rem, 1.5vw);
+    font-size: var(--ui-font-size-small);
+    margin: 10px auto;
     padding: 1rem 2rem;
 }
 
@@ -667,6 +667,10 @@ from this we take the direct child label*/
 .signup .login-button:focus{
     outline: none;
     background-color: var(--ui-dark-blue);
+}
+
+.signup p{
+    font-size: var(--ui-font-size-text);
 }
 
 .signup a{
@@ -686,7 +690,7 @@ from this we take the direct child label*/
 responsive
  **************************/
 
-/*Anpassung für mittelgroße Geräte mit Bildschirmgrößen von 426px - 768px*/
+/*Adjustments for screen sizes: 426px - 768px*/
 @media screen and (min-width: 426px) and (max-width: 768px){
     html{
         font-size: 12px;
@@ -697,12 +701,13 @@ responsive
     .searchbar button {
         display: none;
     }
+
     .signup{
         width: min(500px, 100%);
     }
 
 }
-/*Anpassung für kleine Geräte mit Bildschirmgrößen bis zu 425px*/
+/*Adjustments for small devices with screen sizes up to 426px*/
 @media screen and (max-width: 426px){
     .search {
         display: none;
