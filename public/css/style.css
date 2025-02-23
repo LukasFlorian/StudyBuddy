@@ -67,74 +67,20 @@ all - header logo
 
 
 /***************************
-all - header searchbar
- **************************/
-.search{
-    box-sizing: border-box;
-    flex: 1 1 45%;
-    margin: 0 0.5rem;
-}
-
-.searchbar{
-    align-items: center;
-    background-color: var(--ui-blue);
-    border-radius: 50px;
-    box-sizing: border-box;
-    display: flex;
-    height: auto;
-    justify-content: space-between;
-    padding: 0.3rem;
-    width: 100%;
-}
-
-.searchbar label{
-    flex: 1 1 80%;
-}
-
-.searchbar input {
-    background: transparent;
-    border: 0;
-    color: var(--ui-base-color-light);
-    font-size: var(--ui-font-size-big);
-    outline: none;
-    padding: max(1vw, 5px);
-}
-
-/*change placeholder-text color*/
-.searchbar input::placeholder{
-    color: var(--ui-base-color-light);
-}
-
-.searchbar button {
-    background: #c6c2ec;
-    border: 0;
-    border-radius: 50%; /* ergibt kreis*/
-    box-sizing: border-box;
-    cursor: pointer;
-    height: max(5vw, 30px);
-    width: max(5vw, 30px);
-}
-
-.searchbar button img {
-    height: 75%;
-    margin: 0 auto;
-    width: 75%;
-}
-
-
-/***************************
 all - header navigation
  **************************/
 
 .navbar {
     box-sizing: border-box;
-    flex: 1 1 30%;
+    flex: 1 1 50%;
+    padding-left: 20%;
+    width: 50%;
 }
 
 .navbar ul {
     box-sizing: border-box;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: right;
     list-style-type: none;
     margin: 0;
     padding: 1%;
@@ -142,7 +88,7 @@ all - header navigation
 }
 
 .nav-items {
-    padding-left: max(1%, 7px);
+    padding-left: max(4vw, 10px);
 }
 
 .nav-items a:link {
@@ -444,10 +390,61 @@ about us - impressum
 browse
  **************************/
 
+
+/***************************
+browse - searchbar
+ **************************/
+
 .browse-search{
     box-sizing: border-box;
     flex: 1 1 90%;
     margin: 0 1rem;
+}
+
+.browse-searchbar{
+    align-items: center;
+    background-color: var(--ui-blue);
+    border-radius: 50px;
+    box-sizing: border-box;
+    display: flex;
+    height: auto;
+    justify-content: space-between;
+    padding: 0.3rem;
+    width: 100%;
+}
+
+.browse-searchbar label{
+    flex: 1 1 80%;
+}
+
+.browse-searchbar input {
+    background: transparent;
+    border: 0;
+    color: var(--ui-base-color-light);
+    font-size: var(--ui-font-size-big);
+    outline: none;
+    padding: max(1vw, 5px);
+}
+
+/*change placeholder-text color*/
+.browse-searchbar input::placeholder{
+    color: var(--ui-base-color-light);
+}
+
+.browse-searchbar button {
+    background: #c6c2ec;
+    border: 0;
+    border-radius: 50%; /* ergibt kreis*/
+    box-sizing: border-box;
+    cursor: pointer;
+    height: max(5vw, 30px);
+    width: max(5vw, 30px);
+}
+
+.browse-searchbar button img {
+    height: 75%;
+    margin: 0 auto;
+    width: 75%;
 }
 
 .browse-container{
@@ -738,13 +735,6 @@ responsive
     html{
         font-size: 12px;
     }
-    .search{
-        flex: 1 1 30%;
-    }
-    .searchbar button {
-        display: none;
-    }
-
     .signup{
         width: min(500px, 100%);
     }
@@ -752,9 +742,6 @@ responsive
 }
 /*Adjustments for small devices with screen sizes up to 426px*/
 @media screen and (max-width: 426px){
-    .search {
-        display: none;
-    }
     .navbar {
         box-sizing: border-box;
         flex: 1 1 70%;

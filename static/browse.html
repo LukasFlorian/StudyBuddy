@@ -15,9 +15,6 @@
         <a href="./homepage" class="logo">
             <img id="logo" src="../public/img/logo.png" alt="Logo" />
         </a>
-        <div class="search">
-        <!-- empty in browse.html, because there is a searchbar in the main-element -->
-        </div>
         <nav class="navbar">
             <ul>
                 <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
@@ -34,7 +31,7 @@
 
         <!-- searchform with id "search-form" and fitting name attribute -->
         <div class="browse-search">
-            <form id="search-form" class="searchbar" method="get" action="#">
+            <form id="search-form" class="browse-searchbar" method="get" action="#">
                 <label>
                     <input type="text" placeholder="search for notes" name="searchTerm" required />
                 </label>
@@ -49,21 +46,21 @@
             <div class="browse-sidebar">
                 <h2>Filter:</h2>
                 <!-- Filter-Formular für Tags -->
-                <form id="filter-form" class="browse-filter" action="">
+                <div class="browse-filter">
                     <div>
-                        <input type="radio" id="tag1" name="tag" value="exercises" />
+                        <input type="radio" id="tag1" name="tag" value="exercises" form="search-form"/>
                         <label for="tag1">Exercises</label>
                     </div>
                     <div>
-                        <input type="radio" id="tag2" name="tag" value="summary" />
+                        <input type="radio" id="tag2" name="tag" value="summary" form="search-form"/>
                         <label for="tag2">Summary</label>
                     </div>
                     <div>
-                        <input type="radio" id="tag3" name="tag" value="scribbledNotes" />
+                        <input type="radio" id="tag3" name="tag" value="scribbledNotes" form="search-form"/>
                         <label for="tag3">Scribbled Notes</label>
                     </div>
-                    <button type="submit" id="filterButton">Apply Filter</button>
-                </form>
+                    <button type="submit" id="filterButton" form="search-form">Apply Filter</button>
+                </div>
             </div>
             <div class="browse-main">
                 <!-- Suchergebnisse werden hier dynamisch eingefügt -->
