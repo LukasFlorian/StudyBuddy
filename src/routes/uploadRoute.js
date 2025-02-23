@@ -25,6 +25,8 @@ router.post("/", async (req, res) => {
             return res.status(400).json({ message: "File is missing" });
         }
         const fileBuffer = fileObj.data;
+        const fileType = fileObj.mimetype; // neu
+        const originalName = fileObj.name; // neu
         
         const title = body.docTitle;
         const description = body.description;
@@ -43,6 +45,8 @@ router.post("/", async (req, res) => {
             uploadDate,
             description,
             file: fileBuffer,
+            fileType,       // neu
+            originalName,   // neu
             tag,
         });
 
