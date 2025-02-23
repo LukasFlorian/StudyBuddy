@@ -10,74 +10,84 @@
     <script src="../public/js/navbar.js" defer></script>
     <script src="../public/js/upload.js" defer></script>
 </head>
+
 <body>
-<header class="hp-header-container">
-    <a href="./homepage" class="logo">
-        <img id="logo" src="../public/img/logo.png" alt="Logo">
-    </a>
-    <div class="search">
-        <form action="" class="searchbar" method="get">
-            <label>
-                <input type="text" placeholder="search for notes" name="s">
-            </label>
-            <button type="submit"> <img src="../public/img/search.png" alt=""> </button>
-        </form>
-    </div>
-    <nav class="navbar">
-        <ul>
-            <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
-            <li class="nav-items"><a href="./browse">Browse</a></li>
-            <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
-        </ul>
-    </nav>
-</header>
-<main>
-    <section class="introduction">
-        <h1>Share your notes by uploading them to our collection.</h1>
-    </section>
-    <div class="share-container">
-        <form id= "upload-form" action="/api/upload" method="post" enctype="multipart/form-data">
-            <div class="share-upload-card">
-                <label for="title">Title:</label><br>
-                <input type="text" id="title" name="docTitle" placeholder="Your title..."/> 
-            </div>
-            <div class="share-upload-card">
-                <label for="description">Description:</label><br>
-                <input type="text" id="description" name="description" placeholder="A short description of your file, e.g. The Pythagorean Theorem, ..."/>
-            </div>
-            <div class="share-upload-card">
-                <h2>Tags:</h2>
-                <p>Please choose the fitting tag for your file.</p>
-                <div class="share-card-radio">
-                    <div>
-                            <input type="radio" id="tag1" name="tag" value="exercises">
-                            <label for="tag1">Exercises</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="tag2" name="tag" value="summary">
-                        <label for="tag2">Summary</label>
-                    </div>
-                    <div>
-                        <input type="radio" id="tag3" name="tag" value="scribbledNotes">
-                        <label for="tag3">Scribbled Notes</label>
+    <header class="hp-header-container">
+        <a href="./homepage" class="logo">
+            <img id="logo" src="../public/img/logo.png" alt="Logo">
+        </a>
+        <div class="search">
+            <form action="" class="searchbar" method="get">
+                <label>
+                    <input type="text" placeholder="search for notes" name="s">
+                </label>
+                <button type="submit"> <img src="../public/img/search.png" alt=""> </button>
+            </form>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
+                <li class="nav-items"><a href="./browse">Browse</a></li>
+                <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="introduction">
+            <h1>Share your notes by uploading them to our collection.</h1>
+        </section>
+        <div class="share-container">
+            <!-- form for file upload -->
+            <form id= "upload-form" action="/api/upload" method="post" enctype="multipart/form-data">
+                <!-- Title of file -->
+                <div class="share-upload-card">
+                    <label for="title">Title:</label><br>
+                    <input type="text" id="title" name="docTitle" placeholder="Your title..."/>
+                </div>
+                <!-- Description of file -->
+                <div class="share-upload-card">
+                    <label for="description">Description:</label><br>
+                    <input type="text" id="description" name="description" placeholder="A short description of your file, e.g. The Pythagorean Theorem, ..."/>
+                </div>
+                <!-- Tag of file -->
+                <div class="share-upload-card">
+                    <h2>Tags:</h2>
+                    <p>Please choose the fitting tag for your file.</p>
+                    <!-- radio buttons to choose one of three options -->
+                    <div class="share-card-radio">
+                        <div>
+                                <input type="radio" id="tag1" name="tag" value="exercises">
+                                <label for="tag1">Exercises</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="tag2" name="tag" value="summary">
+                            <label for="tag2">Summary</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="tag3" name="tag" value="scribbledNotes">
+                            <label for="tag3">Scribbled Notes</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="share-upload-card">
-                <label for="upload">File:</label><br>
-                <input type="file" id="upload" name="uploadFile" accept="image/*, application/pdf" />
-            </div>
-            <div class="share-upload-button">
-                <button type="submit" id=upload-btn class="hp-button">Share</button>
-            </div>
-        </form>
-    </div>
-</main>
-<footer>
-    <h2>Impressum</h2>
-    <a href="./impressum">
-        <p>About Us</p>
-    </a>
-</footer>
+                <!-- Upload of file -->
+                <div class="share-upload-card">
+                    <label for="upload">File:</label><br>
+                    <input type="file" id="upload" name="uploadFile" accept="image/*, application/pdf" />
+                </div>
+                <!-- submit form -->
+                <div class="share-upload-button">
+                    <button type="submit" id=upload-btn class="hp-button">Share</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <h2>Impressum</h2>
+        <a href="./impressum">
+            <p>About Us</p>
+        </a>
+    </footer>
 </body>
 </html>
