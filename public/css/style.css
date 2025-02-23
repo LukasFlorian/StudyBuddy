@@ -4,6 +4,7 @@ Defintion von Standardwerten, die sich auf mehreren Websiten wiederfinden.
  **************************/
 
 :root{
+    font-family: monospace;
     font-size: 16px;
     --ui-base-color-light: white;
     --ui-base-color-dark: #292626;
@@ -15,6 +16,7 @@ Defintion von Standardwerten, die sich auf mehreren Websiten wiederfinden.
     --text-font-family: monospace;
     --ui-font-size-big: max(1rem, 2vw);
     --ui-font-size-small: max(0.8rem, 2vw);
+    --ui-font-size-text: max(0.6rem, 1.4vw);
 }
 
 /***************************
@@ -22,7 +24,6 @@ all websites
  **************************/
 
 *{
-    font-family: var(--text-font-family), monospace;
     margin: 0;
     padding: 0;
 }
@@ -148,18 +149,17 @@ all - navigation
     text-decoration: none;
 }
 
-header nav ul li a:visited {
+.navbar ul li a:visited {
     color: var(--ui-blue);
 }
 
-header nav ul li a:hover {
+.navbar ul li a:hover {
     color: var(--ui-dark-blue);
 }
 
-header nav ul li a:active{
+.navbar ul li a:active{
     color: var(--ui-blue);
 }
-
 
 
 /***************************
@@ -213,7 +213,6 @@ homepage - main cards
     color: white;
     cursor: pointer;
     display: inline-block;
-    font-family: var(--text-font-family), monospace;
     font-size: max(1.2rem, 2vw);
     font-weight: 600;
     margin: 0 auto;
@@ -258,11 +257,13 @@ footer{
 }
 
 footer h2{
+    font-size: var(--ui-font-size-small);
     margin-bottom: 1rem;
 }
 
 footer a{
     display: block;
+    font-size: var(--ui-font-size-text);
     width: fit-content;
 }
 
@@ -272,25 +273,21 @@ footer a p{
 
 footer a:link{
     color: white;
-    font-family: var(--text-font-family), monospace;
     text-decoration: none;
 }
 
 footer a:visited{
     color: white;
-    font-family: var(--text-font-family), monospace;
     text-decoration: none;
 }
 
 footer a:hover{
     color: rgba(170, 170, 170, 0.67);
-    font-family: var(--text-font-family), monospace;
     text-decoration: none;
 }
 
 footer a:active{
     color: white;
-    font-family:var(--text-font-family), monospace;
     text-decoration: none;
 }
 
@@ -324,7 +321,7 @@ share
     border-radius: 15px;
     border-style: dotted;
     margin: 0 auto;
-    min-width: 400px;
+    min-width: 300px;
     width: 70%;
 }
 
@@ -343,7 +340,7 @@ share
     border-color: var(--ui-purple);
     border-radius: 15px;
     border-style: dotted;
-    font-size: 1.5rem;
+    font-size: var(--ui-font-size-big);
     margin: 5%;
     padding: 2%;
 }
@@ -356,7 +353,8 @@ share
     background-color: #efeafa;
     border-style: none;
     box-sizing: border-box;
-    font-size: 1.1rem;
+    font-family: var(--text-font-family), monospace;
+    font-size: var(--ui-font-size-text);
     padding: 1%;
     width: 100%;
 }
@@ -367,28 +365,75 @@ share
 }
 
 .share-container input::placeholder{
-    font-family: var(--text-font-family), monospace;
-    font-size: 1rem;
+    font-size: var(--ui-font-size-text);
 }
 
-.share-upload-card h2, p{
-    font-size: 1.5rem;
+.share-upload-card h2{
+    font-size: var(--ui-font-size-big);
     font-weight: inherit;
     margin: 0;
 }
 
 .share-upload-card p{
-    font-size: 1.1rem;
+    font-size: var(--ui-font-size-text);
     text-align: left;
 }
 
 .share-card-radio{
+    align-self: center;
     display: flex;
     flex-flow: row nowrap;
+    font-size: var(--ui-font-size-text);
     justify-content: space-evenly;
     margin: 0 auto;
     padding-top: 2%;
     text-align: center;
+}
+
+.share-card-radio div{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.share-card-radio input[type="radio"]{
+    /*hide default radio button*/
+    appearance: none;
+    background-color: transparent;
+
+
+    /*design of new radio button/
+    /*unchecked*/
+    align-self: center;
+    border: 2px solid rgb(135, 134, 134);
+    border-radius: 50%;
+    font: inherit;
+    height: max(0.7rem, 1.4vw);
+    margin-right: 1vw;
+    width: max(0.7rem, 1.4vw);
+
+    /*checked*/
+    display: grid;
+    place-content: center;
+}
+
+*:before{
+    box-sizing: border-box;
+}
+
+/*checked radio.button*/
+.share-card-radio input[type="radio"]::before{
+    box-shadow: inset 1em 1em var(--ui-blue);
+    content:"";
+    border-radius: 50%;
+    height: var(--ui-font-size-text);
+    margin: 1% auto;
+    transform: scale(0);
+    transition: 0.2s transform ease-in-out;
+    width: var(--ui-font-size-text);
+}
+
+.share-card-radio input[type="radio"]:checked::before{
+    transform: scale(0.7);
 }
 
 .upload-button{
@@ -454,7 +499,7 @@ browse
 .browse-card-container{
     box-sizing: border-box;
     display: flex;
-    font-family: var(--text-font-family) monospace;
+
     font-size: var(--ui-font-size-big);
     width: 100%;
 }
@@ -602,7 +647,6 @@ from this we take the direct child label*/
 }
 
 .signup form input::placeholder{
-    font-family: monospace;
     opacity: 0.9; /*Deckkraft der Textfarbe erhöhen*/
 }
 .signup .login-button{
