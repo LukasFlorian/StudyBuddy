@@ -1,23 +1,24 @@
+// module imports
 const express = require("express");
 const path = require("path");
 
-const User = require("../models/userModel");
-const Document = require('../models/docModel');
-
+// router instantiation
 const router = express.Router();
 
-// Authentifizierungs-Middleware: 
-// Diese Middleware wird vor allen weiteren Routen in diesem Router ausgeführt.
+
+// Authenticication middleware:
+// This middleware is executed before all other routes in this router.
 router.use((req, res, next) => {
   if (req.session && req.session.user) {
-    // Wenn der Nutzer eingeloggt ist, wird mit next() fortgefahren
+    // Continue with next() if user is logged in
     next();
   } else {
-    // Wenn nicht, wird der Nutzer zur Login-Seite umgeleitet.
+    // Otherwise redirect to login page
     res.redirect("/login?redirect=share");
   }
 });
 
+// Document sharing route
 router.get('/', (req, res) => {
     console.log("User opening share subpage");
     res.sendFile(path.join(__dirname, "../../static/share.html"));
