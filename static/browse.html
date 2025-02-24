@@ -17,9 +17,9 @@
         </a>
         <nav class="navbar">
             <ul>
-                <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
+                <li class="nav-items"><a id="shareBtn" href="./share">Share</a></li>
                 <li class="nav-items"><a href="./browse">Browse</a></li>
-                <li class="nav-items" id="user-menu"><a id="login-link" href="./login">Login</a></li>
+                <li class="nav-items" id="user-menu"><a id="loginLink" href="./login">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -31,7 +31,7 @@
 
         <!-- searchform with id "search-form" and fitting name attribute -->
         <div class="browse-search">
-            <form id="search-form" class="browse-searchbar" method="get" action="#">
+            <form id="searchForm" class="browse-searchbar" method="get" action="#">
                 <label>
                     <input type="text" placeholder="search for notes" name="searchTerm" required />
                 </label>
@@ -49,18 +49,18 @@
                 So können die Suche und die gewählten Filter in einem get-Request gesendet werden. -->
                 <div class="browse-filter">
                     <div>
-                        <input type="radio" id="tag1" name="tag" value="exercises" form="search-form"/>
+                        <input type="radio" id="tag1" name="tag" value="exercises" form="searchForm"/>
                         <label for="tag1">Exercises</label>
                     </div>
                     <div>
-                        <input type="radio" id="tag2" name="tag" value="summary" form="search-form"/>
+                        <input type="radio" id="tag2" name="tag" value="summary" form="searchForm"/>
                         <label for="tag2">Summary</label>
                     </div>
                     <div>
-                        <input type="radio" id="tag3" name="tag" value="scribbledNotes" form="search-form"/>
+                        <input type="radio" id="tag3" name="tag" value="scribbledNotes" form="searchForm"/>
                         <label for="tag3">Scribbled Notes</label>
                     </div>
-                    <button type="submit" id="filterButton" form="search-form">Apply Filter</button>
+                    <button type="submit" id="filterButton" form="searchForm">Apply Filter</button>
                 </div>
             </div>
             <div class="browse-main">
@@ -72,13 +72,13 @@
                 <!-- Beispielhaft kann hier auch ein Template für Ergebnis-Karten stehen,
                    das per JavaScript ersetzt bzw. ergänzt wird -->
                 <!-- Template für Suchergebnisse: -->
-                <div class="browse-card-container" id="search-results">
+                <div class="browse-card-container" id="searchResults">
                     <div class="browse-grid-container">
                         <div class="browse-card">
                             <img src="../public/img/browse_placeholder.png" alt="search result">
-                            <p id="browse-card-title">Title</p>
-                            <p id="browse-card-description">Description</p>
-                            <p id="browse-card-author">Author</p>
+                            <p id="browseCardTitle">Title</p>
+                            <p id="browseCardDescription">Description</p>
+                            <p id="browseCardAuthor">Author</p>
                         </div>
                         <button type="submit" class="download-btn">Download</button>
                     </div>

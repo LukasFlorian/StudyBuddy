@@ -3,13 +3,13 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('/api/users/status', { credentials: 'include' })
     .then(response => response.json())
     .then(data => {
-      const userMenu = document.getElementById("test-menu");
+      const userMenu = document.getElementById("testMenu");
       
       // Falls eingeloggt, ersetze den Inhalt von #user-menu
       if (data.loggedIn && userMenu) {
         userMenu.innerHTML = `
             <ul>
-                <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
+                <li class="nav-items"><a id="shareBtn" href="./share">Share</a></li>
                 <li class="nav-items"><a href="./browse">Browse</a></li>
                 <li class="nav-items">Hallo ${data.user.firstName}</li>
                 <li class=nav-items" id="logout">Logout</li>
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("Error fetching user status:", err));
 
   // 2. Gatekeeper-Funktion für den Share-Button
-  const shareBtn = document.getElementById("share-btn");
+  const shareBtn = document.getElementById("shareBtn");
   if (shareBtn) {
     shareBtn.addEventListener("click", async (e) => {
       e.preventDefault();

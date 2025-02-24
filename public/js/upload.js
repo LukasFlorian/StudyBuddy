@@ -1,4 +1,4 @@
-document.getElementById('upload-btn').addEventListener('click', async function(event) {
+document.getElementById('uploadBtn').addEventListener('click', async function(event) {
   event.preventDefault(); // Verhindert das Neuladen der Seite
 
   // 1. **Titel und Description auslesen**
@@ -37,7 +37,7 @@ document.getElementById('upload-btn').addEventListener('click', async function(e
       // 5. **Statuscode auswerten und Nachricht anzeigen**
       if (uploadResponse.status === 200) {
         alert('Dokument erfolgreich hochgeladen!');
-        document.getElementById('upload-form').reset(); // Formular zurücksetzen
+        document.getElementById('uploadForm').reset(); // Formular zurücksetzen
       } else if (uploadResponse.status === 400) {
         alert('Fehler: UserID nicht gefunden.');
       } else {

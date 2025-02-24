@@ -1,15 +1,15 @@
 // /public/js/validation.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const signupForm = document.getElementById('signup-form');
-    const loginForm = document.getElementById('login-form');
+    const signupForm = document.getElementById('signupForm'); // changed
+    const loginForm = document.getElementById('loginForm');     // changed
   
     if (signupForm) {
       signupForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const firstname = document.getElementById('firstname-input').value;
-        const email = document.getElementById('email-input').value;
-        const password = document.getElementById('password-input').value;
+        const firstname = document.getElementById('firstnameInput').value; // changed
+        const email = document.getElementById('emailInput').value;         // changed
+        const password = document.getElementById('passwordInput').value;   // changed
   
         try {
           const res = await fetch('/api/users/signup', {
@@ -35,14 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (loginForm) {
       loginForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const email = document.getElementById('email-input').value;
-        const password = document.getElementById('password-input').value;
+        const email = document.getElementById('emailInput').value;      // changed
+        const password = document.getElementById('passwordInput').value;  // changed
   
         try {
-          const res = await fetch('http://localhost:3000/api/users/login', {
+          const res = await fetch('/api/users/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include', // WICHTIG: Cookie wird mitgesendet
+            
             body: JSON.stringify({ email, password })
           });
   
