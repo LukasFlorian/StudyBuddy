@@ -246,6 +246,11 @@ footer a:active{
     transform: translateY(0);
 }
 
+.hp-svg{
+    position: absolute;
+    z-index: -1;
+}
+
 .hp-main-cards p{
     font-size: var(--ui-font-size-text);
     margin-top: 1rem;
@@ -773,6 +778,9 @@ from this we take the direct child label*/
     .navbar {
         box-sizing: border-box;
         flex: 1 1 70%;
+    }
+    .hp-svg{
+        display: none;
     }
     .hp-main-container{
         flex-flow: column wrap;
