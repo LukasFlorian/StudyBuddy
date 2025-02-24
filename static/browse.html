@@ -64,14 +64,14 @@
             </div>
             <div class="browse-main">
                 <!-- Suchergebnisse werden hier dynamisch eingefügt -->
-                <div id="search-results" class="browse-results">
+                <div  class="browse-results">
                     <h1>Search results</h1>
                 </div>
 
                 <!-- Beispielhaft kann hier auch ein Template für Ergebnis-Karten stehen,
                    das per JavaScript ersetzt bzw. ergänzt wird -->
                 <!-- Template für Suchergebnisse: -->
-                <div class="browse-card-container">
+                <div class="browse-card-container" id="search-results">
                     <div class="browse-grid-container">
                         <div class="browse-card">
                             <img src="../public/img/browse_placeholder.png" alt="search result">
@@ -79,7 +79,7 @@
                             <p id="browse-card-description">Description</p>
                             <p id="browse-card-author">Author</p>
                         </div>
-                        <button type="submit" id="download-btn">Download</button>
+                        <button type="submit" class="download-btn">Download</button>
                     </div>
                 </div>
             </div>
