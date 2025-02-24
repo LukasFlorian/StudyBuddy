@@ -80,7 +80,6 @@ Es ergibt sich nachstehende Grob-Gliederung:
 Einen besonderen Gestaltungsaufwand haben die Buttons der Klasse ".hp-button" mit sich gebracht.
 Daher dienen diese als exemplarische Code-Beispiele zur Erläuterung des CSS-Designs.
 
-Buttons der Klasse ".hp-button"
 
 Auszug HTML-Code
 ```html
@@ -194,6 +193,32 @@ Die Breite des Buttons wird auf 45 % des Eltern-Elements festgelegt.
 will-change: transform;  
 Dem Browser wird mitgeteilt, dass dem Button eine Transformation bevorsteht. 
 Dadurch können Animationen und Übergänge flüssiger dargestellt werden.
+
+.hp-button:hover  
+Mittels des Selektor :hover wird die Gestaltung definiert, die sichtbar wird, sobald der Mauszeiger über dem Button-Element schwebt.
+
+box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;  
+Der Button bekommt einen Schatten zugewiesen. Der RGBA-Wert definiert dabei die Farbe des Schattens. RGBA steht für Rot, Blau, Grün und Alpha. Mittels dieser Parameter kann eine Farbe codiert werden. Dabei legen Rot, Grün und Blau den jeweiligen Anteil in der Farbe fest und Alpha steht für die Deckkraft bzw. Transparenz. In diesem Beispiel wurde eine schwarze Farbe mit einer Deckkraft von 25 % bzw. einer Transparenz von 75 % gewählt.  
+Die darauf folgenden drei Werte legen die Breite, Höhe und Unschärfe des Schattens fest.  
+Der erste Wert ist die horizontale Breite - hier 0 Pixel.  
+Der zweite Wert bestimmt die vertikale Höhe des Schattens - hier 8 Pixel.  
+Der letzte Wert definiert die Unschärfe, also wie verschwommen der Schatten sein soll. Die im Code gewählte Unschärfe von 15 Pixel sorgt dafür, dass der Schatten optisch einen fließenden Übergang hat und keine harten Kanten entstehen.  
+
+
+
+transform: translateY(-3px);
+Es wird eine Transformation des Elements definiert. Die Funktion translateY beschreibt einen Verschiebung entlang der vertikalen Achse. Der Wert -3px legt dabei fest, dass die Verschiebung um 3 Pixel nach oben sein soll.
+
+Die Kombination aus box-shadow und transform sorgt dafür, dass der Button etwas nach oben zu schweben scheint, wenn man mit dem Mauszeiger über ihn fährt.
+
+.hp-button:active   
+Mit dem Selektor :active wird das Design beim Anklicken des Button bestimmt.
+
+box-shadow: none;   
+Der zuvor bei :hover definiert Schatten wird aufgehoben.
+ 
+transform: translateY(0);  
+Die zuvor bei :hover festgelegte Verschiebung entlang der vertikalen Achse wird entfernt. Der Button kehrt auf seine Ausgangsposition zurück.
 
 
 
