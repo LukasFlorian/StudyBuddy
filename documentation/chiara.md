@@ -1,13 +1,20 @@
-# Cascading Style Sheet (CSS)
+# Frontend: HTML und CSS
+Mit Hilfe von HTML und CSS können die Struktur, der Inhalt und das Design von Webseiten
+erstellt werden. Beide Sprachen arbeiten Hand in Hand, um einen ansprechenden und funktionalen 
+Web-Auftritt zu erstellen.
 
-## Einleitung
+Dieses Kapitel beschreibt den Entwicklungsprozess von StudyBuddy hinsichtlich der Sprachen HTML und CSS.
+Es betrachtet die Entstehung von der Zieldefinition über den ersten Webseitenentwurf
+bis hin zur finalen Gestaltung. Zudem werden die eingesetzten Hilfsmittel beschrieben, die 
+diesen Prozess begleitet haben. Außerdem wird anhand ausgewählter Code-Beispiele
+die Funktionsweise des Codes erläutert.
 
-Im folgenden Teil wird auf die Gestaltung der Website mit CSS eingegangen.
-Mit CSS kann das Design der Website gestaltet und verändert werden. 
+## Einleitung Zieldefinition
 
 Für das Design der Wep-Applikation "StudyBuddy" hat sich das Team folgende Ziele gesetzt,
 damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfüllt werden:
-- ### Übersichtlichkeit und Klarheit:  
+
+- **Übersichtlichkeit und Klarheit:**   
     Zweck der Website ist u. A. Schüler*innen und Studierende beim Lernen zu unterstützen.
     Dabei kann das Lernen für Prüfungen mit unter eine emotionale Belastung darstellen. 
     Sei es der Leistungsdruck, der gefühlte Zwang sich mit Themen auseinander zu setzen, 
@@ -16,8 +23,7 @@ damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfü
     Aus diesem Grund soll StudyBuddy eine übersichtliche und klare Gestaltung haben, 
     damit die Applikation einfach zu bedienen ist und keinen weiteren Stress im Lernprozess bedingt.
 
-
-- ### Ansprechendes, durchgängiges Farbdesign:  
+- **Ansprechendes, durchgängiges Farbdesign:**  
     Die farbliche Gestaltung des Web-Auftritts soll eine stressfreie, motivierende und 
     konzentrationsfördernde Atmosphäre schaffen. Deshalb fokussiert sich die Farbauswahl
     auf Blau- und Lilatöne. Diese zeichnen sich nach der PAD-Theorie[^1] durch eine beruhigende physiologische und
@@ -25,7 +31,7 @@ damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfü
     Weiterhin wurden im :root-Element Farben für das User-Interface definiert, die auf den Webseiten angewendet werden. 
     Dadurch ergibt sich ein einheitliches und konstantes Farbbild.
 
-- ### Flexible Navigation:
+- **Flexible Navigation:**
     Den Nutzer*innen soll eine flexible Navigation zwischen der Hauptseite und den Unterseiten ermöglicht werden. 
     Dadurch soll eine möglichst effiziente Nutzung der Website gewährleistet werden.
   
@@ -34,6 +40,195 @@ damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfü
 [^1]: Die PAD-Theorie (Pleasure-Arousal-Dominance-Theorie) aus der Farbpsychologie beschäftigt sich mit der Wirkung von Farben. Pleasure beschreibt, wie angenehm oder unangenehm eine Farbe empfunden wird. Arousal zeigt die physiologische und emotionale Stimulation. Dominance stellt dar, wie stark eine Farbe ein Gefühl von Kontrolle oder Macht vermittelt. 
 
 [^2]: vgl. Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions. Journal of Experimental Psychology: General, 123(4), 394–409
+
+## Erster Entwurf
+
+Zu Beginn des Projekts wurde ein erster Entwurf der Homepage erstellt. 
+Dafür wurde das Design-Programm Figma genutzt. Damit war es möglich, als Team gemeinsam 
+an einem Entwurf zu arbeiten.
+
+Dieser erste Entwurf ist in der Abbilung 1 zu sehen.
+
+Bereits beim initialen Design wurde die Auffassung geteilt, dass die Homepage möglichst 
+übersichtlich gestaltet sein soll. Dazu gehörte, dass sich das Design auf die Funktionen 
+Up- und Download (später umbenannt in Share und Browse) ausrichtet, denn diese bilden die 
+Hauptfunktionen der Webapplikation.
+
+Weiterhin wurde sich für den Namen "StudyBuddy" entschieden, da die Applikation genau dies für 
+ihre Nutzenden darstellen soll - eine angenehme, positive Unterstützung beim Lernen. Außerdem impliziert
+"Buddy" - im Sinne von Freund - dass man mit anderen Lernenden zusammenarbeiten kann, indem man 
+seine Lernunterlagen austauscht.
+
+Abweichend von ursprünglichen Entwurf wurde die Farbauswahl getroffen. Wie in der Einleitung 
+beschrieben, wurden Blau- und Lilatöne als Hauptfarben definert.  
+Zudem wurden Anpassungen bei den Bildern vorgenommen. Wie in Abbildung 1 zu sehen ist, wirken 
+die ersten Grafiken tendenziell kalt und wenig ansprechend. Deshalb wurden mit 
+Microsoft Designer neue Bilder generiert.  
+Eine weitere Veränderung ist, dass die Verlinkung zu "About Us", also dem Impressum, nicht mehr 
+im Header zu finden ist. Da diese Unterseite keine der Hauptfunktionen von StudyBuddy
+beinhaltet, wurde die Verknüpfung im footer der Webseiten aufgenommen.
+
+Hiermit wurde der intiale Entwurf des Webseiten-Designs aufgezeigt. 
+Im anschließenden Teil werden die Hilfsmittel beschrieben, die im bisherigen und folgenden
+Entwicklungsprozess genutzt wurden.
+
+## Hilfsmittel
+
+### Literatur
+
+**Wolf, Jürgen: HTML und CSS: Das umfassende Handbuch,**  
+5., aktualisierte und überarbeitete Auflage 2023, Rheinwerk Verlag GmbH, Bonn 2023.
+
+Dieses Buch wurde zur Bildung eines grundsätzlichen Verständnisses 
+sowie als Nachschlagewerk für die verschiedenen HTML- und CSS-Elemente
+genutzt.
+Anfangs wurde es zur Vermittlung von Grundkenntnissen zu 
+CSS-Gestaltungsmöglichkeiten und deren Anwendung verwendet. Dazu 
+gehörten beispielsweise die Verwendung von margin, padding, color, 
+border-Design und font-Design. Weiterhin wurden die verschiedenen 
+Maßeinheiten in CSS und die Codierung von Farben erlernt. 
+
+Im späteren Lauf diente dieses Werk zur Vertiefung des Wissens über 
+CSS-Flexboxen, CSS-Grid und responsives Design.
+
+**Schneider, Jürgen: Vorlesungsskript Web Engineering Kap 3 und Kap 4**  
+Die Vorlesungsskript Kapitel 3 und Kapitel 4 wurden als Nachschlagewerk 
+für den Aufbau und die Gestaltung der Webapplikation genutzt. Die beiden
+Kapitel behandeln die Themen HTML und CSS.
+
+
+### Artificial Intelligence
+
+**Microsoft Designer**  
+https://designer.microsoft.com/home 
+
+Die Bildgenerierung Software Microsoft Desinger wurde zur Erstellung der Grafiken verwendet.  
+Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
+lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
+Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
+Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
+hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
+Korrektur erfolgen. 
+Deshalb wurde der Schritfzug manuell erstellt.
+
+Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
+erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
+Figur, die am PC etwas sucht. "studybuddy""._ Dort wurden aus vier 
+generierten Bildern die zwei Grafiken ausgewählt, die auch auf der Homepage 
+zu sehen sind.
+
+### Webseiten und -applikationen
+
+**Can I Use**  
+https://caniuse.com/
+
+Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf ihre Kompatibilität mit Browsern zu prüfen. 
+
+Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
+
+**Coloors Image Picker**
+https://coolors.co/image-picker/
+
+Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
+Die hier erstellte Farbauswahl findet sich in den "UI"-Farben wieder, welche im :root-Element des CSS-Codes definiert wurden.
+
+**Figma**  
+https://www.figma.com/de-de/
+
+Figma ist ein Design-Tool, mit dem der erste Webseitenentwurf erstellt wurde.
+Dieser wird in der Einleitung dieses Kapitels beschrieben.
+
+
+**Google Font Icons**
+https://fonts.google.com/icons
+
+Google Font bietet eine große Bibliothek von u. A. Icons an. 
+Die Symbole im Login-Formular und Signup-Formular als svg-Elemente über 
+Google Font bezogen. Dabei kann z. B. die Farbe und das Filling der Icons 
+über Google Font definert werden. Im Anschluss kann der Code zum 
+svg-Element kopiert und in der HTML-Datei eingefügt werden.
+
+**IANA Media Types**  
+https://www.iana.org/assignments/media-types/media-types.xhtml#image
+
+Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
+Dies wurde für die Bestimmung der erlaubten Uploaddatein auf der Seite 
+"Share" benötigt.  
+Codeauszug:  
+```html
+<input type="file" id="upload" name="uploadFile" accept="image/*, application/pdf" />
+```
+Hier wurde ein Upload für alle Image Datentypen sowie für PDF festgelegt.
+Denn StudyBuddy möchte den Austausch von z. B. Fotos von Lernunterlagen, 
+aber auch von PDFs ermöglichen.
+
+**mdn web docs**  
+https://developer.mozilla.org/en-US/docs/Web/CSS
+
+Diese Webseite bietet ausführliche Erklärungen zu den Funktionsweisen, dem Syntax und der Browser-Kompatibilität von HTML- und CSS-Elementen. 
+Deshalb wurde diese Webseite zur Schaffung eines tieferen Verständnisses 
+für die Anwendung und die korrekte Implementierung einiger CSS-Elemente 
+verwendet. Beispielhaft können hier das aside-Element oder der Border-Style
+ genannt werden.
+
+**RealFaviconGenerator**  
+https://realfavicongenerator.net/
+
+Diese Seite kann zur Erstellung von eines Favicon in verschiedenen 
+Dateiformaten verwendet werden. 
+Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mit 
+Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
+Logo-Design.
+
+
+**svg repo**
+https://www.svgrepo.com/svg/408497/arrow-03
+
+Svg repo ist eine Bibliothek für svg-Dateien. Von dort wurde der pinke Pfeil der Homepage kopiert und im HTML-Code eingebunden.
+
+
+**W3C Font-Families**  
+https://www.w3.org/Style/Examples/007/fonts.en.html
+
+Die Unterseite zu Font-Families gibt eine Übersicht über das Aussehen verschiedener Font-Families in CSS. Damit konnte das Design der Schriften 
+verglichen und die hier bevorzugte Font-Family "monospace" ausgewählt 
+werden.
+
+**W3 Schools**  
+https://www.w3schools.com/
+
+Die Lernplattform W3 School wurde zum Lernen und Testen genutzt. Auf der 
+einen Seite konnten, mittels der ausführlichen und gut strukturierten 
+Beispiele, neue Kenntnisse zur Funktionsweise von HTML und CSS gewonnen 
+werden. Auf der anderen Seite wurden mit Hilfe des integrierten 
+"Try-it-Yourself"-Editors die Auswirkung von unterschiedlichen 
+Programmbestandteilen getestet. 
+
+
+
+# Hypertext Markup Language (HTML)
+
+Die Hypertext Markup Language (HTML) ist eine standartisierte Sprache zur 
+Erstellung von Websiten. Mit ihr können die Struktur und die Inhalte einer 
+Webseite programmiert werden. 
+
+Dieses Kapitel beschäftigt sich mit der HTML-Programmierung von StudyBuddy.
+Dabei wird zuerst auf die Sitemap der Webapplikation eingegangen um ein 
+grundsätzliches Verständnis für die Webseiten zu schaffen. Anschließend wird
+deren Aufbau mittels Kompositionsdiagramme dargestellt.
+Abschließend wird anhand eines Code-Beispiels die Funktionsweise aufgezeigt.
+
+## Sitemap
+
+### Weitere Anwendungen
+
+**Microsoft PowerPoint**
+PowerPoint wurde zur Erstellung der Kompositionsdiagramme und zur Skalierung von
+Grafiken verwendet.
+
+# Cascading Style Sheet (CSS)
+
+
 
 
 ## Aufbau des Codes
@@ -227,128 +422,19 @@ Der zuvor bei :hover definiert Schatten wird aufgehoben.
 **transform: translateY(0);**  
 Die zuvor bei :hover festgelegte Verschiebung entlang der vertikalen Achse wird entfernt. Der Button kehrt auf seine Ausgangsposition zurück.
 
-## Hilfsmittel
+# Abbildungsverzeichnis
+Abb. 1: Erster Entwurf der Homepage 
 
-### Literatur
+![Erster Entwurf der Homepage](C:\Users\chiar\Labor\WebEngineering\Projekte\WebApp\img_md\firstDraft.png)
 
-**Wolf, Jürgen: HTML und CSS: Das umfassende Handbuch,**  
-5., aktualisierte und überarbeitete Auflage 2023, Rheinwerk Verlag GmbH, Bonn 2023.
+# Stichwortverzeichnis
 
-    Dieses Buch wurde zur Bildung eines grundsätzlichen Verständnisses 
-    sowie als Nachschlagewerk für die verschiedenen HTML- und CSS-Elemente
-     genutzt.
-    Anfangs wurde das Buch zur Vermittlung von Grundkenntnissen zu 
-    CSS-Gestaltungsmöglichkeiten und deren Anwendung verwendet. Dazu 
-    gehören beispielsweise die Verwendung von margin, padding, color, 
-    border-Design und font-Design. Weiterhin wurden die verschiedenen 
-    Maßeinheiten in CSS, die Codierung von Farben erlernt. 
-    
-    Im späteren Lauf diente dieses Werk zur Vertiefung des Wissens über 
-    CSS-Flexboxen, CSS-Grid und responsives Design.
+CSS:  
+Cascading Style Sheet
 
+HTML:   
+Hypertext Markup Language
 
-### Artificial Intelligence
+SVG:   
+Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
 
-**Microsoft Designer**  
-https://designer.microsoft.com/home 
-
-Die Bildgenerierung Software Microsoft Desinger wurde zur Erstellung der Grafiken verwendet.  
-Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
-lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
-Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
-Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
-hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
-Korrektur erfolgen. 
-Deshalb wurde der Schritfzug manuell erstellt.
-
-Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
-erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
-Figur, die am PC etwas sucht. "studybuddy""._ Dort wurden aus vier 
-generierten Bildern die zwei Grafiken ausgewählt, die auch auf der Homepage 
-zu sehen sind.
-
-### Webseiten und -applikationen
-
-**Can I Use**  
-https://caniuse.com/
-
-Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf ihre Kompatibilität mit Browsern zu prüfen. 
-
-Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
-
-**Coloors Image Picker**
-https://coolors.co/image-picker/
-
-Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
-Die hier erstellte Farbauswahl findet sich in den "UI"-Farben wieder, welche im :root-Element des CSS-Codes definiert wurden.
-
-**Google Font Icons**
-https://fonts.google.com/icons
-
-Google Font bietet eine große Bibliothek von u. A. Icons an. 
-Die Symbole im Login-Formular und Signup-Formular als svg-Elemente über 
-Google Font bezogen. Dabei kann z. B. die Farbe und das Filling der Icons 
-über Google Font definert werden. Im Anschluss kann der Code zum 
-svg-Element kopiert und in der HTML-Datei eingefügt werden.
-
-**IANA Media Types**  
-https://www.iana.org/assignments/media-types/media-types.xhtml#image
-
-Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
-Dies wurde für die Bestimmung der erlaubten Uploaddatein auf der Seite 
-"Share" benötigt.  
-Codeauszug:  
-```html
-<input type="file" id="upload" name="uploadFile" accept="image/*, application/pdf" />
-```
-Hier wurde ein Upload für alle Image Datentypen sowie für PDF festgelegt.
- Denn StudyBuddy möchte den Austausch von z. B. Fotos von Lernunterlagen, 
- aber auch von PDFs ermöglichen.
-
-**mdn web docs**  
-https://developer.mozilla.org/en-US/docs/Web/CSS
-
-Diese Webseite bietet ausführliche Erklärungen zu den Funktionsweisen, dem Syntax und der Browser-Kompatibilität von HTML- und CSS-Elementen. 
-Deshalb wurde diese Webseite zur Schaffung eines tieferen Verständnisses 
-für die Anwendung und die korrekte Implementierung einiger CSS-Elemente 
-verwendet. Beispielhaft können hier das aside-Element oder der Border-Style
- genannt werden.
-
-
-**RealFaviconGenerator**  
-https://realfavicongenerator.net/
-
-Diese Seite kann zur Erstellung von eines Favicon in verschiedenen 
-Dateiformaten verwendet werden. 
-Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mit 
-Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
-Logo-Design.
-
-
-**W3C Font-Families**  
-https://www.w3.org/Style/Examples/007/fonts.en.html
-
-Die Unterseite zu Font-Families gibt eine Übersicht über das Aussehen verschiedener Font-Families in CSS. Damit konnte das Design der Schriften 
-verglichen und die hier bevorzugte Font-Family "monospace" ausgewählt 
-werden.
-
-**W3 Schools**  
-https://www.w3schools.com/
-
-Die Lernplattform W3 School wurde zum Lernen und Testen genutzt. Auf der 
-einen Seite konnten, mittels der ausführlichen und gut strukturierten 
-Beispiele, neue Kenntnisse zur Funktionsweise von HTML und CSS gewonnen 
-werden. Auf der anderen Seite wurden mit Hilfe des integrierten 
-"Try-it-Yourself"-Editors die Auswirkung von unterschiedlichen 
-Programmbestandteilen getestet. 
-
-
-
-
-
-
-
-
-
-
-    
