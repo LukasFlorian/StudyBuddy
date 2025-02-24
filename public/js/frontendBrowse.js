@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // accessing the search form that contains the search input and the tags input
   const searchForm = document.getElementById("search-form");
   const resultsSection = document.getElementById("search-results");
   resultsSection.classList.add("browse-card-container");
