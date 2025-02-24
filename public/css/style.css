@@ -140,7 +140,7 @@ main {
 .introduction{
     animation: slideInLR 1s ease-in-out;
     font-size: max(1.6rem, 3vw);
-    margin: 10vh 8vw;
+    margin: 6vh 8vw;
     max-width: 100%;
     text-align: center;
 }
@@ -505,7 +505,7 @@ from this we take the direct child label*/
     /*design of new radio button/
     /*unchecked*/
     align-self: center;
-    border: 2px solid rgb(135, 134, 134);
+    border: 2px solid var(--ui-base-color-light);
     border-radius: 50%;
     font: inherit;
     height: max(0.7rem, 1.4vw);
@@ -519,7 +519,7 @@ from this we take the direct child label*/
 
 /*checked radio button*/
 .browse-filter input[type="radio"]::before{
-    box-shadow: inset 1em 1em var(--ui-blue);
+    box-shadow: inset 1em 1em var(--ui-pink);
     content:"";
     border-radius: 50%;
     height: var(--ui-font-size-text);
@@ -834,4 +834,3 @@ from this we take the direct child label*/
         transform: translateX(0);
     }
 }
-
