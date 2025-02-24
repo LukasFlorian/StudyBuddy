@@ -577,7 +577,7 @@ from this we take the direct child label*/
     max-width: 100%;
 }
 
-.browse-card-container #download-btn{
+.download-btn{
     background-color: var(--ui-base-color-dark);
     border-radius: 15px;
     color: var(--ui-base-color-light);
@@ -591,7 +591,7 @@ from this we take the direct child label*/
     z-index: 2;
 }
 
-.browse-card-container #download-btn:hover{
+.download-btn:hover{
     font-size: var(--ui-font-size-big);
     opacity: 0.95;
     transition: opacity 0.4s;
