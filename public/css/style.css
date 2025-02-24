@@ -195,7 +195,7 @@ footer a:active{
 
 
 /***************************
-3. homepage - main cards
+3 homepage - main cards
  **************************/
 
 .hp-main-container{
@@ -259,7 +259,7 @@ footer a:active{
 
 
 /***************************
-4. login / sign up
+4 login / sign up
  **************************/
 
 .signup-container{
@@ -771,8 +771,8 @@ from this we take the direct child label*/
     .signup{
         width: min(500px, 100%);
     }
-
 }
+
 /*Adjustments for small devices with screen sizes up to 426px*/
 @media screen and (max-width: 426px){
     .navbar {
