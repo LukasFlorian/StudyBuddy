@@ -590,7 +590,7 @@ from this we take the direct child label*/
     z-index: 2;
 }
 
-.browse-card-container button:hover{
+.browse-card-container #download-btn:hover{
     font-size: var(--ui-font-size-big);
     opacity: 0.95;
     transition: opacity 0.4s;
