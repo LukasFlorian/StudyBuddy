@@ -576,7 +576,7 @@ from this we take the direct child label*/
     max-width: 100%;
 }
 
-.browse-card-container button{
+.browse-card-container #download-btn{
     background-color: var(--ui-base-color-dark);
     border-radius: 15px;
     color: var(--ui-base-color-light);
