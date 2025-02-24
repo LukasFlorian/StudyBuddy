@@ -540,15 +540,20 @@ from this we take the direct child label*/
     display: flex;
     flex-flow: row wrap;
     font-size: var(--ui-font-size-text);
-    width: 100%;
+    max-height: 80vh;
+    justify-content: flex-start;
+    overflow: auto;
+    width: 95%;
 }
 
 .browse-grid-container{
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
     height: auto;
-    width: 100%;
+    margin: 1%;
+    width: 30%;
 }
 
 .browse-card {
@@ -557,14 +562,14 @@ from this we take the direct child label*/
     linear-gradient(145deg, transparent 0%,var(--ui-pink),var(--ui-purple), var(--ui-dark-blue)) border-box;
     border: 3px solid transparent;
     border-radius: 15px;
+    box-sizing: border-box;
     display: flex;
     flex-flow: column nowrap;
     grid-area: 1 / 1 / 1 / 1;
-    height: auto;
     justify-content: center;
     overflow: hidden;
     position: relative;
-    width: 30%;
+    width: 100%;
 }
 
 .browse-card:hover{
@@ -577,7 +582,7 @@ from this we take the direct child label*/
     max-width: 100%;
 }
 
-.browse-card-container #download-btn{
+.download-btn{
     background-color: var(--ui-base-color-dark);
     border-radius: 15px;
     color: var(--ui-base-color-light);
@@ -585,13 +590,13 @@ from this we take the direct child label*/
     font-family: var(--text-font-family), monospace;
     grid-area: 1 / 1 / 1 / 1;
     margin: 0;
-    max-width: 31%;
+    width: 100%;
     opacity: 0;
     position: relative;
     z-index: 2;
 }
 
-.browse-card-container #download-btn:hover{
+.download-btn:hover{
     font-size: var(--ui-font-size-big);
     opacity: 0.95;
     transition: opacity 0.4s;

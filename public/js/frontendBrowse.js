@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchForm = document.getElementById("search-form");
   const resultsSection = document.getElementById("search-results");
+  resultsSection.classList.add("browse-card-container");
 
   // Event-Listener für das Suchformular
   searchForm.addEventListener("submit", async (e) => {
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Ergebnisbereich leeren
       resultsSection.innerHTML = "";
+      
 
       if (data.numDocs === 0) {
         resultsSection.innerHTML = "<p>No documents found.</p>";
@@ -37,8 +39,8 @@ document.addEventListener("DOMContentLoaded", () => {
             <p>${doc.docTitle}</p>
             <p>${doc.docDescription}</p>
             <p>Author: ${doc.docAuthor}</p>
-            <button class="download-btn" data-id="${doc.docID}">Download</button>
             </div>
+            <button class="download-btn" data-id="${doc.docID}">Download</button>
           `;
           resultsSection.appendChild(card);
         });
