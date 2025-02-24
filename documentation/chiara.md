@@ -1,4 +1,4 @@
-## Cascading Style Sheet (CSS)
+# Cascading Style Sheet (CSS)
 
 ## Einleitung
 
@@ -7,7 +7,7 @@ Mit CSS kann das Design der Website gestaltet und verändert werden.
 
 Für das Design der Wep-Applikation "StudyBuddy" hat sich das Team folgende Ziele gesetzt,
 damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfüllt werden:
-- ## Übersichtlichkeit und Klarheit:  
+- ### Übersichtlichkeit und Klarheit:  
     Zweck der Website ist u. A. Schüler*innen und Studierende beim Lernen zu unterstützen.
     Dabei kann das Lernen für Prüfungen mit unter eine emotionale Belastung darstellen. 
     Sei es der Leistungsdruck, der gefühlte Zwang sich mit Themen auseinander zu setzen, 
@@ -17,7 +17,7 @@ damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfü
     damit die Applikation einfach zu bedienen ist und keinen weiteren Stress im Lernprozess bedingt.
 
 
-- ## Ansprechendes, durchgängiges Farbdesign:  
+- ### Ansprechendes, durchgängiges Farbdesign:  
     Die farbliche Gestaltung des Web-Auftritts soll eine stressfreie, motivierende und 
     konzentrationsfördernde Atmosphäre schaffen. Deshalb fokussiert sich die Farbauswahl
     auf Blau- und Lilatöne. Diese zeichnen sich nach der PAD-Theorie[^1] durch eine beruhigende physiologische und
@@ -25,7 +25,7 @@ damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfü
     Weiterhin wurden im :root-Element Farben für das User-Interface definiert, die auf den Webseiten angewendet werden. 
     Dadurch ergibt sich ein einheitliches und konstantes Farbbild.
 
-- ## Flexible Navigation:
+- ### Flexible Navigation:
     Den Nutzer*innen soll eine flexible Navigation zwischen der Hauptseite und den Unterseiten ermöglicht werden. 
     Dadurch soll eine möglichst effiziente Nutzung der Website gewährleistet werden.
   
@@ -75,18 +75,18 @@ Es ergibt sich nachstehende Grob-Gliederung:
         8 responsive design
         9 animations
 
-## Erläuterung von Code-Bespielen 
+## Erläuterung eines Code-Bespiels
 
 Einen besonderen Gestaltungsaufwand haben die Buttons der Klasse ".hp-button" mit sich gebracht.
 Daher dienen diese als exemplarische Code-Beispiele zur Erläuterung des CSS-Designs.
 
 
-Auszug HTML-Code
+### Auszug HTML-Code zu .hp-button
 ```html
 <button class="hp-button" onclick="window.location.href='./browse';">Browse Notes</button>
 ```
 
-Auszug CSS-Code
+### Auszug CSS-Code zu .hp-button
 ```css
 .hp-button {
     appearance: none;
@@ -119,106 +119,233 @@ Auszug CSS-Code
 }
 ```
 
-Erklärung Funktionsweise
+### Erklärung Funktionsweise
 
-appearance: none;  
+**.hp-button**
+Durch diesen Selektor werden alle Elemente mit der Klasse "hp-button" angesprochen.
+
+**appearance: none;** 
 Das plattform- bzw. betriebssystemspezifische Aussehen des Buttons wird versteckt.
 
-background-color: var(--ui-blue);  
+**background-color: var(--ui-blue);** 
 Der Button bekommt die Hintergrundfarbe "-ui-blue" zugewiesen. Diese Farbe wurde im :root-Element definiert und 
 hier über die Var()-Funktion aufgerufen. 
 Bei der Definition im :root-Element können z. B. Farben oder Schriftarten für die gesamte CSS-Datei bestimmt werden.
 Dies ermöglicht eine effiziente und flexible Festlegung von wiederkehrenden Eigenschaften und Werten, die einmal definiert 
 und anschließend für beliebig viele Elemente angewendet werden können.
 
-border: 2px solid var(--ui-blue);  
+**border: 2px solid var(--ui-blue);**  
 Diese Kurzschreibweise beschreibt die Breite (border-width), den Style (border-style) und die Farbe (border-color) des Rahmens.
 Der hier programmierte Rahmen ist 2 Pixel breit, hat eine durchgezogene Linie und hat die Farbe "-ui-blue" zugewiesen. 
 Alle 4 Seiten des Rahmens haben die gleiche Gestaltung.
 
-border-radius: 15px;  
+**border-radius: 15px;**  
 Der Radius des Rahmens von 15 Pixeln gibt eine Abrundung der Ecken des Rahmens an.
 
-color: white;  
+**color: white;**  
 Die Schriftfarbe des Buttons ist weiß.
 
-cursor: pointer;  
+**cursor: pointer;**  
 Die Darstellung des Mauszeigers verändert sich zu einer kleinen Hand, wenn der Mauszeiger über den Button bewegt wird. Dadurch wird
 dem Nutzenden angezeigt, dass eine Verlinkung und die Möglichkeit, diese anzuklicken, existiert.
 
-font-size: var(--ui-font-size-big);  
+**font-size: var(--ui-font-size-big);**  
 Die Schriftgröße des Buttontextes wird auf den Wert "--ui-font-size-big" festgelegt. 
 Hierbei handelt es sich ebenfalls um eine benutzerdefinierte Größe, die im :root-Element definiert wird.
 Der Wert ist max(1rem, 2vw). Durch die Max-Funktion wird stets der größere der beiden aufgeführten Werte angenommen.
 Da es sich bei 16px um einen absoluten Wert handelt, wird dieser nur angenommen, 
 wenn 2vw (2 % der Viewport-Breite) kleiner als 16 Pixel ist. So passt sich die Schriftgröße responsiv an die Viewport-Breite an.
 
-font-weight: 550;  
+**font-weight: 550**;  
 Mit font-weight kann die Stärke (Fettheit) der Schrift eingestellt werden. 
 Der Normalwert einer Schrift liegt bei 400, weshalb der hier eingestelle Wert 
 von 550 die Schrift fetter darstellt als normal.
 
-margin: 0 auto;  
+**margin: 0 auto;**  
 Der Abstand um das Element herum wird oben und unten auf 0 gesetzt (es wird kein Abstand definiert). 
 Der Wert auto für die linke und rechte Seite um das Element bedingen eine zentrierte Ausrichtung.
 
-min-height: 60px;  
+**min-height: 60px;**  
 Der Button hat eine Mindesthöhe von 60px.
 
-outline: none;  
+**outline: none;**  
 Die Umrandung des Buttons wird deaktiviert.
 
-padding: 1rem;  
+**padding: 1rem;**  
 Der Abstand zwischen Inhalt und Rahmen des Elementes wird auf 1 rem (root em) festgelegt. 
 Diese Schreibweise gibt den Abstand für alle 4 Seiten um den Inhalt an.
 1 rem entspricht der Schriftgröße, die im root-Element (entspricht html-Element oder :root-Element) definiert wurde.
 In diesem Programm sind 1 rem 16 Pixel.
 
-text-align: center;  
+**text-align: center;**  
 Der Text wird zentriert ausgerichtet.
 
-text-decoration: none;  
+**text-decoration: none;**    
 Die Textdekorationen wie z. B. eine Unterstreichung werden entfernt. 
 
-transition: all 0.3s ease-in-out;
+**transition: all 0.3s ease-in-out;**  
 Dem Button wird ein Übergang zugewiesen. 
 Der erste Wert all beschreibt, dass alle veränderbaren Eigenschaften wie z. B. die Position des Buttons beeinflusst werden.
 Der zweite Wert 0.3s definiert, dass der Übergang 0.3 Sekunden, also 300 Millisekunden dauert.
 Der letzte Wert ease-in-out legt den Ablauf der Animation fest. Die Animation startet langsam, beschleunigt in der Mitte und endet langsam.
 Dadurch soll ein sanfter Effekt entstehen.
 
-width:45%;   
+**width:45%;**   
 Die Breite des Buttons wird auf 45 % des Eltern-Elements festgelegt.
 
-will-change: transform;  
+**will-change: transform;**  
 Dem Browser wird mitgeteilt, dass dem Button eine Transformation bevorsteht. 
 Dadurch können Animationen und Übergänge flüssiger dargestellt werden.
 
-.hp-button:hover  
+&nbsp;
+
+
+**.hp-button:hover**  
 Mittels des Selektor :hover wird die Gestaltung definiert, die sichtbar wird, sobald der Mauszeiger über dem Button-Element schwebt.
 
-box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;  
+**box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;**  
 Der Button bekommt einen Schatten zugewiesen. Der RGBA-Wert definiert dabei die Farbe des Schattens. RGBA steht für Rot, Blau, Grün und Alpha. Mittels dieser Parameter kann eine Farbe codiert werden. Dabei legen Rot, Grün und Blau den jeweiligen Anteil in der Farbe fest und Alpha steht für die Deckkraft bzw. Transparenz. In diesem Beispiel wurde eine schwarze Farbe mit einer Deckkraft von 25 % bzw. einer Transparenz von 75 % gewählt.  
 Die darauf folgenden drei Werte legen die Breite, Höhe und Unschärfe des Schattens fest.  
 Der erste Wert ist die horizontale Breite - hier 0 Pixel.  
 Der zweite Wert bestimmt die vertikale Höhe des Schattens - hier 8 Pixel.  
 Der letzte Wert definiert die Unschärfe, also wie verschwommen der Schatten sein soll. Die im Code gewählte Unschärfe von 15 Pixel sorgt dafür, dass der Schatten optisch einen fließenden Übergang hat und keine harten Kanten entstehen.  
 
-
-
-transform: translateY(-3px);
+**transform: translateY(-3px);**
 Es wird eine Transformation des Elements definiert. Die Funktion translateY beschreibt einen Verschiebung entlang der vertikalen Achse. Der Wert -3px legt dabei fest, dass die Verschiebung um 3 Pixel nach oben sein soll.
 
 Die Kombination aus box-shadow und transform sorgt dafür, dass der Button etwas nach oben zu schweben scheint, wenn man mit dem Mauszeiger über ihn fährt.
 
-.hp-button:active   
+&nbsp;
+
+
+**.hp-button:active**   
 Mit dem Selektor :active wird das Design beim Anklicken des Button bestimmt.
 
-box-shadow: none;   
+**box-shadow: none;**   
 Der zuvor bei :hover definiert Schatten wird aufgehoben.
  
-transform: translateY(0);  
+**transform: translateY(0);**  
 Die zuvor bei :hover festgelegte Verschiebung entlang der vertikalen Achse wird entfernt. Der Button kehrt auf seine Ausgangsposition zurück.
+
+## Hilfsmittel
+
+### Literatur
+
+**Wolf, Jürgen: HTML und CSS: Das umfassende Handbuch,**  
+5., aktualisierte und überarbeitete Auflage 2023, Rheinwerk Verlag GmbH, Bonn 2023.
+
+    Dieses Buch wurde zur Bildung eines grundsätzlichen Verständnisses 
+    sowie als Nachschlagewerk für die verschiedenen HTML- und CSS-Elemente
+     genutzt.
+    Anfangs wurde das Buch zur Vermittlung von Grundkenntnissen zu 
+    CSS-Gestaltungsmöglichkeiten und deren Anwendung verwendet. Dazu 
+    gehören beispielsweise die Verwendung von margin, padding, color, 
+    border-Design und font-Design. Weiterhin wurden die verschiedenen 
+    Maßeinheiten in CSS, die Codierung von Farben erlernt. 
+    
+    Im späteren Lauf diente dieses Werk zur Vertiefung des Wissens über 
+    CSS-Flexboxen, CSS-Grid und responsives Design.
+
+
+### Artificial Intelligence
+
+**Microsoft Designer**  
+https://designer.microsoft.com/home 
+
+Die Bildgenerierung Software Microsoft Desinger wurde zur Erstellung der Grafiken verwendet.  
+Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
+lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
+Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
+Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
+hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
+Korrektur erfolgen. 
+Deshalb wurde der Schritfzug manuell erstellt.
+
+Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
+erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
+Figur, die am PC etwas sucht. "studybuddy""._ Dort wurden aus vier 
+generierten Bildern die zwei Grafiken ausgewählt, die auch auf der Homepage 
+zu sehen sind.
+
+### Webseiten und -applikationen
+
+**Can I Use**  
+https://caniuse.com/
+
+Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf ihre Kompatibilität mit Browsern zu prüfen. 
+
+Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
+
+**Coloors Image Picker**
+https://coolors.co/image-picker/
+
+Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
+Die hier erstellte Farbauswahl findet sich in den "UI"-Farben wieder, welche im :root-Element des CSS-Codes definiert wurden.
+
+**Google Font Icons**
+https://fonts.google.com/icons
+
+Google Font bietet eine große Bibliothek von u. A. Icons an. 
+Die Symbole im Login-Formular und Signup-Formular als svg-Elemente über 
+Google Font bezogen. Dabei kann z. B. die Farbe und das Filling der Icons 
+über Google Font definert werden. Im Anschluss kann der Code zum 
+svg-Element kopiert und in der HTML-Datei eingefügt werden.
+
+**IANA Media Types**  
+https://www.iana.org/assignments/media-types/media-types.xhtml#image
+
+Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
+Dies wurde für die Bestimmung der erlaubten Uploaddatein auf der Seite 
+"Share" benötigt.  
+Codeauszug:  
+```html
+<input type="file" id="upload" name="uploadFile" accept="image/*, application/pdf" />
+```
+Hier wurde ein Upload für alle Image Datentypen sowie für PDF festgelegt.
+ Denn StudyBuddy möchte den Austausch von z. B. Fotos von Lernunterlagen, 
+ aber auch von PDFs ermöglichen.
+
+**mdn web docs**  
+https://developer.mozilla.org/en-US/docs/Web/CSS
+
+Diese Webseite bietet ausführliche Erklärungen zu den Funktionsweisen, dem Syntax und der Browser-Kompatibilität von HTML- und CSS-Elementen. 
+Deshalb wurde diese Webseite zur Schaffung eines tieferen Verständnisses 
+für die Anwendung und die korrekte Implementierung einiger CSS-Elemente 
+verwendet. Beispielhaft können hier das aside-Element oder der Border-Style
+ genannt werden.
+
+
+**RealFaviconGenerator**  
+https://realfavicongenerator.net/
+
+Diese Seite kann zur Erstellung von eines Favicon in verschiedenen 
+Dateiformaten verwendet werden. 
+Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mit 
+Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
+Logo-Design.
+
+
+**W3C Font-Families**  
+https://www.w3.org/Style/Examples/007/fonts.en.html
+
+Die Unterseite zu Font-Families gibt eine Übersicht über das Aussehen verschiedener Font-Families in CSS. Damit konnte das Design der Schriften 
+verglichen und die hier bevorzugte Font-Family "monospace" ausgewählt 
+werden.
+
+**W3 Schools**  
+https://www.w3schools.com/
+
+Die Lernplattform W3 School wurde zum Lernen und Testen genutzt. Auf der 
+einen Seite konnten, mittels der ausführlichen und gut strukturierten 
+Beispiele, neue Kenntnisse zur Funktionsweise von HTML und CSS gewonnen 
+werden. Auf der anderen Seite wurden mit Hilfe des integrierten 
+"Try-it-Yourself"-Editors die Auswirkung von unterschiedlichen 
+Programmbestandteilen getestet. 
+
+
+
+
+
 
 
 
