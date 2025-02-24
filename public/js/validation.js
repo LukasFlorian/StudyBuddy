@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('password-input').value;
   
         try {
-          const res = await fetch('http://localhost:3000/api/users/login', {
+          const res = await fetch('/api/users/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include', // WICHTIG: Cookie wird mitgesendet
