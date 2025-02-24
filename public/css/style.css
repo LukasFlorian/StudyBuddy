@@ -538,6 +538,7 @@ from this we take the direct child label*/
 .browse-card-container{
     box-sizing: border-box;
     display: flex;
+    flex-flow: row wrap;
     font-size: var(--ui-font-size-text);
     width: 100%;
 }
