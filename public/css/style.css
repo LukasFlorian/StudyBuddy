@@ -726,7 +726,7 @@ from this we take the direct child label*/
     transform: scale(0.7);
 }
 
-.share-upload-button-button{
+.share-upload-button{
     align-items: center;
     display: flex;
     margin: 1% auto;
