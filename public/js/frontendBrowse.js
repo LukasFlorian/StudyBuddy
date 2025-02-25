@@ -1,39 +1,45 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // accessing the search form that contains the search input and the tags input
+  
+  // accessing the search form
   const searchForm = document.getElementById("search-form");
+  
+  // accessing the search results section
   const resultsSection = document.getElementById("search-results");
+  
+  // adding a class to the search results section to style the search results
   resultsSection.classList.add("browse-card-container");
 
-  // Event-Listener für das Suchformular
+  // event listener for the search form
   searchForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     const formData = new FormData(searchForm);
     const searchTerm = formData.get("searchTerm");
-    const tags = formData.get("tags"); // Falls du ein zusätzliches Feld hast
+    const tag = formData.get("tag");
 
-    // URL mit Query-Parametern zusammenbauen
+    // creating the URL with the search term and the tag (if available)
     let url = `/browse?searchTerm=${encodeURIComponent(searchTerm)}`;
-    if (tags) {
-      url += `&tags=${encodeURIComponent(tags)}`;
+    if (tag) {
+      url += `&tag=${encodeURIComponent(tag)}`;
     }
     
     try {
+      // fetch request to the server and parse into JSON
       const response = await fetch(url);
       const data = await response.json();
 
-      // Ergebnisbereich leeren
+      // clear search results section before displaying new results
       resultsSection.innerHTML = "";
       
-
+      // if no documents are found, display a message
       if (data.numDocs === 0) {
         resultsSection.innerHTML = "<p>No documents found.</p>";
       } else {
-        // Für jedes Dokument wird eine Browse Card erstellt
+        // create a card for each document found
         data.documents.forEach(doc => {
           const card = document.createElement("div");
           card.classList.add("browse-grid-container");
 
-          // Hier kannst du das Layout der Card anpassen – wenn mehr Dokumente vorliegen, ggf. unterschiedliche Styles/pagination
+          // display the document title, description and author
           card.innerHTML = `
             <div class="browse-card">
             <img src="../public/img/browse_placeholder.png" alt="Search result" />
@@ -52,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Download-Button: Beim Klick wird der Download über den Browser gestartet
+  // download button event listener
   resultsSection.addEventListener("click", (e) => {
     if (e.target.classList.contains("download-btn")) {
       const docID = e.target.getAttribute("data-id");
