@@ -8,8 +8,8 @@ const docSchema = new mongoose.Schema({
   uploadDate: { type: Date, required: true },
   description: { type: String, required: true },
   file: {type: Buffer, required: true },
-  fileType: { type: String, required: true },       // neu
-  originalName: { type: String, required: true },     // neu
+  fileType: { type: String, required: true },
+  originalName: { type: String, required: true },
   tag: { type: String, required: false },
 });
 
