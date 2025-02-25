@@ -3,7 +3,7 @@
 definition of default attributes and variables, that are used frequently
  **************************/
 
-:root{
+ :root{
     font-family: monospace;
     font-size: 16px;
     --ui-base-color-light: white;
@@ -72,8 +72,9 @@ definition of default attributes and variables, that are used frequently
 
 .navbar {
     box-sizing: border-box;
+    display: flex;
     flex: 1 1 50%;
-    padding-left: 20%;
+    justify-content: space-between;
     width: 50%;
 }
 
@@ -87,8 +88,19 @@ definition of default attributes and variables, that are used frequently
     width: 100%;
 }
 
-.nav-items {
+li.nav-items {
     padding-left: max(4vw, 10px);
+    color: var(--ui-blue);
+}
+
+#logout {
+    padding-left: max(4vw, 10px);
+    color: var(--ui-blue);
+    cursor: pointer;
+}
+
+#logout:hover {
+    color: var(--ui-dark-blue);
 }
 
 .nav-items a:link {
@@ -108,6 +120,14 @@ definition of default attributes and variables, that are used frequently
     color: var(--ui-blue);
 }
 
+.logout{
+    background-color: white;
+    opacity: 0;
+}
+
+.logout:hover{
+    opacity: 1;
+}
 
 /***************************
 2.2 all - main  introduction
@@ -120,7 +140,7 @@ main {
 .introduction{
     animation: slideInLR 1s ease-in-out;
     font-size: max(1.6rem, 3vw);
-    margin: 10vh 8vw;
+    margin: 6vh 8vw;
     max-width: 100%;
     text-align: center;
 }
@@ -175,7 +195,7 @@ footer a:active{
 
 
 /***************************
-3. homepage - main cards
+3 homepage - main cards
  **************************/
 
 .hp-main-container{
@@ -226,6 +246,11 @@ footer a:active{
     transform: translateY(0);
 }
 
+.hp-svg{
+    position: absolute;
+    z-index: -1;
+}
+
 .hp-main-cards p{
     font-size: var(--ui-font-size-text);
     margin-top: 1rem;
@@ -234,7 +259,7 @@ footer a:active{
 
 
 /***************************
-4. login / sign up
+4 login / sign up
  **************************/
 
 .signup-container{
@@ -485,7 +510,7 @@ from this we take the direct child label*/
     /*design of new radio button/
     /*unchecked*/
     align-self: center;
-    border: 2px solid rgb(135, 134, 134);
+    border: 2px solid var(--ui-base-color-light);
     border-radius: 50%;
     font: inherit;
     height: max(0.7rem, 1.4vw);
@@ -499,7 +524,7 @@ from this we take the direct child label*/
 
 /*checked radio button*/
 .browse-filter input[type="radio"]::before{
-    box-shadow: inset 1em 1em var(--ui-blue);
+    box-shadow: inset 1em 1em var(--ui-pink);
     content:"";
     border-radius: 50%;
     height: var(--ui-font-size-text);
@@ -746,13 +771,16 @@ from this we take the direct child label*/
     .signup{
         width: min(500px, 100%);
     }
-
 }
+
 /*Adjustments for small devices with screen sizes up to 426px*/
 @media screen and (max-width: 426px){
     .navbar {
         box-sizing: border-box;
         flex: 1 1 70%;
+    }
+    .hp-svg{
+        display: none;
     }
     .hp-main-container{
         flex-flow: column wrap;
@@ -814,4 +842,3 @@ from this we take the direct child label*/
         transform: translateX(0);
     }
 }
-
