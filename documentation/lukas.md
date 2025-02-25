@@ -555,6 +555,26 @@ Dieser "Bauplan" wird mittels des `mongoose.Schema`-Konstruktors formuliert und 
 Die Collection wird bei der ersten Speicherung eines mit dem `User`-Modell instanziierten Objekts automatisch erstellt. Ihr Name entspricht dann dem Namen des Modells - hier `User` - in lowercase-Buchstaben und mit einem angehängten "s". In diesem Beispiel wird die MongoDB-Collection, die alle gespeicherten `User`-Objekte enthält, also mit "users" bezeichnet.
 
 #### `docModel.js`
+~~~js
+// import mongoose
+const mongoose = require("mongoose");
+
+// schema definition
+const docSchema = new mongoose.Schema({
+  userID: { type: mongoose.Types.ObjectId, required: true },
+  title: { type: String, required: true },
+  uploadDate: { type: Date, required: true },
+  description: { type: String, required: true },
+  file: {type: Buffer, required: true },
+  fileType: { type: String, required: true },
+  originalName: { type: String, required: true },
+  tag: { type: String, required: false },
+});
+
+// module export
+module.exports = mongoose.model("Doc", docSchema);
+~~~
+
 Identisch verfahren wird für das Modell der Dokumente. Eine Besonderheit ist hier, dass neben den anderen Attributen - auf diese wird nicht näher eingegangen, da sie auch bereits dem [ER-Modell](#er-model) entnommen werden können - auch die zu speichernde Datei selbst in einem Feld namens `file` vom Typ `Buffer` hinterlegt wird.
 
 Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16MB zu unterstützen [^1]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
