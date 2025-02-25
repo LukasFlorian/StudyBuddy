@@ -1,12 +1,10 @@
 // Importing external modules and namespaces:
 const express = require("express");
 const path = require("path");
-const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const cors = require("cors");
 const session = require('express-session');
 const fileUpload = require("express-fileupload");
-require("dotenv").config();
+
 
 // Importing internally designed routes:
 // Subpages:
@@ -23,18 +21,12 @@ const docRoutes = require("./routes/uploadRoute");
 // App as express instance
 const app = express();
 // Environment variables:
-const PORT = process.env.PORT || 3000;  // Port for the app to run on
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/StudyBuddy";  // MongoDB URI
+const PORT = 3000;  // Port for the app to run on
+const MONGO_URI = "mongodb://localhost:27017/StudyBuddy";  // MongoDB URI
 
 // Middleware
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 
 app.use(express.json());
-app.use(cors({
-  origin: "http://localhost:3000",
-  credentials: true
-}));
 app.use(fileUpload()); // Required for file upload
 
 // Session Management – IMPORTANT: Must come BEFORE route integrations
@@ -51,7 +43,7 @@ app.use("/public", express.static(path.join(__dirname, "../public")));
 // API route for user management (login, singup)
 app.use("/api/users", userRoutes);
 // API route for document upload
-app.use("/api/upload", docRoutes); // Integration of document upload route
+app.use("/api/upload", docRoutes);
 
 // Routes for subpages
 app.use("/", homepage);
