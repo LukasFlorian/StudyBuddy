@@ -1,27 +1,30 @@
+// add event listener to the upload button
 document.getElementById('upload-btn').addEventListener('click', async function(event) {
-  event.preventDefault(); // Verhindert das Neuladen der Seite
+  event.preventDefault();
 
-  // 1. **Titel und Description auslesen**
+  // collect form data
   const documentTitle = document.getElementById('title').value;
   const documentDescription = document.getElementById('description').value;
   const uploadFile = document.getElementById('upload').files[0];
   
-  // 2. **Ausgewählten Radio-Tag sammeln**
+  // collect tag
   const selectedTag = document.querySelector('input[name="tag"]:checked');
   if (!selectedTag) {
     alert('Bitte wähle einen Tag aus.');
     return;
   }
   const tag = selectedTag.value;
-
-  // 3. **userID dynamisch aus der Session holen**
+  
   try {
+    // check if user is logged in
     const response = await fetch('/api/users/status');
     const status = await response.json();
+
+    // if user is logged in, proceed with upload
     if (status.loggedIn) {
       const userID = status.user.id;
 
-      // 4. **POST-Request an das Backend senden**
+      // create form data object containing all necessary information
       const formData = new FormData();
       formData.append('docTitle', documentTitle);
       formData.append('description', documentDescription);
@@ -29,12 +32,13 @@ document.getElementById('upload-btn').addEventListener('click', async function(e
       formData.append('tag', tag);
       formData.append('userID', userID);
 
+      // send POST request with fromData to /api/upload
       const uploadResponse = await fetch('/api/upload', {
         method: 'POST',
         body: formData
       });
 
-      // 5. **Statuscode auswerten und Nachricht anzeigen**
+      // check response status and display appropriate message
       if (uploadResponse.status === 200) {
         alert('Dokument erfolgreich hochgeladen!');
         document.getElementById('upload-form').reset(); // Formular zurücksetzen
