@@ -10,16 +10,16 @@ const router = express.Router();
 
 /*
 GET-Request for document search:
-- Client sends GET-request with the search term and (optional) tags as query
+- Client sends GET-request with the search term and (optional) tag as query
 - Response is JSON in format { numDocs: number, documents: [ { docID, docTitle, docDescription, docTag, docAuthor, docDate, ... }, ... ] }
 */
 router.get('/', async (req, res) => {
   console.log("User opening browse subpage");
   try {
     // Destructuring of query parameters
-    const { searchTerm, tags } = req.query;
+    const { searchTerm, tag } = req.query;
     console.log("Searchterm:", searchTerm);
-    console.log("Tags:", tags);
+    console.log("Tag:", tag);
 
     // Return HTML page if no search term was given
     if (!searchTerm) {
@@ -46,8 +46,8 @@ router.get('/', async (req, res) => {
     };
 
     // Only checking if tag matches if tag is given
-    if (tags && tags.trim() !== "") {
-      query.tag = { $in: tags.split(",").map(t => t.trim()) };
+    if (tag && tag.trim() !== "") {
+      query.tag = { $in: tag.split(",").map(t => t.trim()) };
     }
 
     // Find all matching documents and projecting relevant information
