@@ -60,37 +60,40 @@ ihre Nutzenden darstellen soll - eine angenehme, positive Unterstützung beim Le
 seine Lernunterlagen austauscht.
 
 Abweichend von ursprünglichen Entwurf wurde die Farbauswahl getroffen. Wie in der Einleitung 
-beschrieben, wurden Blau- und Lilatöne als Hauptfarben definert.  
+beschrieben, wurden Blau- und Lilatöne als Hauptfarben definiert.  
 Zudem wurden Anpassungen bei den Bildern vorgenommen. Wie in Abbildung 1 zu sehen ist, wirken 
 die ersten Grafiken tendenziell kalt und wenig ansprechend. Deshalb wurden mit 
-Microsoft Designer neue Bilder generiert.  
+[Microsoft Designer](#artificial-intelligence) neue Bilder generiert.  
 Eine weitere Veränderung ist, dass die Verlinkung zu "About Us", also dem Impressum, nicht mehr 
 im Header zu finden ist. Da diese Unterseite keine der Hauptfunktionen von StudyBuddy
 beinhaltet, wurde die Verknüpfung im footer der Webseiten aufgenommen.
 
-Hiermit wurde der intiale Entwurf des Webseiten-Designs aufgezeigt. 
-Im folgenden Teil wird auf die Erstellung der Strukur und des Inhalt mittels HTML
+Hiermit wurde der initiale Entwurf des Webseiten-Designs aufgezeigt. 
+Im folgenden Teil wird auf die Erstellung der Struktur und des Inhalt mittels HTML
 eingegangen. Anschließend wird die Gestaltung mit CSS dokumentiert.
 
 
 ## Hypertext Markup Language (HTML)
 
-Die Hypertext Markup Language (HTML) ist eine standartisierte Sprache zur 
-Erstellung von Websiten. Mit ihr können die Struktur und die Inhalte einer 
+Die Hypertext Markup Language (HTML) ist eine standardisierte Sprache zur 
+Erstellung von Webseiten. Mit ihr können die Struktur und die Inhalte einer 
 Webseite programmiert werden. 
 
 Dieses Kapitel beschäftigt sich mit der HTML-Programmierung von StudyBuddy.
-Dabei wird zuerst auf die Sitemap der Webapplikation eingegangen um ein 
-grundsätzliches Verständnis für Verknüpfung der Webseiten zu schaffen. Anschließend wird
+Dabei wird zuerst auf die Sitemap der Webapplikation eingegangen, um ein 
+grundsätzliches Verständnis für die Verknüpfung der Webseiten zu schaffen. Anschließend wird
 deren Aufbau mittels Kompositionsdiagramme dargestellt.
 Abschließend wird anhand eines Code-Beispiels die Funktionsweise aufgezeigt.
 
 ### Sitemap
 
-[**Abbilung 2**](#abb-2-sitemap) zeigt die Sitemap von StudyBuddy.
+[**Abbildung 2**](#abb-2-sitemap) zeigt die Sitemap von StudyBuddy.
 
 Die Homepage stellt den Ausgangspunkt der Webapplikation dar. Von dort ermöglicht die Struktur eine bidirektionale Navigation zwischen den Unterseiten "Login", "Impressum", "Browse" und "Share".
-Eine Ausnahme der von der vollständigen Verlinkung stellt die Seite "Signup" dar. Diese ist nur vom "Login" aus zu erreichen. Dieser Aufbau wurde gewählt, da der "Signup" aus Sicht des Users nur einmal aufgerufen werden muss und bei der anschließenden Nutzung der "Login" ausreichend ist.
+Eine Ausnahme von der vollständigen Verlinkung stellt die Seite "Signup" dar. 
+Diese ist nur vom "Login" aus zu erreichen. Dieser Aufbau wurde gewählt, da der 
+"Signup" aus Sicht des Users nur einmal aufgerufen werden muss und bei der anschließenden 
+Nutzung der "Login" ausreichend ist.
 
 ### Kompositionsdiagramme
 
@@ -98,17 +101,22 @@ Kompositionsdiagramme dienen dazu, den Inhalt und die Struktur der Webseiten zu 
 
 Die Darstellung erfolgt in Form von rechteckigen Containern. Der grundlegende Container ist  
 meist das body-Element, da dieses das Fundament des sichtbaren Bereiches einer Webseite ist.
-In jedem Containern können weitere Sub-Container plaziert werden, die wiederum untergeordnete
+In jedem Container können weitere Sub-Container platziert werden, die wiederum untergeordnete
 Container enthalten können.
 
 Ziel ist es, den Aufbau der HTML-Elemente und deren Platzierung zu- bzw. ineinander grafisch darzustellen. 
 
-Der Webauftritt von StudyBuddy zeichnet sich dadurch aus, dass alle Webseiten innerhalb des body-Elements die Subelemente "header", "main" und "footer" haben. Da durch wird ein einheitliches Design geschaffen und der Wiedererkennungswert für die Nutzenden erhöht.
+Der Webauftritt von StudyBuddy zeichnet sich dadurch aus, dass alle Webseiten innerhalb des 
+body-Elements die Subelemente "header", "main" und "footer" haben. Dadurch wird ein einheitliches 
+Design geschaffen und der Wiedererkennungswert für die Nutzenden erhöht.
 
-Eine weitere Gemeinsamkeit der Homepage und der Unterseiten "Impressum", "Browse" und "Share"   ist die Sektion der Klasse "introduction". Diese Sektion befindet sich zu Beginn des main-Elements. Aufgrund der Gestaltung dieser Klasse, erhalten diese Webseiten eine kohärent 
+Eine weitere Gemeinsamkeit der Homepage und der Unterseiten "Impressum", "Browse" und "Share" 
+ist die Sektion der Klasse "introduction". Diese Sektion befindet sich zu Beginn des main-Elements. 
+Aufgrund der Gestaltung dieser Klasse erhalten diese Webseiten eine kohärent 
 designte Einleitung bzw. Überschrift.
 
-Neben den Gemeinsamkeiten haben die Webseiten einige individuelle Strukuren. Diese werden im anschließenden Teil genauer beleuchtet.
+Neben den Gemeinsamkeiten haben die Webseiten einige individuelle Strukturen. 
+Diese werden im anschließenden Teil genauer beleuchtet.
 
 
 
@@ -117,10 +125,13 @@ Neben den Gemeinsamkeiten haben die Webseiten einige individuelle Strukuren. Die
 Die [Abbildung 3](#abb-3-kompositionsdiagramm-homepage) zeigt das Kompositionsdiagramm der Homepage.
 
 Neben des bereits beschriebenen Aufbaus enthält das main-Element ein svg-Element und eine Sektion der Klasse "hp-main-container".
-Die skalierbare Vektorgrafik stellt einen pinken Pfeil dar, der den Fokus des Webseitenbesuchers auf den Browse-Button lenkt. Dadurch soll der Nutzende zur Interaktion mit diesem Button animiert werden.
+Die skalierbare Vektorgrafik (svg) stellt einen pinken Pfeil dar, 
+der den Fokus des Webseitenbesuchers auf den Browse-Button lenkt. 
+Dadurch soll der Nutzende zur Interaktion mit diesem Button animiert werden.
 
 Weiterhin umfasst die Sektion "hp-main-container" 4 Elemente: zwei Buttons und zwei Bilder. 
-Bei den Buttons handelt es sich um Verlinkungen der Hauptfunktionen "Browse" und "Share" während die Grafiken zur optischen Aufwertung eingesetzt werden. 
+Bei den Buttons handelt es sich um Verlinkungen der Hauptfunktionen "Browse" und "Share", 
+während die Grafiken zur optischen Aufwertung eingesetzt werden. 
 Das Ziel dieser Struktur ist es, ein Elternelement für die Buttons und Bilder zu schaffen, welches sich als CSS-Flexbox zur Anordnung der Inhalte nutzen lässt.
 
 Die Homepage soll insgesamt als ansprechende Aufmachung der WebApplikation dienen und den Nutzenden umgehend zu einer weiteren Interaktion einladen.
@@ -130,46 +141,49 @@ Die Homepage soll insgesamt als ansprechende Aufmachung der WebApplikation diene
 
 Die Struktur des Logins und des Signups lassen sich der [Abbildung 4](#abb-4-kompositionsdiagramm-login) und [Abbildung 5](#abb-5-kompositionsdiagramm-signup) entnehmen.
 
-Die beiden Webseiten enthalten in dem main-Element ein Formular und einen Verlinkung untereinander.
+Die beiden Webseiten enthalten in dem main-Element ein Formular und eine Verlinkung untereinander.
 
-Innerhalb des form-Element wird beim Login die e-Mail-Adresse und das Passwort eines Nutzenden abgefragt. Diese Informationen 
-werden benötigt um eine Identifizierung und den damit verbundenen
+Innerhalb des form-Elements wird beim Login die E-Mail-Adresse und das Passwort eines Nutzenden abgefragt. Diese Informationen 
+werden benötigt, um eine Identifizierung und den damit verbundenen
 Login zu ermöglichen.
 
-Das Formular der Signup-Seite entscheidet sich insofern, dass das Login-Formular um die beiden Eingabe-Elemente "firstname" und "repeat password" erweitert wird.
+Das Formular der Signup-Seite unterscheidet sich insofern als dass das Login-Formular um die beiden Eingabe-Elemente "firstname" und "repeat password" erweitert wird.
 Diese Daten werden einmalig bei der Erstellung eines neuen Users erfasst.
-Der Vorname des Users wird benötigt, um diesen nach dem Login im Header anzuzeigen. Die Wiederholung des Passworts dient dazu, Tippfehlern im Paswort bei dessen Initialisierung entgegenzuwirken.
+Der Vorname des Users wird benötigt, um diesen nach dem Login im Header anzuzeigen. Die Wiederholung des Passworts dient dazu, Tippfehlern im 
+Passwort bei dessen Initialisierung entgegenzuwirken.
 
-Die Verlinkung der beiden Webseiten untereinander wird durch die Einbettung eines Anker-Elements innerhalb eines Parapraphen realisiert.
+Die Verlinkung der beiden Webseiten untereinander wird durch die Einbettung eines Anker-Elements innerhalb eines Paragrafen realisiert.
 
-Die beiden Seiten haben das Ziel, neue Nutzer*innen für die Webapplikation zu erfassen und diese anschließend zu identifizieren.
+Die beiden Seiten haben den Zweck, neue Nutzer*innen für die Webapplikation zu erfassen und diese anschließend zu identifizieren.
 
 #### Kompositionsdiagramm Impressum
 
 Die [Abbildung 6](#abb-6-kompositionsdiagramm-impressum) zeigt das Kompositionsdiagramm des Impressums.
 
-Der Aufbau des Impressumg ist relativ schlicht gehalten.  
-Innerhalb des main-Elements wird nach der Einleitung ein sektion-Element mit der Klasse "impressum-container" eingebettet. Dieses enthält eine h2-Überschrift und drei Paragraphen in Form von p-Elementen. 
+Der Aufbau des Impressum ist relativ schlicht gehalten.  
+Innerhalb des main-Elements wird nach der Einleitung ein sektion-Element mit der Klasse "impressum-container" eingebettet. 
+Dieses enthält eine h2-Überschrift und drei Paragrafen in Form von p-Elementen. 
  
-Durch diese Struktur, wird ein übersichtliches Impressum mit einem klaren Fokus auf die enthaltenen Kontaktdaten geschaffen.
+Durch diese Struktur wird ein übersichtliches Impressum mit einem klaren Fokus auf die enthaltenen Kontaktdaten geschaffen.
 
 #### Kompositionsdiagramm Browse
 
-Die Strukur der Browse-Seite wird in der [Abbildung 7](#abb-7-kompositionsdiagramm-browse) dargestellt.
+Die Struktur der Browse-Seite wird in der [Abbildung 7](#abb-7-kompositionsdiagramm-browse) dargestellt.
 
 Hier folgt auf die Einleitungssektion ein div-Element der Klasse "browse-search". 
-Dieses enthält ein Formular, das mit Hilfe von CSS als Suchleiste gestaltet wird.
+Dieses enthält ein Formular, das mithilfe von CSS als Suchleiste gestaltet wird.
 
 Anschließend wird ein div-Element mit der Klasse "browse-container" erzeugt. 
 Dieses umfasst eine Seitenleiste und einen Hauptbereich.
 
-Die Seitenleiste wird durch ein div-Element dargestellt und bietet Filteroptionen für die Suchergebnisse. Zur Auswahl stehen die Tags, die beim Hochladen einer Datei festgelegt werden können.  
+Die Seitenleiste wird durch ein div-Element dargestellt und bietet Filteroptionen für die Suchergebnisse. 
+Zur Auswahl stehen die Tags, die beim Hochladen einer Datei festgelegt werden können.  
 Hier ist besonders zu erwähnen, dass sowohl die Suchleiste als auch die Seitenleiste dasselbe Form-Attribut mit dem Wert "search-form" haben.
 Dadurch ist es möglich, den Suchbegriff und die gewählten Filter innerhalb einer GET-Request zu übermitteln.
 
 
 Im Hauptbereich werden die Suchergebnisse ausgegeben. 
-Dazu werden dynamisch - in Abhängigkeit der Suchtreffer - div-Elemente über iene Skript erstellt.
+Dazu werden dynamisch - in Abhängigkeit der Suchtreffer - div-Elemente über ein Skript erstellt.
 
 #### Kompositionsdiagramm Share
 
@@ -178,33 +192,37 @@ Die [Abbildung 8](#abb-8-kompositionsdiagramm-share) zeigt das Kompositionsdiagr
 Die Share-Seite hat den Zweck, dass Nutzer*innen neue Lernunterlagen hochladen können.
 Deshalb enthält das main-Element einen Container ("share-container") mit einem Upload-Formular.
 In diesem können Dateiname, Beschreibung und Tags der Lernunterlage definiert werden. Bei der Auswahl der Tags kann
-nur eine der drei Optionen "exercises", "summary" und "scribbeld Notes" auf eine Lernunterlage zutreffen. Deshalb werden die Tags über Radiobuttons abgefragt, die nur die Auswahl einer Option zulassen.
+nur eine der drei Optionen "exercises", "summary" und "scribbeld Notes" auf eine Lernunterlage zutreffen. 
+Deshalb werden die Tags über Radiobuttons abgefragt, die nur die Auswahl einer Option zulassen.
 Weiterhin wird ein input-Element mit dem Attribut type="file" genutzt, um das Hochladen einer Datei zu ermöglichen.
 Abschließend kann der Upload über button-Element abgeschlossen werden.
 
-Die Share-Seite stellt neben der Browse-Seite eine Hauptfunktion von StudyBuddy dar. Deshalb ist auch hier der Fokus auf der Benutzerfreudlichkeit. Diese steht allerdings im Konflikt mit dem Ziel eine möglichst gute Informationslage zu der hochgeladenen Datei zu erfassen.
-Somit musste abgewogen werden, wie viele Details vom User zu einer Datei abgefragt werden können, bevor sich dieser gegen einen ggf. aufwändigen Upload entscheidet würde.
+Die Share-Seite stellt neben der Browse-Seite eine Hauptfunktion von StudyBuddy dar. Deshalb ist auch hier der Fokus auf der Benutzerfreundlichkeit. 
+Diese steht allerdings im Konflikt mit dem Ziel eine möglichst gute Informationslage zu der hochgeladenen Datei zu erfassen.
+Somit musste abgewogen werden, wie viele Details vom User zu einer Datei abgefragt werden können, 
+bevor sich dieser gegen einen ggf. aufwändigen Upload entscheidet würde.
 Mit der aktuellen Lösung wird versucht, den beiden Zielen bestmöglich gerecht zu werden.
 
 
 ## Cascading Style Sheet (CSS)
 
-CSS bietet die Möglichkeit, eine HTML-Strukur visuell zu gestalten. 
+CSS bietet die Möglichkeit, eine HTML-Struktur visuell zu gestalten. 
 Dadurch kann einer Webseite ein gewünschtes Design gegeben werden.
 
-Im diesem Teil wird dokumentiert, wie der CSS-Code von StudyBuddy aufgebaut ist und wie sich dieser auf die HTML-Dokumente auswirkt. Die Funktionsweise wird anhand eines Code-Beispiels ausführlich erläutert.
+In diesem Teil wird dokumentiert, wie der CSS-Code von StudyBuddy aufgebaut ist und wie sich dieser auf die HTML-Dokumente auswirkt. 
+Die Funktionsweise wird anhand eines Code-Beispiels ausführlich erläutert.
 
 ### Aufbau des Codes
 
 Im ersten Teil des CSS-Codes werden Gestaltungsmerkmale festgelegt, die auf alle oder einige Webseiten Einfluss haben.
-Dazu gehören das :root-Element, der Header der Webseiten, das main-Element inkl. der Klasse ".introduction" und sowie der footer.
+Dazu gehören das :root-Element, der Header der Webseiten, das main-Element inkl. der Klasse ".introduction" sowie der footer.
 
 Anschließend wird die Webseiten-spezifische Gestaltung codiert. 
 Dazu wird immer für eine Unterseite das komplette Design dieser Webseite gestaltet, bevor auf die Nächste eingegangen wird. 
 Die Elemente und Klassen einer Seite werden in der Reihenfolge gestaltet, in der sie in den 
 zugehörigen HTML-Dateien erstellt werden.
 
-Im Anschluss an das Webseitendesign folgen die Anpassungen für das responsive Design
+Im Anschluss an das Webseitendesign folgen die Anpassungen für das Responsive Design.
 und die Programmierung von Animationen.
 
 Für den gesamten CSS-Code gilt: Innerhalb eines Selektors sind die Eigenschaft-Wert-Paare alphabetisch nach der Eigenschaft sortiert.
@@ -230,10 +248,10 @@ Es ergibt sich nachstehende Grob-Gliederung:
         8 responsive design
         9 animations
 
-### Erläuterung eines Code-Bespiels
+### Erläuterung eines Code-Beispiels
 
 Einen besonderen Gestaltungsaufwand haben die Buttons der Klasse ".hp-button" mit sich gebracht.
-Daher dient diese als exemplarisches Code-Beispiele zur Erläuterung eines CSS-Designs.
+Daher dient diese Klasse als exemplarisches Code-Beispiele zur Erläuterung eines CSS-Designs.
 
 
 #### Auszug HTML-Code zu .hp-button
@@ -276,17 +294,17 @@ Daher dient diese als exemplarisches Code-Beispiele zur Erläuterung eines CSS-D
 
 #### Erklärung Funktionsweise
 
-**.hp-button**
+**.hp-button**  
 Durch diesen Selektor werden alle Elemente mit der Klasse "hp-button" angesprochen.
 
-**appearance: none;** 
+**appearance: none;**  
 Das plattform- bzw. betriebssystemspezifische Aussehen des Buttons wird versteckt.
 
-**background-color: var(--ui-blue);** 
+**background-color: var(--ui-blue);**  
 Der Button bekommt die Hintergrundfarbe "-ui-blue" zugewiesen. Diese Farbe wurde im :root-Element definiert und 
 hier über die Var()-Funktion aufgerufen. 
 Bei der Definition im :root-Element können z. B. Farben oder Schriftarten für die gesamte CSS-Datei bestimmt werden.
-Dies ermöglicht eine effiziente und flexible Festlegung von wiederkehrenden Eigenschaften und Werten, die einmal definiert 
+Dies ermöglicht eine effiziente und flexible Verwendung wiederkehrender Eigenschaften und Werten, die einmal definiert 
 und anschließend für beliebig viele Elemente angewendet werden können.
 
 **border: 2px solid var(--ui-blue);**  
@@ -312,7 +330,7 @@ Da es sich bei 16px um einen absoluten Wert handelt, wird dieser nur angenommen,
 wenn 2vw (2 % der Viewport-Breite) kleiner als 16 Pixel ist. So passt sich die Schriftgröße responsiv an die Viewport-Breite an.
 
 **font-weight: 550**;  
-Mit font-weight kann die Stärke (Fettheit) der Schrift eingestellt werden. 
+Mit font-weight kann die Stärke (Fettdruck) der Schrift eingestellt werden. 
 Der Normalwert einer Schrift liegt bei 400, weshalb der hier eingestelle Wert 
 von 550 die Schrift fetter darstellt als normal.
 
@@ -329,8 +347,8 @@ Die Umrandung des Buttons wird deaktiviert.
 **padding: 1rem;**  
 Der Abstand zwischen Inhalt und Rahmen des Elementes wird auf 1 rem (root em) festgelegt. 
 Diese Schreibweise gibt den Abstand für alle 4 Seiten um den Inhalt an.
-1 rem entspricht der Schriftgröße, die im root-Element (entspricht html-Element oder :root-Element) definiert wurde.
-In diesem Programm sind 1 rem 16 Pixel.
+1 rem entspricht der Schriftgröße, die im root-Element (entspricht html-Element oder :root-Element definiert wurde.
+In diesem Programm sind 1 rem 16 Pixel bei einer Bildschirmbreite von mindestens 768 Pixeln.
 
 **text-align: center;**  
 Der Text wird zentriert ausgerichtet.
@@ -359,22 +377,28 @@ Dadurch können Animationen und Übergänge flüssiger dargestellt werden.
 Mittels des Selektor :hover wird die Gestaltung definiert, die sichtbar wird, sobald der Mauszeiger über dem Button-Element schwebt.
 
 **box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;**  
-Der Button bekommt einen Schatten zugewiesen. Der RGBA-Wert definiert dabei die Farbe des Schattens. RGBA steht für Rot, Blau, Grün und Alpha. Mittels dieser Parameter kann eine Farbe codiert werden. Dabei legen Rot, Grün und Blau den jeweiligen Anteil in der Farbe fest und Alpha steht für die Deckkraft bzw. Transparenz. In diesem Beispiel wurde eine schwarze Farbe mit einer Deckkraft von 25 % bzw. einer Transparenz von 75 % gewählt.  
+Der Button bekommt einen Schatten zugewiesen. Der RGBA-Wert definiert dabei die Farbe des Schattens. 
+RGBA steht für Rot, Blau, Grün und Alpha. Mittels dieser Parameter kann eine Farbe codiert werden. 
+Dabei legen Rot, Grün und Blau den jeweiligen Anteil in der Farbe fest und Alpha steht für die Deckkraft bzw. Transparenz. 
+In diesem Beispiel wurde eine schwarze Farbe mit einer Deckkraft von 25 % bzw. einer Transparenz von 75 % gewählt.  
 Die darauf folgenden drei Werte legen die Breite, Höhe und Unschärfe des Schattens fest.  
 Der erste Wert ist die horizontale Breite - hier 0 Pixel.  
 Der zweite Wert bestimmt die vertikale Höhe des Schattens - hier 8 Pixel.  
-Der letzte Wert definiert die Unschärfe, also wie verschwommen der Schatten sein soll. Die im Code gewählte Unschärfe von 15 Pixel sorgt dafür, dass der Schatten optisch einen fließenden Übergang hat und keine harten Kanten entstehen.  
+Der letzte Wert definiert die Unschärfe, also wie verschwommen der Schatten sein soll. Die im Code gewählte Unschärfe von 15 Pixel sorgt dafür, 
+dass der Schatten optisch einen fließenden Übergang hat und keine harten Kanten entstehen.  
 
 **transform: translateY(-3px);**
-Es wird eine Transformation des Elements definiert. Die Funktion translateY beschreibt einen Verschiebung entlang der vertikalen Achse. Der Wert -3px legt dabei fest, dass die Verschiebung um 3 Pixel nach oben sein soll.
+Es wird eine Transformation des Elements definiert. Die Funktion translateY beschreibt eine Verschiebung entlang der vertikalen Achse. 
+Der Wert -3px legt dabei fest, dass die Verschiebung um 3 Pixel nach oben sein soll.
 
-Die Kombination aus box-shadow und transform sorgt dafür, dass der Button etwas nach oben zu schweben scheint, wenn man mit dem Mauszeiger über ihn fährt. Diese Animation hat das Ziel, den Nutzenden zum Anklicken des Buttons anzuregen.
+Die Kombination aus box-shadow und transform sorgt dafür, dass der Button etwas nach oben zu schweben scheint, 
+wenn man mit dem Mauszeiger über ihn fährt. Diese Animation hat das Ziel, den Nutzenden zum Anklicken des Buttons anzuregen.
 
 &nbsp;
 
 
 **.hp-button:active**   
-Mit dem Selektor :active wird das Design beim Anklicken des Button bestimmt.
+Mit dem Selektor :active wird das Design beim Anklicken des Buttons bestimmt.
 
 **box-shadow: none;**   
 Der zuvor bei :hover definiert Schatten wird aufgehoben.
@@ -384,36 +408,39 @@ Die zuvor bei :hover festgelegte Verschiebung entlang der vertikalen Achse wird 
 
 ### Responsives Design
 
-StudyBuddy soll eine Webapplikation für verschiedene Endgeräte sein. Deshalb wird App responsiv gestaltet, um eine opitmale Nutzererfahrung auf allen Bildschirmgrößen zu ermöglichen.
+StudyBuddy soll eine Webapplikation für verschiedene Endgeräte sein. Deshalb wird die App responsiv gestaltet, 
+um eine optimale Nutzererfahrung auf allen Bildschirmgrößen zu ermöglichen.
 Damit soll das ansprechende Design und die Lesbarkeit für alle Endgeräte sichergestellt werden.
 
 #### Breakpoints
-Als Grundlage für das Responsive Design wurden Breakpoint festgelegt. Dabei handelt es sich um Bildschirmgrößen, bei denen eine maßgebliche Veränderung der Gestaltung angewendet wird.
+Als Grundlage für das Responsive Design wurden Breakpoint festgelegt. 
+Dabei handelt es sich um Bildschirmgrößen, bei denen eine maßgebliche Veränderung der Gestaltung angewendet wird.
 
 In Anlehnung an die Breakpoints des ChromeDevTool (Developer Tool) sind folgende Intervalle definiert:
 
-    bis 425 Pixel Bildschirmbreite:   
-    Damit werden vorranging kleine Endgeräte wie Smartphones angesprochen. Bei diesen ist die Bildschirmbreite im Verhältnis zur Höhe gering, weshalb beim Design Elemente bevorzugt untereinander und nicht nebeneinander angeordnet werden.
+**bis 425 Pixel Bildschirmbreite:**    
+Damit werden voranging kleine Endgeräte wie Smartphones angesprochen. 
+Bei diesen ist die Bildschirmbreite im Verhältnis zur Höhe gering, weshalb beim Design Elemente bevorzugt untereinander und nicht nebeneinander angeordnet werden.
+
+**426 bis 768 Pixel Bildschirmbreite:**  
+Für mittelgroße Endgeräte wie z. B. Tablets.
     
-    426 bis 768 Pixel Bildschirmbreite:
-    Für mittelgroße Endgeräte wie z. B. Tablets.
-    
-    Über 768 Pixel Bildschirmbreite:
+**Über 768 Pixel Bildschirmbreite:**
     Diese Gestaltung richtet sich an große Endgeräte wie Laptops und Bildschirme.
-    Bei diesen in der Bildschirm meist breiter als hoch, weshalb Elemente nebeneinander dargestellt werden können.
+    Bei diesen ist der Bildschirm meist breiter als hoch, weshalb Elemente nebeneinander dargestellt werden können.
     
 #### Umsetzung der Responsivität
 
-Zur praktischen Umsetzung des responsiven Design wurden wurden CSS-Flexboxen, die max()- und min()-Funktion, relative 
+Zur praktischen Umsetzung des responsiven Designs wurden CSS-Flexboxen, die max()- und min()-Funktion, relative 
 Maßeinheiten und Media Queries genutzt. 
 
 Diese werden im Folgenden genauer beleuchtet.
 
 **CSS-Flexboxen**
 
-Mit Flexboxen können die Kindelemente eines Elements flexibel 
-angeordnet werden. 
-Zum einen wird die Position der Kindelemente über justify-content (horizontal) und align-items (vertikal) relativ zueinander oder innerhalb des Elternelements festgelegt. Dadurch ergibt sich der Vorteil, das keine absoluten Größen benötigt werden.  
+Mit Flexboxen können die Kindelemente eines Elements flexibel angeordnet werden.  
+Zum einen wird die Position der Kindelemente über justify-content (horizontal) und align-items (vertikal) 
+relativ zueinander oder innerhalb des Elternelements festgelegt. Dadurch ergibt sich der Vorteil, das keine absoluten Größen benötigt werden.  
 Zum anderen ist es möglich, das Verhalten der untergeordneten Elemente bei 
 einer Vergrößerung, Verkleinerung und deren Größe im Elternelement zu 
 steuern. Mittels der Eigenschaft flex können der Wachstums-, der 
@@ -423,7 +450,6 @@ Größenänderung anpassen.
 **max()- und min()-Funktion:**
 
 Die beiden Funktionen können genutzt werden, einen von mehreren Werten auszuwählen.
-
 Die max()-Funktion gibt immer den größten Wert zurück. Bei der min()-Funktion ist es umgekehrt.
 
 Für die Gestaltung der Schriftgrößen von StudyBuddy wurde die max()-Funktion im :root-Element genutzt.
@@ -434,10 +460,11 @@ Für die Gestaltung der Schriftgrößen von StudyBuddy wurde die max()-Funktion 
     --ui-font-size-text: max(0.6rem, 1.4vw);
 ```
 Dadurch passen sich die Schriftgrößen abhängig von der Bildschirmbreite an. 
-Beträgt die Bildschirmbreite bspw. 2000 Pixel, so würde die max()-Funktion der --ui-font-size-big zwischen den Werten 1 rem (16 Pixel) und 2000*0,02 = 40 Pixel die Schriftgröße von 40 Pixeln auswählen.
-Sobald der Wert 2vw (Prozentualer Anteil der Bildschirmbreite, view width) kleiner als die Größe 1 rem werden, so bleibt die Mindestschriftgröße bei 1 rem.
+Beträgt die Bildschirmbreite bspw. 2000 Pixel, so würde die max()-Funktion der --ui-font-size-big zwischen den Werten 1 rem (16 Pixel) und 2000*0,02 = 40 Pixel
+die Schriftgröße von 40 Pixeln auswählen.
+Sobald der Wert 2vw (Prozentualer Anteil der Bildschirmbreite, view width) kleiner als die Größe 1 rem wird, verbleibt die Mindestschriftgröße bei 1 rem.
 
-So kann sicher gestellt werden, dass die Schriftgröße nicht kleiner als 1 rem wird, diese sich aber bei großen Bildschirmen entsprechend vergrößert.
+So kann sichergestellt werden, dass die Schriftgröße nicht kleiner als 1 rem wird, diese sich aber bei großen Bildschirmen entsprechend vergrößert.
 
 Die min()-Funktion wurde im Zusammenhang mit der Breite des Signups verwendet.
 ```css
@@ -447,18 +474,20 @@ Die min()-Funktion wurde im Zusammenhang mit der Breite des Signups verwendet.
 ```
 
 Hier wird bestimmt, dass das Element der Klasse "signup" maximal 500 Pixel 
-breit ist. Diese Breite wird unterschritten, sobald der Wert 100% einer Breite von weniger als 500 Pixel entspricht.
+breit ist. Diese Breite wird unterschritten, sobald der Wert 100 % einer Breite von weniger als 500 Pixel entspricht.
 
-Neben den Schriftgrößen wurde diese Funktionen für die dynamische Gestaltung von Elementhöhen, -breiten und paddings verwendet. 
+Neben den Schriftgrößen wurden diese Funktionen für die dynamische Gestaltung von Elementhöhen, -breiten und paddings verwendet. 
 Die Funktionen, in Verbindung mit mindestens einer relativen Größe als Parameter, ermöglichen eine flexible Anpassung an die Bildschirmgrößen.
     
 **relative Maßeinheiten**  
 
-Beim responsiven Design spielen relative Maßeinheiten eine wichtige Rolle, da auch sie es ermöglichen, Inhalte flexibel an Bildschirmbreiten azupassen.  
-Anstatt absoluter Pixelwerte kommen Einheiten wie Prozent %, em oder rem, Viewport height vh oder Viewprt width vw zu Einsatz.
-Mit Prozent wird die Breite oder Höhe eines Elements im Verhältnis zum übergeordneten Element definert. Verändert sich die Größe des Elternelements, wird auch die Größe des untergeordneten Elements angepasst.  
-Em und rem ermöglichen eine Skalierung von z. B. Schriftarten basierden auf der größe der übergeordneten Elements (em) oder des root-Elements (rem).
-Die Viewport-Größen vh und vw passen sich direkt an die Bildschirmgröße an und eignen sich deshalb besonders für Elemente, deren Größe im direkten Verhältnis zur Bildschirmgröße steht. 
+Beim responsiven Design spielen relative Maßeinheiten eine wichtige Rolle, da auch sie es ermöglichen, Inhalte flexibel an Bildschirmbreiten anzupassen.  
+Anstatt absoluter Pixelwerte kommen Einheiten wie Prozent %, em oder rem, Viewport height vh oder Viewport width vw zu Einsatz.
+Mit Prozent wird die Breite oder Höhe eines Elements im Verhältnis zum übergeordneten Element definiert. 
+Verändert sich die Größe des Elternelements, wird auch die Größe des untergeordneten Elements angepasst.  
+Em und rem ermöglichen eine Skalierung von z. B. Schriftarten basierend auf der Größe des übergeordneten Elements (em) oder des root-Elements (rem).
+Die Viewport-Größen vh und vw passen sich direkt an die Bildschirmgröße an und eignen sich deshalb besonders für Elemente, 
+deren Größe im direkten Verhältnis zur Bildschirmgröße steht. 
 
 Für StudyBuddy wurden relative Maßeinheiten bspw. folgendermaßen angewendet:
 
@@ -469,16 +498,17 @@ Für StudyBuddy wurden relative Maßeinheiten bspw. folgendermaßen angewendet:
     margin: 0 1rem;
 }
 ```
-Hier wird der Klasse "browse-search" eine Anfangbreite von 90% des Elternelements zuwiesen. 
-Weiterhin wurde die Margin - also der Außenabstandes des Elements - links und rechts auf 1rem gesetzt.
-Dadurch passt sich dieses Element flexibel an die Größe des Elternelements an. Die Margin passt sich mit Veränderung der font-size, die im root-Element definiert wird, an.
+Hier wird der Klasse "browse-search" eine Anfangsbreite von 90 % des Elternelements zugewiesen. 
+Weiterhin wurde die Margin - also der Außenabstand des Elements - links und rechts auf 1rem gesetzt.
+Dadurch passt sich dieses Element flexibel an die Größe des Elternelements an. 
+Die Margin passt sich mit Veränderung der font-size, die im root-Element definiert wird, an.
 
 **Media Queries**
 Media Queries sind ein Werkzeug, um Designanpassung in Abhängigkeit der
 Bildschirmgröße oder Gerätebedingungen zu machen.
 Sie ermöglichen es, Gestaltungsregeln, aufgrund von z. B. der Breite, Höhe
 oder Ausrichtung des Viewports, zu aktivieren.
-Dadurch ermöglicht sich eine Differenzierung des Design je nach Beschaffenheit des Endgeräts.
+Dadurch lässt sich eine Differenzierung des Designs je nach Beschaffenheit des Endgeräts einrichten.
 
 Für StudyBuddy wurden Media Queries genutzt, um auf die Webseitengestaltung 
 bei mittleren und kleinen Geräten einzuwirken.
@@ -496,17 +526,19 @@ bei mittleren und kleinen Geräten einzuwirken.
 
 In diesem Code-Auszug wird das Design für die mittelgroßen Endgeräte, gemäß der zuvor definierten Breakpoints, angepasst. 
 Über den Selektor wird die Bildschirmgröße abgefragt und wenn diese zwischen 426 Pixeln und 768 Pixeln liegt, wird die folgende Gestaltung angewendet. 
-In diesem Fall wird die Schriftgröße des hmtl-Elements von 16 Pixel auf 12 Pixel angepasst. Diese Schriftgröße ist die Basis für die Einheit rem. Daraus folgt, dass alle Eigenschaften mit einem Wert der Einheit rem ebenfalls proportional verkleinert werden.
+In diesem Fall wird die Schriftgröße des hmtl-Elements von 16 Pixel auf 12 Pixel angepasst. 
+Diese Schriftgröße ist die Basis für die Einheit rem. Daraus folgt, dass alle Eigenschaften mit einem Wert der Einheit rem ebenfalls proportional verkleinert werden.
 
 Weiterhin wird die ursprüngliche Breite der Klasse "signup" überschrieben.
 
 **Herausforderungen bei der Umsetzung**
 
 Eine Schwierigkeit bei der Implementierung des responsiven Designs stellte die Wahl dar, ob man nach dem Mobile-First- oder Desktop-First-Ansatz 
-vorgeht. Da zu Beginn der Gestaltung mit CSS zu keine fundierten Kenntnisse
-zu den beiden Ansätzen vorlagen, war der Einstieg in dieses Thema schwierig. Da erst im fortgeschrittenen Projektverlauf die Frage nach dem 
+vorgeht. Da zu Beginn der Gestaltung mit CSS keine fundierten Kenntnisse
+zu den beiden Ansätzen vorlagen, war der Einstieg in dieses Thema schwierig. 
+Nachdem erst im fortgeschrittenen Projektverlauf die Frage nach dem 
 geeigneten Prinzip aufkam, wurde sich für den Desktop-First-Ansatz entschieden. Hintergrund war, das bis zu diesem Zeitpunkt eine 
-Desktopansicht entworfen wurde. So konnte im Nachhinein - mit einen 
+Desktopansicht entworfen wurde. So konnte im Nachhinein - mit einem 
 gewissen Programmier- und Testaufwand - der Desktop-First-Ansatz 
 implementiert werden. 
 
@@ -543,14 +575,14 @@ Kapitel behandeln die Themen HTML und CSS.
 **Microsoft Designer**  
 https://designer.microsoft.com/home 
 
-Die Bildgenerierung Software Microsoft Desinger wurde zur Erstellung der Grafiken verwendet.  
+Die Bildgenerierung Software Microsoft Designer wurde zur Erstellung der Grafiken verwendet.  
 Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
 lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
 Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
 Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
 hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
 Korrektur erfolgen. 
-Deshalb wurde der Schritfzug manuell erstellt.
+Deshalb wurde der Schriftzug manuell erstellt.
 
 Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
 erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
@@ -565,12 +597,14 @@ https://caniuse.com/
 
 Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf ihre Kompatibilität mit Browsern zu prüfen. 
 
-Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
+Dementsprechend würde diese Anwendung dafür genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browsern Mozilla Firefox, 
+Google Chrome, Microsoft Edge und Safari abzufragen.
 
 **Coloors Image Picker**  
 https://coolors.co/image-picker/
 
-Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
+Diese Anwendung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos konnten verschiedene Farben
+aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
 Die hier erstellte Farbauswahl findet sich in den "UI"-Farben wieder, welche im :root-Element des CSS-Codes definiert wurden.
 
 **Figma**  
@@ -584,16 +618,16 @@ Dieser wird in der Einleitung dieses Kapitels beschrieben.
 https://fonts.google.com/icons
 
 Google Font bietet eine große Bibliothek von u. A. Icons an. 
-Die Symbole im Login-Formular und Signup-Formular als svg-Elemente über 
+Die Symbole im Login-Formular und Signup-Formular wurden als svg-Elemente über 
 Google Font bezogen. Dabei kann z. B. die Farbe und das Filling der Icons 
-über Google Font definert werden. Im Anschluss kann der Code zum 
+über Google Font definiert werden. Im Anschluss kann der Code zum 
 svg-Element kopiert und in der HTML-Datei eingefügt werden.
 
 **IANA Media Types**  
 https://www.iana.org/assignments/media-types/media-types.xhtml#image
 
 Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
-Dies wurde für die Bestimmung der erlaubten Uploaddatein auf der Seite 
+Dies wurde für die Bestimmung der erlaubten Upload Dateien auf der Seite 
 "Share" benötigt.  
 Codeauszug:  
 ```html
@@ -609,16 +643,15 @@ https://developer.mozilla.org/en-US/docs/Web/CSS
 Diese Webseite bietet ausführliche Erklärungen zu den Funktionsweisen, dem Syntax und der Browser-Kompatibilität von HTML- und CSS-Elementen. 
 Deshalb wurde diese Webseite zur Schaffung eines tieferen Verständnisses 
 für die Anwendung und die korrekte Implementierung einiger CSS-Elemente 
-verwendet. Beispielhaft können hier das aside-Element oder der Border-Style
- genannt werden.
+verwendet. Beispielhaft können hier das aside-Element oder der Border-Style genannt werden.
 
 **RealFaviconGenerator**  
 https://realfavicongenerator.net/
 
 Diese Seite kann zur Erstellung von eines Favicon in verschiedenen 
 Dateiformaten verwendet werden. 
-Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mit 
-Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
+Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mithilfe der Applikation erstellt. 
+Grundlage dafür war das zuvor generierte 
 Logo-Design.
 
 
@@ -638,11 +671,11 @@ werden.
 **W3 Schools**  
 https://www.w3schools.com/
 
-Die Lernplattform W3 School wurde zum Lernen und Testen genutzt. Auf der 
+Die Lernplattform W3 Schools wurde zum Lernen und Testen genutzt. Auf der 
 einen Seite konnten, mittels der ausführlichen und gut strukturierten 
 Beispiele, neue Kenntnisse zur Funktionsweise von HTML und CSS gewonnen 
-werden. Auf der anderen Seite wurden mit Hilfe des integrierten 
-"Try-it-Yourself"-Editors die Auswirkung von unterschiedlichen 
+werden. Auf der anderen Seite wurden mithilfe des integrierten 
+"Try-it-Yourself"-Editors die Auswirkungen von unterschiedlichen 
 Programmbestandteilen getestet. 
 
 #### Weitere Anwendungen
@@ -685,5 +718,11 @@ HTML:
 Hypertext Markup Language
 
 SVG:   
-Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
+Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. 
+Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. 
+Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
+
+
+Viewport:  
+Der Viewport ist der sichtbare Bereich innerhalb z. B. einem Browser-Fenster
 
