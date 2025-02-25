@@ -8,6 +8,7 @@
     - [app.js](#appjs)
       - [Routing](#routing)
       - [`browse.js`](#browsejs)
+      - [`uploadRoute.js`](#uploadroutejs)
     - [Datenbank](#datenbank)
   - [Reference example](#reference-example)
 
@@ -290,10 +291,121 @@ router.post("/", (req, res) => {
 });
 ~~~
 
+Der Dokumenten-Download erfolgt ebenfalls per GET-Request, über die Route `"/browse/download"`, mit der ID des herunterzuladenden Dokumemts im Query.
+
+Sollte die angefragte Datei nicht gefunden werden, wird dem Client der Status 400 wegen der invaliden Anfrage sowie eine entsprechende Fehlernachricht gesendet:
+
+~~~js
+router.get("/download", async (req, res) => {
+  try {
+    // Use of the docID as a query parameter 
+    const docID = req.query.docID;
+    console.log("User requested " + docID);
+
+    // Find the document with the given ID
+    const file = await Doc.findById(docID).exec();
+
+    // Checking if the document exists
+    if (!file) {
+      // If the document does not exist, return a status code of 400
+      return res.status(400).send("The document you requested does not seem to exist");
+    }
+~~~
+Existiert ein Dokument mit der angfragten ID in der Datenbank, so wird ein passender Response-Header formuliert und die Datei mit Status 200 an den Client zurückgesendet:
+~~~js
+      // If the document exists, send it to the client
+      console.log(file);
+      // Configuring the response headers
+      res.set({
+        "Content-Type": "file.fileType", // "application/octet-stream" becomes "file.fileType" to get the file type
+        "Content-Disposition": `attachment; filename="${file.originalName}"` // original filename
+      });
+
+      // Sending the file to the client
+      res.status(200).send(file.file);
+    }
+~~~
+Gibt es dennoch einen Fehler, so wird davon ausgegangen, dass es sich um eine invalide Anfrage handelt und der passende Status wird mit entsprechender Meldung an den Client zurückgegeben:
+~~~js
+} catch (err) {
+    // Error handling
+    console.log(err);
+    res.status(400).send("Invalid request");
+  }
+});
+
+module.exports = router;
+~~~
 
 
+#### [`uploadRoute.js`](#)
+`uploadRoutes.js` ist das Skript, welchen den Upload der Dokumente über die Route `"/api/upload` ermöglicht. Hierzu werden auch hier wieder die Dokumenten- und User-Modelle importiert und ein Express-Router instanziiert.
 
+Ziel ist es, dass der Client per POST-Request eine Datei an den Server senden kann und dieser folgende Antwort gibt:
+- Status 200 im Falle eines erfolgreichen Uploads
+- Status 400 bei einer inavliden User-ID
+- Status 500 ansonsten
 
+Hierzu muss zuerst die Validität der POST-Request sichergestellt werden. Diese sollte im Body den Dokumententitel, dessen Beschreibung, einen Tag (Exercise, Summary oder Scribbled Notes, quasi die Art des Lerninhalts) und die ID des Users enthalten, welcher den Upload tätigt.
+
+`req.file` sollte zudem einen `data` (die eigentlichen Inhalte der Datei), einen `mimetype` (Dateitypen) und `name` (Dateinamen) haben:
+~~~js
+router.post("/", async (req, res) => { 
+    try {
+        const body = req.body;
+        
+        const fileObj = req.files.uploadFile; // express-fileupload for file handling
+        // Making sure file was sent
+        if (!fileObj) {
+            return res.status(400).json({ message: "File is missing" });
+        }
+        // Destructuring into file contents and metadata
+        const fileBuffer = fileObj.data;
+        const fileType = fileObj.mimetype;
+        const originalName = fileObj.name;
+        
+        // Destructuring request body
+        const title = body.docTitle;
+        const description = body.description;
+        const tag = body.tag;
+        const userID = body.userID;
+~~~
+Wurde die Request entsprechend destrukturiert, kann überprüft werden, ob es einen entsprechenden User mit dieser ID in der Datenbank gibt und wenn ja, ein neues `Doc`-Objekt mit den passenden Attributen erzeugt, gespeichert und die Response über den Erfolgreichen Upload an den Client gesendet werden:
+~~~js
+        // Checking if user exists
+        const user = await User.findById(userID).exec();
+        if (!user) {
+            return res.status(400).json({ message: "Your User ID does not exist" });
+        }
+
+        // Creating new document
+        const uploadDate = new Date();
+        const doc = new Doc({
+            userID,
+            title,
+            uploadDate,
+            description,
+            file: fileBuffer,
+            fileType,
+            originalName,
+            tag,
+        });
+
+        // Saving document to database
+        await doc.save();
+        return res.status(200).json({ message: "Doc saved successfully" });
+~~~
+Gibt es bei einem dieser Schritte einen Fehler, wird dem Client ein Status 500 gesendet, um zu signalisieren, dass es serverseitig ein Problem gegegben haben muss (es könnte auch das Format der Request falsch sein, allerdings lassen sich auch Fehler durch serverseitige Schwächen wie die Inkompatibilität des aktuellen [Datenbank-Setups](#datenbank) für Dateien mit mehr als 16MB hervorrufen):
+~~~js
+    } catch (err) {
+        // Error handling
+        console.log(err);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+
+module.exports = router;
+~~~
 
 
 
