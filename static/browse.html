@@ -45,7 +45,8 @@
         <div class="browse-container">
             <div class="browse-sidebar">
                 <h2>Filter:</h2>
-                <!-- Filter-Formular für Tags -->
+                <!-- Filter for the file tags. The input-elements have the form "search-form"
+                Therefore the search-bar and the filter use one get-Request. -->
                 <div class="browse-filter">
                     <div>
                         <input type="radio" id="tag1" name="tag" value="exercises" form="search-form"/>
@@ -64,21 +65,22 @@
             </div>
             <div class="browse-main">
                 <!-- Suchergebnisse werden hier dynamisch eingefügt -->
-                <div id="search-results" class="browse-results">
+                <div  class="browse-results">
                     <h1>Search results</h1>
                 </div>
 
                 <!-- Beispielhaft kann hier auch ein Template für Ergebnis-Karten stehen,
                    das per JavaScript ersetzt bzw. ergänzt wird -->
                 <!-- Template für Suchergebnisse: -->
-                <div class="browse-card-container">
+                <div class="browse-card-container" id="search-results">
                     <div class="browse-grid-container">
                         <div class="browse-card">
                             <img src="../public/img/browse_placeholder.png" alt="search result">
                             <p id="browse-card-title">Title</p>
                             <p id="browse-card-description">Description</p>
+                            <p id="browse-card-author">Author</p>
                         </div>
-                        <button type="submit" id="downloadButton">Download</button>
+                        <button type="submit" class="download-btn">Download</button>
                     </div>
                 </div>
             </div>

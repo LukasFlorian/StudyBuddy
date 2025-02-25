@@ -1,7 +1,6 @@
-// /public/js/validation.js
-
 document.addEventListener('DOMContentLoaded', () => {
-    const signupForm = document.getElementById('signup-form');
+  // accessing signup form and login form from the DOM
+  const signupForm = document.getElementById('signup-form');
     const loginForm = document.getElementById('login-form');
   
     if (signupForm) {

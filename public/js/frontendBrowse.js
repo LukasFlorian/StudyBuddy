@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const searchForm = document.getElementById("search-form");
   const resultsSection = document.getElementById("search-results");
+  resultsSection.classList.add("browse-card-container");
 
   // Event-Listener für das Suchformular
   searchForm.addEventListener("submit", async (e) => {
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Ergebnisbereich leeren
       resultsSection.innerHTML = "";
+      
 
       if (data.numDocs === 0) {
         resultsSection.innerHTML = "<p>No documents found.</p>";
@@ -28,14 +30,16 @@ document.addEventListener("DOMContentLoaded", () => {
         // Für jedes Dokument wird eine Browse Card erstellt
         data.documents.forEach(doc => {
           const card = document.createElement("div");
-          card.classList.add("browse-card");
+          card.classList.add("browse-grid-container");
 
           // Hier kannst du das Layout der Card anpassen – wenn mehr Dokumente vorliegen, ggf. unterschiedliche Styles/pagination
           card.innerHTML = `
-            <h2>${doc.docTitle}</h2>
+            <div class="browse-card">
+            <img src="../public/img/browse_placeholder.png" alt="Search result" />
+            <p>${doc.docTitle}</p>
             <p>${doc.docDescription}</p>
             <p>Author: ${doc.docAuthor}</p>
-            <p>Date: ${new Date(doc.docDate).toLocaleString()}</p>
+            </div>
             <button class="download-btn" data-id="${doc.docID}">Download</button>
           `;
           resultsSection.appendChild(card);

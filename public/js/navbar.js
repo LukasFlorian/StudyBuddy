@@ -3,18 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
   fetch('/api/users/status', { credentials: 'include' })
     .then(response => response.json())
     .then(data => {
-      const userMenu = document.getElementById("user-menu");
+      const userMenu = document.getElementById("test-menu");
       
       // Falls eingeloggt, ersetze den Inhalt von #user-menu
       if (data.loggedIn && userMenu) {
         userMenu.innerHTML = `
-          <div class="user-hover">
-            <span class="greeting">Hallo ${data.user.firstName}</span>
-            <span class="logout">Logout</span>
-          </div>
+            <ul>
+                <li class="nav-items"><a id="share-btn" href="./share">Share</a></li>
+                <li class="nav-items"><a href="./browse">Browse</a></li>
+                <li class="nav-items">Hallo ${data.user.firstName}</li>
+                <li class=nav-items" id="logout">Logout</li>
+            </ul>
         `;
         
-        const logoutEl = userMenu.querySelector(".logout");
+        const logoutEl = userMenu.querySelector("#logout");
         logoutEl.addEventListener("click", async () => {
           try {
             const res = await fetch('/api/users/logout', {
