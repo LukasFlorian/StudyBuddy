@@ -57,7 +57,7 @@ router.post("/login", async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Falsches Passwort" });
     }
-    // Speichere den eingeloggten Nutzer in der Session
+    // Saved logged in user in session
     req.session.user = {
       id: user._id,
       firstName: user.firstName,
@@ -79,12 +79,12 @@ router.post('/logout', (req, res) => {
       console.error("Logout Error:", err);
       return res.status(500).json({ message: "Logout Error" });
     }
-    res.clearCookie('connect.sid'); // Standardname des Session-Cookies
+    res.clearCookie('connect.sid'); // standard name for session cookie
     res.status(200).json({ message: "Logout erfolgreich" });
   });
 });
 
-// Session-Status abfragen (eingeloggt oder nicht)
+// request session status (logged in or not)
 router.get('/status', (req, res) => {
   if (req.session && req.session.user) {
     return res.status(200).json({
