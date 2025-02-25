@@ -80,11 +80,6 @@
 </details>
 
 
-- Aufteilung server- und clientseitig?
-- Routing
-- Aufbau verschiedener subpages
-- Redirecting User zu URL mit Tags und searchTerm?
-
 
 ## Serverseitige Implementierung
 ### Grundsätzliche Anforderungen
