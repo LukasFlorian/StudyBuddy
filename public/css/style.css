@@ -1,5 +1,5 @@
 /***************************
-root
+1 root
 definition of default attributes and variables, that are used frequently
  **************************/
 
@@ -21,7 +21,7 @@ definition of default attributes and variables, that are used frequently
 
 
 /***************************
-all websites
+2 all websites
  **************************/
 
 *{
@@ -31,7 +31,7 @@ all websites
 
 
 /***************************
-all websites - header
+2.1 all websites - header
  **************************/
 .hp-header-container{
     align-items: center;
@@ -51,7 +51,7 @@ all websites - header
 
 
 /***************************
-all - header logo
+2.1.1 all - header logo
  **************************/
 .logo{
     align-content: center;
@@ -67,13 +67,14 @@ all - header logo
 
 
 /***************************
-all - header navigation
+2.1.2 all - header navigation
  **************************/
 
 .navbar {
     box-sizing: border-box;
+    display: flex;
     flex: 1 1 50%;
-    padding-left: 20%;
+    justify-content: space-between;
     width: 50%;
 }
 
@@ -87,8 +88,19 @@ all - header navigation
     width: 100%;
 }
 
-.nav-items {
+li.nav-items {
     padding-left: max(4vw, 10px);
+    color: var(--ui-blue);
+}
+
+#logout {
+    padding-left: max(4vw, 10px);
+    color: var(--ui-blue);
+    cursor: pointer;
+}
+
+#logout:hover {
+    color: var(--ui-dark-blue);
 }
 
 .nav-items a:link {
@@ -108,31 +120,34 @@ all - header navigation
     color: var(--ui-blue);
 }
 
+.logout{
+    background-color: white;
+    opacity: 0;
+}
+
+.logout:hover{
+    opacity: 1;
+}
 
 /***************************
-all - main
+2.2 all - main  introduction
  **************************/
 
 main {
     width: 100%;
 }
 
-
-/***************************
-all - main introduction
- **************************/
-
 .introduction{
     animation: slideInLR 1s ease-in-out;
     font-size: max(1.6rem, 3vw);
-    margin: 10vh 8vw;
+    margin: 6vh 8vw;
     max-width: 100%;
     text-align: center;
 }
 
 
 /***************************
-all - footer
+2.3 all - footer
  **************************/
 
 footer{
@@ -180,7 +195,7 @@ footer a:active{
 
 
 /***************************
-homepage - main cards
+3 homepage - main cards
  **************************/
 
 .hp-main-container{
@@ -206,21 +221,17 @@ homepage - main cards
     background-color: var(--ui-blue);
     border: 2px solid var(--ui-blue);
     border-radius: 15px;
-    box-sizing: border-box;
     color: white;
     cursor: pointer;
-    display: inline-block;
     font-size: var(--ui-font-size-big);
     font-weight: 550;
     margin: 0 auto;
     min-height: 60px;
-    min-width: 0;
     outline: none;
     padding: 1rem;
     text-align: center;
     text-decoration: none;
-    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-    touch-action: manipulation;
+    transition: all 0.3s ease-in-out;
     width:45%;
     will-change: transform;
 }
@@ -235,6 +246,11 @@ homepage - main cards
     transform: translateY(0);
 }
 
+.hp-svg{
+    position: absolute;
+    z-index: -1;
+}
+
 .hp-main-cards p{
     font-size: var(--ui-font-size-text);
     margin-top: 1rem;
@@ -243,8 +259,9 @@ homepage - main cards
 
 
 /***************************
-login / sign up
+4 login / sign up
  **************************/
+
 .signup-container{
     align-items: center;
     background: linear-gradient(0deg, hsla(195, 93%, 54%, 0.9) 0%, hsla(195, 93%, 54%, 0.9) 0%, hsla(274, 65%, 48%, 0.9) 100%);
@@ -370,7 +387,7 @@ from this we take the direct child label*/
 
 
 /***************************
-about us - impressum
+5 about us - impressum
  **************************/
 
 .impressum-container{
@@ -387,12 +404,12 @@ about us - impressum
 
 
 /***************************
-browse
+6 browse
  **************************/
 
 
 /***************************
-browse - searchbar
+6.1 browse - searchbar
  **************************/
 
 .browse-search{
@@ -453,6 +470,11 @@ browse - searchbar
     margin: 40px 0;
 }
 
+
+/***************************
+6.2 browse - sidebar
+ **************************/
+ 
 .browse-sidebar{
     animation: slideInLR 1s ease-in-out;
     background-color: var(--ui-purple);
@@ -488,7 +510,7 @@ browse - searchbar
     /*design of new radio button/
     /*unchecked*/
     align-self: center;
-    border: 2px solid rgb(135, 134, 134);
+    border: 2px solid var(--ui-base-color-light);
     border-radius: 50%;
     font: inherit;
     height: max(0.7rem, 1.4vw);
@@ -502,7 +524,7 @@ browse - searchbar
 
 /*checked radio button*/
 .browse-filter input[type="radio"]::before{
-    box-shadow: inset 1em 1em var(--ui-blue);
+    box-shadow: inset 1em 1em var(--ui-pink);
     content:"";
     border-radius: 50%;
     height: var(--ui-font-size-text);
@@ -524,6 +546,11 @@ browse - searchbar
     display: none;
 }
 
+
+/***************************
+6.3 browse - main
+ **************************/
+ 
 .browse-main{
     flex: 1 1 82%;
 }
@@ -536,16 +563,22 @@ browse - searchbar
 .browse-card-container{
     box-sizing: border-box;
     display: flex;
+    flex-flow: row wrap;
     font-size: var(--ui-font-size-text);
-    width: 100%;
+    max-height: 80vh;
+    justify-content: flex-start;
+    overflow: auto;
+    width: 95%;
 }
 
 .browse-grid-container{
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 100%;
     grid-template-rows: 100%;
     height: auto;
-    width: 100%;
+    margin: 1%;
+    width: 30%;
 }
 
 .browse-card {
@@ -554,14 +587,14 @@ browse - searchbar
     linear-gradient(145deg, transparent 0%,var(--ui-pink),var(--ui-purple), var(--ui-dark-blue)) border-box;
     border: 3px solid transparent;
     border-radius: 15px;
+    box-sizing: border-box;
     display: flex;
     flex-flow: column nowrap;
     grid-area: 1 / 1 / 1 / 1;
-    height: auto;
     justify-content: center;
     overflow: hidden;
     position: relative;
-    width: 30%;
+    width: 100%;
 }
 
 .browse-card:hover{
@@ -574,7 +607,7 @@ browse - searchbar
     max-width: 100%;
 }
 
-.browse-card-container button{
+.download-btn{
     background-color: var(--ui-base-color-dark);
     border-radius: 15px;
     color: var(--ui-base-color-light);
@@ -582,13 +615,13 @@ browse - searchbar
     font-family: var(--text-font-family), monospace;
     grid-area: 1 / 1 / 1 / 1;
     margin: 0;
-    max-width: 31%;
+    width: 100%;
     opacity: 0;
     position: relative;
     z-index: 2;
 }
 
-.browse-card-container button:hover{
+.download-btn:hover{
     font-size: var(--ui-font-size-big);
     opacity: 0.95;
     transition: opacity 0.4s;
@@ -596,7 +629,7 @@ browse - searchbar
 
 
 /***************************
-share
+7 share
  **************************/
 
 .share-main{
@@ -718,7 +751,7 @@ share
     transform: scale(0.7);
 }
 
-.share-upload-button-button{
+.share-upload-button{
     align-items: center;
     display: flex;
     margin: 1% auto;
@@ -727,7 +760,7 @@ share
 
 
 /***************************
-responsive
+8 responsive design
  **************************/
 
 /*Adjustments for screen sizes: 426px - 768px*/
@@ -738,13 +771,16 @@ responsive
     .signup{
         width: min(500px, 100%);
     }
-
 }
+
 /*Adjustments for small devices with screen sizes up to 426px*/
 @media screen and (max-width: 426px){
     .navbar {
         box-sizing: border-box;
         flex: 1 1 70%;
+    }
+    .hp-svg{
+        display: none;
     }
     .hp-main-container{
         flex-flow: column wrap;
@@ -777,7 +813,7 @@ responsive
 }
 
 /***************************
-animations
+9 animations
  **************************/
 
 @keyframes fadeIn {
@@ -806,4 +842,3 @@ animations
         transform: translateX(0);
     }
 }
-

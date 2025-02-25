@@ -31,7 +31,7 @@ app.use(fileUpload()); // Required for file upload
 
 // Session Management – IMPORTANT: Must come BEFORE route integrations
 app.use(session({
-  secret: 'deinGeheimerSchluessel', // Choosing a secure key
+  secret: 'porsche911', // Choosing a secure key
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false } // False in development, for HTTPS production -> set to true (however, this project relies solely on HTTP for the sake of implicity)
