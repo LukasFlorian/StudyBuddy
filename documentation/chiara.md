@@ -511,8 +511,6 @@ gewissen Programmier- und Testaufwand - der Desktop-First-Ansatz
 implementiert werden. 
 
 Letztendlich konnte die Webseite trotz dieser Herausforderung erfolgreich responsiv gestaltet werden.
-
-
     
 
 ### Hilfsmittel
@@ -569,7 +567,7 @@ Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf i
 
 Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
 
-**Coloors Image Picker**
+**Coloors Image Picker**  
 https://coolors.co/image-picker/
 
 Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
@@ -582,7 +580,7 @@ Figma ist ein Design-Tool, mit dem der erste Webseitenentwurf erstellt wurde.
 Dieser wird in der Einleitung dieses Kapitels beschrieben.
 
 
-**Google Font Icons**
+**Google Font Icons**  
 https://fonts.google.com/icons
 
 Google Font bietet eine große Bibliothek von u. A. Icons an. 
@@ -624,7 +622,7 @@ Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte
 Logo-Design.
 
 
-**svg repo**
+**svg repo**  
 https://www.svgrepo.com/svg/408497/arrow-03
 
 Svg repo ist eine Bibliothek für svg-Dateien. Von dort wurde der pinke Pfeil der Homepage kopiert und im HTML-Code eingebunden.
@@ -649,13 +647,13 @@ Programmbestandteilen getestet.
 
 #### Weitere Anwendungen
 
-**Microsoft PowerPoint**
+**Microsoft PowerPoint**  
 PowerPoint wurde zur Erstellung der Kompositionsdiagramme und zur Skalierung von
 Grafiken verwendet.
 
 ## Abbildungsverzeichnis
 #### Abb. 1: Erster Entwurf der Homepage  
-![Erster Entwurf der Homepage](documentation\img\1_Erster_Entwurf.png)
+![Erster Entwurf der Homepage](C:\Users\chiar\Labor\WebEngineering\Projekte\WebApp\web_engineering\documentation\img\1_Erster_Entwurf.png)
 
 #### Abb. 2: Sitemap  
 ![Sitemap](documentation\img\2_Sitemap.png)
