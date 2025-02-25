@@ -47,7 +47,7 @@ Zu Beginn des Projekts wurde ein erster Entwurf der Homepage erstellt.
 Dafür wurde das Design-Programm Figma genutzt. Damit war es möglich, als Team gemeinsam 
 an einem Entwurf zu arbeiten.
 
-Dieser erste Entwurf ist in der Abbilung 1 zu sehen.
+**Abbilung 1** zeigt den ersten Entwurf dargestellt.
 
 Bereits beim initialen Design wurde die Auffassung geteilt, dass die Homepage möglichst 
 übersichtlich gestaltet sein soll. Dazu gehörte, dass sich das Design auf die Funktionen 
@@ -219,6 +219,10 @@ deren Aufbau mittels Kompositionsdiagramme dargestellt.
 Abschließend wird anhand eines Code-Beispiels die Funktionsweise aufgezeigt.
 
 ## Sitemap
+
+**Abbilung 2** zeigt die Sitemap von StudyBuddy.
+
+
 
 ### Weitere Anwendungen
 
@@ -423,9 +427,30 @@ Der zuvor bei :hover definiert Schatten wird aufgehoben.
 Die zuvor bei :hover festgelegte Verschiebung entlang der vertikalen Achse wird entfernt. Der Button kehrt auf seine Ausgangsposition zurück.
 
 # Abbildungsverzeichnis
-Abb. 1: Erster Entwurf der Homepage 
+#### Abb. 1: Erster Entwurf der Homepage 
 
-![Erster Entwurf der Homepage](C:\Users\chiar\Labor\WebEngineering\Projekte\WebApp\img_md\firstDraft.png)
+![Erster Entwurf der Homepage](documentation\img\1_Erster_Entwurf.png)
+
+#### Abb. 2: Sitemap  
+![Sitemap](documentation\img\2_Sitemap.png)
+
+#### Abb. 3: Kompositionsdiagramm Homepage  
+![Kompositionsdiagramm Homepage](documentation\img\3_KompDia_Homepage.png)
+
+#### Abb. 4: Kompositionsdiagramm Login   
+![Kompositionsdiagramm Login](documentation\img\4_KompDia_Login.png)
+
+#### Abb. 5: Kompositionsdiagramm Signup  
+![Kompositionsdiagramm Signup](documentation\img\5_KompDia_Signup.png)
+
+#### Abb. 6: Kompositionsdiagramm Impressum   
+![Kompositionsdiagramm Impressum](documentation\img\6_KompDia_Impressum.png)
+
+#### Abb. 7: Kompositionsdiagramm Browse  
+![Kompositionsdiagramm Browse](documentation\img\7_KompDia_Browse.png)
+
+#### Abb. 8: Kompositionsdiagramm Share   
+![Kompositionsdiagramm Share](documentation\img\8_KompDia_Share.png)
 
 # Stichwortverzeichnis
 
