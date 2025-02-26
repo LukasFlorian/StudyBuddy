@@ -34,7 +34,21 @@
       - [Praxisbezogene Optimierungen](#praxisbezogene-optimierungen)
       - [`userModel.js`](#usermodeljs)
       - [`docModel.js`](#docmodeljs)
-  - [References](#references)
+  - [Hilfsmittel](#hilfsmittel)
+    - [Literatur](#literatur)
+    - [Artificial Intelligence](#artificial-intelligence)
+    - [Webseiten und -applikationen](#webseiten-und--applikationen)
+    - [Weitere Anwendungen](#weitere-anwendungen)
+  - [Abbildungsverzeichnis](#abbildungsverzeichnis)
+      - [Abb. 1: Erster Entwurf der Homepage](#abb-1-erster-entwurf-der-homepage)
+      - [Abb. 2: Sitemap](#abb-2-sitemap)
+      - [Abb. 3: Kompositionsdiagramm Homepage](#abb-3-kompositionsdiagramm-homepage)
+      - [Abb. 4: Kompositionsdiagramm Login](#abb-4-kompositionsdiagramm-login)
+      - [Abb. 5: Kompositionsdiagramm Signup](#abb-5-kompositionsdiagramm-signup)
+      - [Abb. 6: Kompositionsdiagramm Impressum](#abb-6-kompositionsdiagramm-impressum)
+      - [Abb. 7: Kompositionsdiagramm Browse](#abb-7-kompositionsdiagramm-browse)
+      - [Abb. 8: Kompositionsdiagramm Share](#abb-8-kompositionsdiagramm-share)
+  - [Stichwortverzeichnis](#stichwortverzeichnis)
 
 
 <details>
@@ -1147,11 +1161,247 @@ module.exports = mongoose.model("Doc", docSchema);
 
 Identisch verfahren wird für das Modell der Dokumente. Eine Besonderheit ist hier, dass neben den anderen Attributen - auf diese wird nicht näher eingegangen, da sie auch bereits dem [ER-Modell](#er-model) entnommen werden können - auch die zu speichernde Datei selbst in einem Feld namens `file` vom Typ `Buffer` hinterlegt wird.
 
-Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16MB zu unterstützen [^1]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
+Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16MB zu unterstützen [^3]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
 
-
-## References
-
-[^1]: MongoDB, Inc. (2024). 
+[^3]: MongoDB, Inc. (2024). 
 GridFS for Self-Managed Deployments. 
 [MongoDB Manual](https://www.mongodb.com/docs/manual/core/gridfs/).
+
+
+
+## Hilfsmittel
+
+### Literatur
+
+**Wolf, Jürgen: HTML und CSS: Das umfassende Handbuch,**  
+5., aktualisierte und überarbeitete Auflage 2023, Rheinwerk Verlag GmbH, Bonn 2023.
+
+Dieses Buch wurde zur Bildung eines grundsätzlichen Verständnisses 
+sowie als Nachschlagewerk für die verschiedenen HTML- und CSS-Elemente
+genutzt.
+Anfangs wurde es zur Vermittlung von Grundkenntnissen zu 
+CSS-Gestaltungsmöglichkeiten und deren Anwendung verwendet. Dazu 
+gehörten beispielsweise die Verwendung von margin, padding, color, 
+border-Design und font-Design. Weiterhin wurden die verschiedenen 
+Maßeinheiten in CSS und die Codierung von Farben erlernt. 
+
+Im späteren Lauf diente dieses Werk zur Vertiefung des Wissens über 
+CSS-Flexboxen, CSS-Grid und responsives Design.
+
+**Schneider, Jürgen: Vorlesungsskript Web Engineering Kap 3 und Kap 4**  
+Die Vorlesungsskript Kapitel 3 und Kapitel 4 wurden als Nachschlagewerk 
+für den Aufbau und die Gestaltung der Webapplikation genutzt. Die beiden
+Kapitel behandeln die Themen HTML und CSS.
+
+
+### Artificial Intelligence
+
+**Microsoft Designer**  
+https://designer.microsoft.com/home 
+
+Die Bildgenerierung Software Microsoft Desinger wurde zur Erstellung der Grafiken verwendet.  
+Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
+lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
+Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
+Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
+hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
+Korrektur erfolgen. 
+Deshalb wurde der Schritfzug manuell erstellt.
+
+Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
+erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
+Figur, die am PC etwas sucht. "studybuddy""._ Dort wurden aus vier 
+generierten Bildern die zwei Grafiken ausgewählt, die auch auf der Homepage 
+zu sehen sind.
+
+### Webseiten und -applikationen
+
+**Can I Use**  
+https://caniuse.com/
+
+Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf ihre Kompatibilität mit Browsern zu prüfen. 
+
+Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
+
+**Coloors Image Picker**
+https://coolors.co/image-picker/
+
+Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
+Die hier erstellte Farbauswahl findet sich in den "UI"-Farben wieder, welche im :root-Element des CSS-Codes definiert wurden.
+
+**Figma**  
+https://www.figma.com/de-de/
+
+Figma ist ein Design-Tool, mit dem der erste Webseitenentwurf erstellt wurde.
+Dieser wird in der Einleitung dieses Kapitels beschrieben.
+
+
+**Google Font Icons**
+https://fonts.google.com/icons
+
+Google Font bietet eine große Bibliothek von u. A. Icons an. 
+Die Symbole im Login-Formular und Signup-Formular als svg-Elemente über 
+Google Font bezogen. Dabei kann z. B. die Farbe und das Filling der Icons 
+über Google Font definert werden. Im Anschluss kann der Code zum 
+svg-Element kopiert und in der HTML-Datei eingefügt werden.
+
+**IANA Media Types**  
+https://www.iana.org/assignments/media-types/media-types.xhtml#image
+
+Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
+Dies wurde für die Bestimmung der erlaubten Uploaddatein auf der Seite 
+"Share" benötigt.  
+Codeauszug:  
+```html
+<input type="file" id="upload" name="uploadFile" accept="image/*, application/pdf" />
+```
+Hier wurde ein Upload für alle Image Datentypen sowie für PDF festgelegt.
+Denn StudyBuddy möchte den Austausch von z. B. Fotos von Lernunterlagen, 
+aber auch von PDFs ermöglichen.
+
+**mdn web docs**  
+https://developer.mozilla.org/en-US/docs/Web/CSS
+
+Diese Webseite bietet ausführliche Erklärungen zu den Funktionsweisen, dem Syntax und der Browser-Kompatibilität von HTML- und CSS-Elementen. 
+Deshalb wurde diese Webseite zur Schaffung eines tieferen Verständnisses 
+für die Anwendung und die korrekte Implementierung einiger CSS-Elemente 
+verwendet. Beispielhaft können hier das aside-Element oder der Border-Style
+ genannt werden.
+
+**RealFaviconGenerator**  
+https://realfavicongenerator.net/
+
+Diese Seite kann zur Erstellung von eines Favicon in verschiedenen 
+Dateiformaten verwendet werden. 
+Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mit 
+Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
+Logo-Design.
+
+
+**svg repo**
+https://www.svgrepo.com/svg/408497/arrow-03
+
+Svg repo ist eine Bibliothek für svg-Dateien. Von dort wurde der pinke Pfeil der Homepage kopiert und im HTML-Code eingebunden.
+
+
+**W3C Font-Families**  
+https://www.w3.org/Style/Examples/007/fonts.en.html
+
+Die Unterseite zu Font-Families gibt eine Übersicht über das Aussehen verschiedener Font-Families in CSS. Damit konnte das Design der Schriften 
+verglichen und die hier bevorzugte Font-Family "monospace" ausgewählt 
+werden.
+
+**W3 Schools**  
+https://www.w3schools.com/
+
+Die Lernplattform W3 School wurde zum Lernen und Testen genutzt. Auf der 
+einen Seite konnten, mittels der ausführlichen und gut strukturierten 
+Beispiele, neue Kenntnisse zur Funktionsweise von HTML und CSS gewonnen 
+werden. Auf der anderen Seite wurden mit Hilfe des integrierten 
+"Try-it-Yourself"-Editors die Auswirkung von unterschiedlichen 
+Programmbestandteilen getestet. 
+
+### Weitere Anwendungen
+
+**Microsoft PowerPoint**
+PowerPoint wurde zur Erstellung der Kompositionsdiagramme und zur Skalierung von
+Grafiken verwendet.
+
+## Abbildungsverzeichnis
+#### Abb. 1: Erster Entwurf der Homepage  
+![Erster Entwurf der Homepage](img/1_Erster_Entwurf.png)
+
+#### Abb. 2: Sitemap  
+![Sitemap](img/2_Sitemap.png)
+
+#### Abb. 3: Kompositionsdiagramm Homepage  
+![Kompositionsdiagramm Homepage](img/3_KompDia_Homepage.png)
+
+#### Abb. 4: Kompositionsdiagramm Login   
+![Kompositionsdiagramm Login](img/4_KompDia_Login.png)
+
+#### Abb. 5: Kompositionsdiagramm Signup  
+![Kompositionsdiagramm Signup](img/5_KompDia_Signup.png)
+
+#### Abb. 6: Kompositionsdiagramm Impressum   
+![Kompositionsdiagramm Impressum](img/6_KompDia_Impressum.png)
+
+#### Abb. 7: Kompositionsdiagramm Browse  
+![Kompositionsdiagramm Browse](img/7_KompDia_Browse.png)
+
+#### Abb. 8: Kompositionsdiagramm Share   
+![Kompositionsdiagramm Share](img/8_KompDia_Share.png)
+
+## Stichwortverzeichnis
+
+API:
+Application Programming Interface. Eine Schnittstelle, die es ermöglichte, verschiedene Software-Komoponenten miteinder kommunizieren zu lassen.
+
+Alert:
+Browserfunktion zur Anzeige von Nachrichten an den Benutzer.
+
+Asynchron:
+Hier: async/wait. eine Programmiertechnik, um auf asynchrone Operationen wie Netzwerkaufrufe (z.B. `fetch()`) zu warten, ohne den Ablauf des Programms zu blockieren
+
+Backend:
+Serverseitiger Teil der Anwendung, der Anfragen des Frontends entgegennimmt, verarbeitet und Antworten gibt.
+
+Catch:
+methode in JavaScript zur Fehlerbehandlung. Wird hier verwendet, um Netzwerkfehler bei Anfragen an das Backend abzuhängen.
+
+CSS:  
+Cascading Style Sheet
+
+Credentials:
+Eine Einstellung in `fetch()`, die angibt, dass unter anderem Cookies bei Anfragen an das Backend gesendet werden, um Sessions zu validieren.
+
+Cookie:
+Kleine Datei, die auf dem Client gespeichert wird. Enthält Session-Informationen und wird hier genutzt um Anmeldung des Benutzers zu verfolgen, damit User angemeldet bleibt
+
+DOM:
+Document Object Model, eine Schnittstelle zur Manipulation und Darstellung von HTML-Dokumenten. Wird hier für den Zugriff auf HTML-Elemente verwendet.
+
+Event Listener:
+Eine Funktion, die auf bestimmte Ereignisse wie Button-Clicks oder Formular-Submits reagiert.
+
+Fetch():
+Methode zum Senden von HTTP_Anfragen an das Backend. 
+
+FormData:
+Ein JavaScript-Objekt zum Erstellen von Key-Value-Paaren, um Formulardaten zu senden.
+
+GET-Request:
+HTTP-Methode um Daten vom Server zu erhalten.
+
+GateKeeper-Funtkion:
+Funktion, die überprüft, ob Benutzer eingelogg ist, bevor er auf bestimmte Seiten (hier: /share) zugreifen darf.
+
+HTTP-Statuscodes:
+Codes, die die Antword des Servers auf eine Anfrage darstellen.
+
+HTML:   
+Hypertext Markup Language
+
+JSON:
+Ein Datenformat zur Übertragung von Daten zwischen Client und Server.
+
+LocalStorage:
+Web-API, die es ermöglicht, Daten lokal im Browserdes Benutzers zu speichern. Hier wird `locasStorage.setItem() verwendet, um den firstName zu speichern.
+
+Middleware:
+Eine Exüress.js-Funktion, die verwendet wird, um Anfragen zu verarbeiten, bevor sie den Endpunkt erreichen.
+
+POST-Request:
+HTTP-Methode, um Daten an den Server zu senden. 
+
+Route:
+Eione Definition der URL-Endpunkte.
+
+Session-Management:
+Methode, um Benutzer-Sitzungen zu verfolgen. Wird hier durch Cookies realisiert.
+
+SVG:   
+Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
+
+Try-Catch:
+Ein Konstrukt zum Abfangen von Fehlern. 
