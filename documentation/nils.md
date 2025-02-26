@@ -184,7 +184,7 @@ try {
 ~~~
 
 ### Verarbeitung des Uploads in `upload.js`
-Das Dokument `upload.js` ist im Rahmen der Dateiverarbeitungslogik dafür zuständig, die vom User ausgewählte Datei zusammen mit vom User gewähltem Titel, Beschreibung, Tag an den Server zu übermitteln, damit dieser das File dann in der Mongo-Datenbank speichern kann.
+Das Dokument `upload.js` ist im Rahmen der Dateiverarbeitungslogik dafür zuständig, die vom User ausgewählte Datei zusammen mit vom User gewähltem Titel, Beschreibung, Tag an den Server zu übermitteln, damit dieser das File dann in der Mongo-Datenbank speichern kann. Einbindung: `upload.js`ist in `share.html` eingebunden.
 
 Zunächst wird ein EventListener für den Upload-Button erstellt, der auf das Event `'click'` reagiert. Falls das Event eintrit, werden der Titel und die Beschreibung, ausgewählte File sowie der Tag ausgelesen. Falls es einen Tag gibt, wird außerdem, der dazugehörige value erfasst (hier:Exercises, Summary, Scribbled Notes) Sollte kein Tag ausgewählt sein, erscheint ein Altert mit der Aufforderung, einen Tag auszuwählen: 
 
@@ -278,4 +278,215 @@ Sollte die Kommunikation mit dem Server fehlschlagen, wird der `catch` ausgelös
 ~~~
 
 
-### Anpassung der Navigationsleiste, wenn Benutzer eingeloggt:
+### Anpassung der Navigationsleiste, wenn Benutzer eingeloggt in `navbar.js`:
+#### Anpassung Navigationsleiste
+Mittels des Dokuments `navbar.js` wird in die Navigationsleiste nach erfolgreichem Einloggen ein Logout-Button integriert. Dies geschieht auf allen statischen HTML-Seiten. Ebenso wird der logout hier über die Schnittstelle `/api/users/logout` abgewickelt und eine GateKeeper Funktion sorgt dafür, dass nur eingeloggt Benutzer auf die Share-Seite gelangen.
+
+Zu Beginn stellt der DOMContentLoaded-Event Listener sicher, dass die Seite fertig geladen ist, bevor das Sktipt ausgeführt wird. Darauffolgend wird durch eine GET- Anfrage überprüft ob der Nutzer eingeloggt ist, wobei die Antowort des Servers in JSON geparst wird: 
+
+~~~js
+fetch('/api/users/status', { credentials: 'include' })
+  .then(response => response.json())
+  .then(data => { ... })
+  .catch(err => console.error("Error fetching user status:", err));
+~~~
+
+Eine Antwort des Servers kann beispielsweise so aussehen: 
+
+~~~js
+{
+  "loggedIn": true,
+  "user": {
+    "id": "12345",
+    "firstName": "Bob"
+  }
+}
+~~~
+
+Bei erfolgreichem Login und wenn das DOM-Element `user-menu` existiert, wird das `user-menu` ersetzt durch eine personalisierte Bergrüßung: `Hallo {firstName}` und einen Logout-Button:
+
+~~~js
+if (data.loggedIn && userMenu) {
+    userMenu.innerHTML = `
+        <div class="user-hover">
+        <span class="greeting">Hallo ${data.user.firstName}</span>
+        <span class="logout">Logout</span>
+        </div>
+    `;
+    ...
+}
+~~~
+
+#### Logout-Verarbeitung
+Auf den Logout im darauffolgend ein EventListener gesetzt, der beim klick auf Logout eine POST-Anfrage an  `/api/users/logout` sendet und die Cookies mitsendet. Wenn die Antwort des Servers im 200er Bereich liegt, wird der User auf die Login-Seite navigiert:
+
+~~~js
+const logoutEl = userMenu.querySelector(".logout");
+logoutEl.addEventListener("click", async () => {
+    try {
+    const res = await fetch('/api/users/logout', {
+        method: 'POST',
+        credentials: 'include'
+    });
+    // if successful logout, redirect to login page
+    if (res.ok) {
+        window.location.href = "/login";
+    }
+    } catch (error) {
+    console.error("Logout Error:", error);
+    }
+});
+~~~
+
+#### GateKeeper-Funktion für den Share-Button 
+Die GateKeeper-Funktion überprüft beim betätigen des `share-btn` in der Navigationsleiste ober Benutzer eingeloggt ist. Das ist deshalb relevant, da beim Hochladen einer Datei eine UserID erwartet wird. Dieser Schutzmechanismus koexistiert mit einer Funktion in `/src/routes/share.js`, die von der Backendseite ebenfalls gewährleisten soll, dass nur eingeloggte Nutzer auf die Share-Seite geroutet werde. Da clientseitige Beschränkungen umgangen werden können, haben wir uns entschieden, dies sowohl im Front- als auch im Backend zu überprüfen.
+
+Per GET-Anfrage wird an die Route `api/users/status` die Anfrage gestellt ob der Benutzer eingeloggt ist und die Antwort wird in JSON geparst. Siehe Oben, wie eine Mögliche Antwort vom Server aussehen kann. 
+
+Nachfolgend wird die Antwort überprüft. Ist der Benutzer eingeloggt, wird zu `/share` navigiert, ansonsten zur Login-Seite. Sollte ein Fehler auftreten, der durch try-catch abgefangen wird, wird ebenfalls auf die Login-Seite navigiert: 
+
+~~~js
+const shareButton = document.getElementById("share-btn");
+  if (shareButton) {
+    shareButton.addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        // check if user is logged in
+        const response = await fetch('/api/users/status', { credentials: 'include' });
+        const data = await response.json();
+        // grant acess to /share page if user is logged in
+        if (data.loggedIn) {
+          window.location.href = "/share";
+        //if user is not logged in, redirect to login page
+        } else {
+          window.location.href = "/login?redirect=share";
+        }
+      } catch (error) {
+        console.error("Fehler beim Prüfen des Login-Status:", error);
+        window.location.href = "/login?redirect=share";
+      }
+    });
+  }
+~~~
+
+### Suchfunktion über `frontendBrowse.js`
+#### Grundfunktionen und Suchanfrage an das Backend
+Das Skript `frontendBrowse.js` trägt mit dazu bei, ein anschauliches und funktinieredes User Interface für eine Dokumentensuche zu generieren.
+
+Anfänglich wird ein EventListener auf das Event `DOMContentLoaded` angewandt und auf die DOM-Elemente `search-form` und `search-results` des HTML-Dokumts `browse.html` zugegriffen. `searchForm` verweist auf das Suchformular, `resultsSection` auf den Abschnitt, in dem die Suchergebnisse angezeigt werden sollen und bekommt die CSS-Klasse `browse-card-container`: 
+
+~~~js
+document.addEventListener("DOMContentLoaded", () => {
+  const searchForm = document.getElementById("search-form");
+  const resultsSection = document.getElementById("search-results");
+  ...
+});
+~~~
+
+Um die Suchparameter abzugreifen, wird ein EventListener auf das Event `'submit'` der `searchForm` gelegt, wodurch bei eintreten des Events die searchForm in eine neues FormData-Objekt verpackt, woraus dann der vom User ausgewählte Tag und Suchbegriff extrahiert werden: 
+
+~~~js
+searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(searchForm);
+    const searchTerm = formData.get("searchTerm");
+    const tag = formData.get("tag");
+...
+}
+~~~
+
+Aus den extrahierten Suchparametern wird nun eine URL gebaut: 
+
+~~~js
+let url = `/browse?searchTerm=${encodeURIComponent(searchTerm)}`;
+if (tag) {
+    url += `&tag=${encodeURIComponent(tag)}`;
+}
+~~~
+
+Im Anschluss wird über `fetch()`eine GET-Anfrage an die URL gesendet, wo die Suchparameter aus der URL extrahiert werden und eine Datenbank abfrage gestartet wird. Die Antwort wird in JSON geparst:
+
+~~~js
+try {
+    const response = await fetch(url);
+    const data = await response.json();
+...
+}
+~~~
+
+Eine mögliche *vollständige* Antwort des Servers an den Client könnte wie folgt ausssehen, wenn 2 Dokumente zu den Suchparametern `searchTerm`: "JavaScript" und `tag`: "exercises" gefunden werden:
+
+~~~js
+res.status(200).json({
+  numDocs: 2,
+  documents: [
+    {
+      docID: "645a7e4b8f5d4e1f34b7a9c1",
+      docTitle: "Learn JavaScript",
+      docDescription: "A beginner's guide to JavaScript programming.",
+      docTag: "scribbledNotes",
+      docAuthor: "Marc",
+      docDate: "2025-02-24T09:23:16.126Z"
+    },
+    {
+      docID: "645a7e4b8f5d4e1f34b7a9c2",
+      docTitle: "Advanced JavaScript",
+      docDescription: "Deep dive into JavaScript ES6 and beyond.",
+      docTag: "summary",
+      docAuthor: "Bob",
+      docDate: "2025-01-24T09:22:12.126Z"
+    }
+  ]
+});   const data = await response.json();
+
+~~~
+
+Bevor die Antwort verarbeitet wird, wird die `resultssection` gecleared, damit es bei aufeinanderfolgenden Suchen keine Konflikte gibt.  
+
+#### Erstellen der Browse-Cards
+Werden keine Dokumente gefunen (`data.numDocs === 0`), wird der Schriftzug `"No documents found."` in der resultsSection angezeigt. Andernffalls erstellt das Skript für jedes Dokument ein `"div"`-Element und weist die CSS-Klasse `"browse-grid-container"` zu. Innerhalb des `"div"`-Elements wird nun ein Bild eingefügt, das als Platzhalter dient, für eine mögliche spätere Funktion der Dokumentenvorschau, die wir uns als Zukunftsausblick vorbehalten möchten. Zudem werden der Dokumententitel, die Beschreibung und der Autor angezeigt. Das Uploaddatum wird zum jetztigen Zeitpunkt nicht angezeigt, ist allerdings in der Antwort des Servers vorhanden, um es gegebenenfalls zu einem späteren Zeitpunkt einfach integrieren zu können. 
+
+Diese `"div"`-Elemente werden anchließend der resultsSection zugewiesen, also dem Bereich, im HTML-Dokument `browse.html`, wo die Ergebnisse angezeigt werden sollen und jedes `"div"`-Element bekommt einen Download-Button zugewiesen, beidem die `docID`als `data-id` mitgegeben wird.. 
+
+~~~js
+try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    resultsSection.innerHTML = "";
+    
+    if (data.numDocs === 0) {
+        resultsSection.innerHTML = "<p>No documents found.</p>";
+    } else {
+        data.documents.forEach(doc => {
+            const card = document.createElement("div");
+            card.classList.add("browse-grid-container");
+
+            card.innerHTML = `
+            <div class="browse-card">
+            <img src="../public/img/browse_placeholder.png" alt="Search result" />
+            <p>${doc.docTitle}</p>
+            <p>${doc.docDescription}</p>
+            <p>Author: ${doc.docAuthor}</p>
+            </div>
+            <button class="download-btn" data-id="${doc.docID}">Download</button>
+            `;
+            resultsSection.appendChild(card);
+    });
+    }
+} catch (err) {
+    console.error("Error fetching search results:", err);
+    resultsSection.innerHTML = "<p>Error fetching search results.</p>";
+}
+~~~
+#### Download
+Damit der Benutzer einen Download durchführen kann, wird ein EventListener auf sämtliche `"click"`-Events in der `resultsSection` erstellt. Zusätzlich wird geprüft, ob das `"click"`-Event auf ein Element mit der Klasse `"download-btn"` stattfindet, da nur die aus den Suchergebnissen erstellten `"div"`-Elemente dieser Klasse zugewiesen sind. Wird also eines der vorher erstellen `"div"`-Elemente angeclickt, wird die docID dieses spezifischen Elements ausgelesen und der Client wird zu `/browse/download?docID=${docID}` navigiert, wodurch die `docID` durch das Backend (hier: `/src/routes/browse.js`) genutzt wird um das ausgewählte Dokument zurückzusenden, was den Download auslöst.
+
+~~~js
+resultsSection.addEventListener("click", (e) => {
+    if (e.target.classList.contains("download-btn")) {
+      const docID = e.target.getAttribute("data-id");
+      window.location.href = `/browse/download?docID=${docID}`;
+    }
+});
+~~~
