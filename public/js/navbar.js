@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
      logged in, redirect to /login page */
 
   // get share button and add event listener
-  const shareBtn = document.getElementById("share-btn");
-  if (shareBtn) {
-    shareBtn.addEventListener("click", async (e) => {
+  const shareButton = document.getElementById("share-btn");
+  if (shareButton) {
+    shareButton.addEventListener("click", async (e) => {
       e.preventDefault();
       try {
         // check if user is logged in
