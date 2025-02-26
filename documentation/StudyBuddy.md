@@ -130,9 +130,9 @@ Für das Design der Wep-Applikation "StudyBuddy" hat sich das Team folgende Ziel
 damit die Bedürfnisse der Zielgruppe Schüler und Studenten*innen optimal erfüllt werden:
 
 - **Übersichtlichkeit und Klarheit:**   
-    Zweck der Website ist u. A. Schüler*innen und Studierende beim Lernen zu unterstützen.
-    Dabei kann das Lernen für Prüfungen mit unter eine emotionale Belastung darstellen. 
-    Sei es der Leistungsdruck, der gefühlte Zwang sich mit Themen auseinander zu setzen, 
+    Zweck der Website ist u. a. Schüler*innen und Studierende beim Lernen zu unterstützen.
+    Dabei kann das Lernen für Prüfungen mitunter eine emotionale Belastung darstellen. 
+    Sei es der Leistungsdruck, der gefühlte Zwang, sich mit Themen auseinander zu setzen, 
     für die man wenig bis kein Interesse aufbringen kann oder die Überforderung bei dem 
     Versuch ein neues Thema zu verstehen, das unbegreiflich scheint.   
     Aus diesem Grund soll StudyBuddy eine übersichtliche und klare Gestaltung haben, 
@@ -218,7 +218,7 @@ Container enthalten können.
 
 Ziel ist es, den Aufbau der HTML-Elemente und deren Platzierung zu- bzw. ineinander grafisch darzustellen. 
 
-Der Webauftritt von StudyBuddy zeichnet sich dadurch aus, dass alle Webseiten innerhalb des body-Elements die Subelemente "header", "main" und "footer" haben. Da durch wird ein einheitliches Design geschaffen und der Wiedererkennungswert für die Nutzenden erhöht.
+Der Webauftritt von StudyBuddy zeichnet sich dadurch aus, dass alle Webseiten innerhalb des body-Elements die Subelemente "header", "main" und "footer" haben. Dadurch wird ein einheitliches Design geschaffen und der Wiedererkennungswert für die Nutzenden erhöht.
 
 Eine weitere Gemeinsamkeit der Homepage und der Unterseiten "Impressum", "Browse" und "Share"   ist die Sektion der Klasse "introduction". Diese Sektion befindet sich zu Beginn des main-Elements. Aufgrund der Gestaltung dieser Klasse, erhalten diese Webseiten eine kohärent 
 designte Einleitung bzw. Überschrift.
@@ -231,11 +231,11 @@ Neben den Gemeinsamkeiten haben die Webseiten einige individuelle Strukuren. Die
 
 Die [Abbildung 3](#abb-3-kompositionsdiagramm-homepage) zeigt das Kompositionsdiagramm der Homepage.
 
-Neben des bereits beschriebenen Aufbaus enthält das main-Element ein svg-Element und eine Sektion der Klasse "hp-main-container".
+Neben dem bereits beschriebenen Aufbau enthält das main-Element ein svg-Element und eine Sektion der Klasse "hp-main-container".
 Die skalierbare Vektorgrafik stellt einen pinken Pfeil dar, der den Fokus des Webseitenbesuchers auf den Browse-Button lenkt. Dadurch soll der Nutzende zur Interaktion mit diesem Button animiert werden.
 
 Weiterhin umfasst die Sektion "hp-main-container" 4 Elemente: zwei Buttons und zwei Bilder. 
-Bei den Buttons handelt es sich um Verlinkungen der Hauptfunktionen "Browse" und "Share" während die Grafiken zur optischen Aufwertung eingesetzt werden. 
+Bei den Buttons handelt es sich um Verlinkungen der Hauptfunktionen "Browse" und "Share", während die Grafiken zur optischen Aufwertung eingesetzt werden. 
 Das Ziel dieser Struktur ist es, ein Elternelement für die Buttons und Bilder zu schaffen, welches sich als CSS-Flexbox zur Anordnung der Inhalte nutzen lässt.
 
 Die Homepage soll insgesamt als ansprechende Aufmachung der WebApplikation dienen und den Nutzenden umgehend zu einer weiteren Interaktion einladen.
@@ -251,7 +251,7 @@ Innerhalb des form-Element wird beim Login die e-Mail-Adresse und das Passwort e
 werden benötigt um eine Identifizierung und den damit verbundenen
 Login zu ermöglichen.
 
-Das Formular der Signup-Seite entscheidet sich insofern, dass das Login-Formular um die beiden Eingabe-Elemente "firstname" und "repeat password" erweitert wird.
+Das Formular der Signup-Seite unterscheidet sich insofern, dass es das Login-Formular um die beiden Eingabe-Elemente "firstname" und "repeat password" erweitert.
 Diese Daten werden einmalig bei der Erstellung eines neuen Users erfasst.
 Der Vorname des Users wird benötigt, um diesen nach dem Login im Header anzuzeigen. Die Wiederholung des Passworts dient dazu, Tippfehlern im Paswort bei dessen Initialisierung entgegenzuwirken.
 
@@ -266,7 +266,7 @@ Die [Abbildung 6](#abb-6-kompositionsdiagramm-impressum) zeigt das Kompositionsd
 Der Aufbau des Impressumg ist relativ schlicht gehalten.  
 Innerhalb des main-Elements wird nach der Einleitung ein sektion-Element mit der Klasse "impressum-container" eingebettet. Dieses enthält eine h2-Überschrift und drei Paragraphen in Form von p-Elementen. 
  
-Durch diese Struktur, wird ein übersichtliches Impressum mit einem klaren Fokus auf die enthaltenen Kontaktdaten geschaffen.
+Durch diese Struktur wird ein übersichtliches Impressum mit einem klaren Fokus auf die enthaltenen Kontaktdaten geschaffen.
 
 #### Kompositionsdiagramm Browse
 
@@ -298,7 +298,7 @@ Weiterhin wird ein input-Element mit dem Attribut type="file" genutzt, um das Ho
 Abschließend kann der Upload über button-Element abgeschlossen werden.
 
 Die Share-Seite stellt neben der Browse-Seite eine Hauptfunktion von StudyBuddy dar. Deshalb ist auch hier der Fokus auf der Benutzerfreudlichkeit. Diese steht allerdings im Konflikt mit dem Ziel eine möglichst gute Informationslage zu der hochgeladenen Datei zu erfassen.
-Somit musste abgewogen werden, wie viele Details vom User zu einer Datei abgefragt werden können, bevor sich dieser gegen einen ggf. aufwändigen Upload entscheidet würde.
+Somit musste abgewogen werden, wie viele Details vom User zu einer Datei abgefragt werden können, bevor sich dieser gegen einen ggf. aufwändigen Upload entscheiden würde.
 Mit der aktuellen Lösung wird versucht, den beiden Zielen bestmöglich gerecht zu werden.
 
 
@@ -492,7 +492,7 @@ Die Kombination aus box-shadow und transform sorgt dafür, dass der Button etwas
 Mit dem Selektor :active wird das Design beim Anklicken des Button bestimmt.
 
 **box-shadow: none;**   
-Der zuvor bei :hover definiert Schatten wird aufgehoben.
+Der zuvor bei :hover definierte Schatten wird aufgehoben.
  
 **transform: translateY(0);**  
 Die zuvor bei :hover festgelegte Verschiebung entlang der vertikalen Achse wird entfernt. Der Button kehrt auf seine Ausgangsposition zurück. Der Mausklick wird so visuell bestätigt.
