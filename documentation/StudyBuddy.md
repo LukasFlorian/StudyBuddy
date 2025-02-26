@@ -711,14 +711,14 @@ Letztendlich konnte die Webseite trotz dieser Herausforderung erfolgreich respon
 ## Clientseitige Implementierung
 ### Grundlegende Struktur
 
-Die clientseitige JavaScript Architektur folgt dem Prinzip der Seperation of Concers, wodurch hie die unterschiedlichen Verantwortungen klar voneinander getrennt sind. 
+Die clientseitige JavaScript-Architektur folgt dem Prinzip der Separation of Concerns, wodurch hie die unterschiedlichen Verantwortungen klar voneinander getrennt sind. 
 
-Die für viele Funtkionalitäten benötigten Routen sind unter `src/routes` definiert und werden verwiesen unter `app.js`.
+Die für viele Funktionalitäten benötigten Routen sind unter `src/routes` definiert und werden verwiesen unter `app.js`.
 
 Die im Verzeichnis `public/js` befindlichen JavaScript-Dateien `frontendBrowse.js`, `navbar.js`, `upload.js`und `validation.js`, gewährleisten mittels Einbindungen in die statischen HTML-Seiten im Verzeichnis `/static`, und über Kommunikationsschnittstellen mit dem Backend, ein angenehmes User-Interface und eine sinnvolle Interaktionssteuerung.
 
 ### Login/Signup-Handling in `validation.js`
-`validation.js` wird cleintseitig zur Abwicklung der Signup- und Login-Funktionen verwendet und ist eingebunden in `/static/login.html` sowie `/static/signup.html`. 
+`validation.js` wird clientseitig zur Abwicklung der Signup- und Login-Funktionen verwendet und ist eingebunden in `/static/login.html` sowie `/static/signup.html`. 
 
 Zunächst wird über einen EventListener geprüft, ob das HTML-Dokument fertig geladen und geparst ist. Im Anschluss werden die Login- und Signup-Formulare über die jeweils festgelegte ID aufgerufen:
 
@@ -743,7 +743,7 @@ if (signupForm) {
 }
 ~~~
 
-Im Anschluss werden die Eingaben `firstName`, `email` und `password` aus dem Formular über die festgelgte ElementId ausgelesen:
+Im Anschluss werden die Eingaben `firstName`, `email` und `password` aus dem Formular über die festgelegte ElementId ausgelesen:
 
 ~~~js
 const firstName = document.getElementById('firstname-input').value;
@@ -755,7 +755,7 @@ Innerhalb einer try-catch Kontrollinstanz werden nun die Usereingaben an das Bac
 
 Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URL `/api/users/signup` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird.
 
- `if(res.ok)`überprüft ob die Antwort von `/api/users/signup` zwischen 200-299 liegt, da Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung einer erfolgreichen Registrierung und der User wird auf die Loginseite weitergeleitet wird. Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung ausgegeben mit der übermittelten Message. 
+ `if(res.ok)`überprüft ob die Antwort von `/api/users/signup` zwischen 200 - 299 liegt, da Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung einer erfolgreichen Registrierung und der User wird auf die Loginseite weitergeleitet. Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung ausgegeben mit der übermittelten Message. 
 
  Falls die Kommunikation mit `/api/users/signup` gänzlich fehlschlägt, wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
 
@@ -797,7 +797,7 @@ if (loginForm) {
 }
 ~~~
 
-Im Anschluss werden die Eingaben `email` und `password` aus dem Formular über die festgelgte ElementId ausgelesen:
+Im Anschluss werden die Eingaben `email` und `password` aus dem Formular über die festgelegte ElementId ausgelesen:
 
 ~~~js
 const email = document.getElementById('email-input').value;
@@ -806,9 +806,9 @@ const password = document.getElementById('password-input').value;
 
 Innerhalb einer try-catch funktion werden nun die Usereingaben an das Backend gesendet, wobei über `catch` mögliche Serverfehler abgefangen werden. 
 
-Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URI `/api/users/login` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird. Zudem zeigt `credentials: 'include` dem Backend, dass der Client noch keine Cookies hat, da sie dadurch normalerweise mitgesendet würden, allerdings noch nicht vorhanden sind. Zusätzlich akzeptiert der Browser aufgrunddessen Cookies, die vom Server gesendet werden. Als Resultat erstellt der Server einen Cookie, der dem Client gesendet wird und bei zukünftigen Anfragen an den Server mitgesendet wird. 
+Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URI `/api/users/login` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird. Zudem zeigt `credentials: 'include` dem Backend, dass der Client noch keine Cookies hat, da sie dadurch normalerweise mitgesendet würden, allerdings noch nicht vorhanden sind. Zusätzlich akzeptiert der Browser aufgrund dessen Cookies, die vom Server gesendet werden. Als Resultat erstellt der Server einen Cookie, der dem Client gesendet wird und bei zukünftigen Anfragen an den Server mitgesendet wird. 
 
- `if(res.ok)`überprüft, ob die Antwort von `/api/users/signup` im 200er Bereich liegt, da im Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung eines erfolgreichen Logins und der User wird auf die `./homepage` weitergeleitet. Zudem wird der firstName im `localStorage` des Browsers gespeichert. Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung mit der übermittelten Message ausgegeben. 
+ `if(res.ok)`überprüft, ob die Antwort von `/api/users/signup` im 200-er Bereich liegt, da im Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung eines erfolgreichen Logins und der User wird auf die `./homepage` weitergeleitet. Zudem wird der firstName im `localStorage` des Browsers gespeichert. Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung mit der übermittelten Message ausgegeben. 
 
  Falls die Kommunikation mit `/api/users/signup` gänzlich fehlschlägt, wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
 
@@ -839,7 +839,7 @@ try {
 ### Verarbeitung des Uploads in `upload.js`
 Das Dokument `upload.js` ist im Rahmen der Dateiverarbeitungslogik dafür zuständig, die vom User ausgewählte Datei zusammen mit vom User gewähltem Titel, Beschreibung, Tag an den Server zu übermitteln, damit dieser das File dann in der Mongo-Datenbank speichern kann. Einbindung: `upload.js`ist in `share.html` eingebunden.
 
-Zunächst wird ein EventListener für den Upload-Button erstellt, der auf das Event `'click'` reagiert. Falls das Event eintrit, werden der Titel und die Beschreibung, ausgewählte File sowie der Tag ausgelesen. Falls es einen Tag gibt, wird außerdem, der dazugehörige value erfasst (hier:Exercises, Summary, Scribbled Notes) Sollte kein Tag ausgewählt sein, erscheint ein Altert mit der Aufforderung, einen Tag auszuwählen: 
+Zunächst wird ein EventListener für den Upload-Button erstellt, der auf das Event `'click'` reagiert. Falls das Event eintritt, werden der Titel und die Beschreibung, ausgewählte File sowie der Tag ausgelesen. Falls es einen Tag gibt, wird außerdem, der dazugehörige Value erfasst (hier: Exercises, Summary, Scribbled Notes). Sollte kein Tag ausgewählt sein, erscheint ein Altert mit der Aufforderung, einen Tag auszuwählen: 
 
 ~~~js
 document.getElementById('upload-btn').addEventListener('click', async function(event) {
@@ -861,7 +861,7 @@ document.getElementById('upload-btn').addEventListener('click', async function(e
 ~~~
 
 Für die Fehlerbehandlung in der Kommunikation wird `try-catch` verwendet.
-Zunächst wird eine GET-Anfrage an dei Route `/api/users/status`gesendet, wodurch überprüft wird, ob der User eingeloggt ist. Die Antwort wird dass in ein JavaScript-Obejekt umgewandelt.
+Zunächst wird eine GET-Anfrage an dei Route `/api/users/status`gesendet, wodurch überprüft wird, ob der User eingeloggt ist. Die Antwort wird, dass in ein JavaScript-Objekt umgewandelt.
 
 ~~~js
 const response = await fetch('/api/users/status');
@@ -908,7 +908,7 @@ if (status.loggedIn) {
 }
 ~~~
 
-In Anbhängigkeit der Antwort von der API-Route werden Alerts über den Status des Hochladens generiert: 
+In Abhängigkeit der Antwort von der API-Route werden Alerts über den Status des Hochladens generiert: 
 
 ~~~js
 if (uploadResponse.status === 200) {
@@ -935,7 +935,7 @@ Sollte die Kommunikation mit dem Server fehlschlagen, wird der `catch` ausgelös
 #### Anpassung Navigationsleiste
 Mittels des Dokuments `navbar.js` wird in die Navigationsleiste nach erfolgreichem Einloggen ein Logout-Button integriert. Dies geschieht auf allen statischen HTML-Seiten. Ebenso wird der Logout hier über die Schnittstelle `/api/users/logout` abgewickelt und eine GateKeeper Funktion sorgt dafür, dass nur eingeloggte Benutzer auf die Share-Seite gelangen.
 
-Zu Beginn stellt der DOMContentLoaded-Event Listener sicher, dass die Seite fertig geladen ist, bevor das Sktipt ausgeführt wird. Darauffolgend wird durch eine GET- Anfrage überprüft, ob der Nutzer eingeloggt ist, wobei die Antowort des Servers in JSON geparst wird: 
+Zu Beginn stellt der DOMContentLoaded-Event Listener sicher, dass die Seite fertig geladen ist, bevor das Skript ausgeführt wird. Darauffolgend wird durch eine GET-Anfrage überprüft, ob der Nutzer eingeloggt ist, wobei die Antwort des Servers in JSON geparst wird: 
 
 ~~~js
 fetch('/api/users/status', { credentials: 'include' })
@@ -956,7 +956,7 @@ Eine Antwort des Servers kann beispielsweise so aussehen:
 }
 ~~~
 
-Bei erfolgreichem Login und wenn das DOM-Element `user-menu` existiert, wird das `user-menu` ersetzt durch eine personalisierte Bergrüßung: `Hallo {firstName}` und einen Logout-Button:
+Bei erfolgreichem Login und wenn das DOM-Element `user-menu` existiert, wird das `user-menu` ersetzt durch eine personalisierte Begrüßung: `Hallo {firstName}` und einen Logout-Button:
 
 ~~~js
 if (data.loggedIn && userMenu) {
@@ -971,7 +971,7 @@ if (data.loggedIn && userMenu) {
 ~~~
 
 #### Logout-Verarbeitung
-Auf den Logout wird ein EventListener gesetzt, der beim Klick auf Logout eine POST-Anfrage an  `/api/users/logout` sendet und die Cookies mitsendet. Wenn die Antwort des Servers im 200er Bereich liegt, wird der User auf die Login-Seite navigiert:
+Auf den Logout wird ein EventListener gesetzt, der beim Klick auf Logout eine POST-Anfrage an  `/api/users/logout` sendet und die Cookies mitsendet. Wenn die Antwort des Servers im 200-er Bereich liegt, wird der User auf die Login-Seite navigiert:
 
 ~~~js
 const logoutEl = userMenu.querySelector(".logout");
@@ -992,9 +992,9 @@ logoutEl.addEventListener("click", async () => {
 ~~~
 
 #### GateKeeper-Funktion für den Share-Button 
-Die GateKeeper-Funktion überprüft beim betätigen des `share-btn` in der Navigationsleiste ob der Benutzer eingeloggt ist. Das ist deshalb relevant, da beim Hochladen einer Datei eine UserID erwartet wird. Dieser Schutzmechanismus koexistiert mit einer Funktion in `/src/routes/share.js`, die von der Backendseite ebenfalls gewährleisten soll, dass nur eingeloggte Nutzer auf die Share-Seite geroutet werden. Da clientseitige Beschränkungen umgangen werden können, haben wir uns entschieden, dies sowohl im Front- als auch im Backend zu überprüfen.
+Die GateKeeper-Funktion überprüft beim Bestätigen des `share-btn` in der Navigationsleiste ob der Benutzer eingeloggt ist. Das ist deshalb relevant, da beim Hochladen einer Datei eine UserID erwartet wird. Dieser Schutzmechanismus koexistiert mit einer Funktion in `/src/routes/share.js`, die von der Backendseite ebenfalls gewährleisten soll, dass nur eingeloggte Nutzer auf die Share-Seite geroutet werden. Da clientseitige Beschränkungen umgangen werden können, haben wir uns entschieden, dies sowohl im Front- als auch im Backend zu überprüfen.
 
-Per GET-Anfrage wird an die Route `api/users/status` die Anfrage gestellt, ob der Benutzer eingeloggt ist und die Antwort wird in JSON geparst. Siehe oben, wie eine Mögliche Antwort vom Server aussehen kann. 
+Per GET-Anfrage wird an die Route `api/users/status` die Anfrage gestellt, ob der Benutzer eingeloggt ist und die Antwort wird in JSON geparst. Siehe oben, wie eine mögliche Antwort vom Server aussehen kann. 
 
 Nachfolgend wird die Antwort überprüft. Ist der Benutzer eingeloggt, wird zu `/share` navigiert, ansonsten zur Login-Seite. Sollte ein Fehler auftreten, der durch try-catch abgefangen wird, wird ebenfalls auf die Login-Seite navigiert: 
 
@@ -1024,9 +1024,9 @@ const shareButton = document.getElementById("share-btn");
 
 ### Suchfunktion über `frontendBrowse.js`
 #### Grundfunktionen und Suchanfrage an das Backend
-Das Skript `frontendBrowse.js` trägt mit dazu bei, ein anschauliches und funktinieredes User Interface für eine Dokumentensuche zu generieren.
+Das Skript `frontendBrowse.js` trägt mit dazu bei, ein anschauliches und funktionierendes User Interface für eine Dokumentensuche zu generieren.
 
-Anfänglich wird ein EventListener auf das Event `DOMContentLoaded` angewandt und auf die DOM-Elemente `search-form` und `search-results` des HTML-Dokumts `browse.html` zugegriffen. `searchForm` verweist auf das Suchformular, `resultsSection` auf den Abschnitt, in dem die Suchergebnisse angezeigt werden sollen und bekommt die CSS-Klasse `browse-card-container`: 
+Anfänglich wird ein EventListener auf das Event `DOMContentLoaded` angewandt und auf die DOM-Elemente `search-form` und `search-results` des HTML-Dokuments `browse.html` zugegriffen. `searchForm` verweist auf das Suchformular, `resultsSection` auf den Abschnitt, in dem die Suchergebnisse angezeigt werden sollen und bekommt die CSS-Klasse `browse-card-container`: 
 
 ~~~js
 document.addEventListener("DOMContentLoaded", () => {
@@ -1036,7 +1036,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 ~~~
 
-Um die Suchparameter abzugreifen, wird ein EventListener auf das Event `'submit'` der `searchForm` gelegt, wodurch bei eintreten des Events die searchForm in eine neues FormData-Objekt verpackt, woraus dann der vom User ausgewählte Tag und Suchbegriff extrahiert werden: 
+Um die Suchparameter abzugreifen, wird ein EventListener auf das Event `'submit'` der `searchForm` gelegt, wodurch bei Eintreten des Events die searchForm in ein neues FormData-Objekt verpackt, woraus dann der vom User ausgewählte Tag und Suchbegriff extrahiert werden: 
 
 ~~~js
 searchForm.addEventListener("submit", async (e) => {
@@ -1057,7 +1057,7 @@ if (tag) {
 }
 ~~~
 
-Im Anschluss wird über `fetch()`eine GET-Anfrage an die URL gesendet, wo die Suchparameter aus der URL extrahiert werden und eine Datenbank abfrage gestartet wird. Die Antwort wird in JSON geparst:
+Im Anschluss wird über `fetch()`eine GET-Anfrage an die URL gesendet, wo die Suchparameter aus der URL extrahiert werden und eine Datenbank Abfrage gestartet wird. Die Antwort wird in JSON geparst:
 
 ~~~js
 try {
@@ -1067,7 +1067,7 @@ try {
 }
 ~~~
 
-Eine mögliche *vollständige* Antwort des Servers an den Client könnte wie folgt ausssehen, wenn 2 Dokumente zu den Suchparametern `searchTerm`: "JavaScript" und `tag`: "exercises" gefunden werden:
+Eine mögliche *vollständige* Antwort des Servers an den Client könnte wie folgt aussehen, wenn 2 Dokumente zu den Suchparametern `searchTerm`: "JavaScript" und `tag`: "exercises" gefunden werden:
 
 ~~~js
 res.status(200).json({
@@ -1097,9 +1097,9 @@ res.status(200).json({
 Bevor die Antwort verarbeitet wird, wird die `resultssection` gecleared, damit es bei aufeinanderfolgenden Suchen keine Konflikte gibt.  
 
 #### Erstellen der Browse-Cards
-Werden keine Dokumente gefunen (`data.numDocs === 0`), wird der Schriftzug `"No documents found."` in der resultsSection angezeigt. Andernffalls erstellt das Skript für jedes Dokument ein `"div"`-Element und weist die CSS-Klasse `"browse-grid-container"` zu. Innerhalb des `"div"`-Elements wird nun ein Bild eingefügt, das als Platzhalter dient, für eine mögliche spätere Funktion der Dokumentenvorschau, die wir uns als Zukunftsausblick vorbehalten möchten. Zudem werden der Dokumententitel, die Beschreibung und der Autor angezeigt. Das Uploaddatum wird zum jetztigen Zeitpunkt nicht angezeigt, ist allerdings in der Antwort des Servers vorhanden, um es gegebenenfalls zu einem späteren Zeitpunkt einfach integrieren zu können. 
+Werden keine Dokumente gefunden (`data.numDocs === 0`), wird der Schriftzug `"No documents found."` in der resultsSection angezeigt. Andernfalls erstellt das Skript für jedes Dokument ein `"div"`-Element und weist die CSS-Klasse `"browse-grid-container"` zu. Innerhalb des `"div"`-Elements wird nun ein Bild eingefügt, das als Platzhalter dient, für eine mögliche spätere Funktion der Dokumentenvorschau, die wir uns als Zukunftsausblick vorbehalten möchten. Zudem werden der Dokumententitel, die Beschreibung und der Autor angezeigt. Das Uploaddatum wird zum jetzigen Zeitpunkt nicht angezeigt, ist allerdings in der Antwort des Servers vorhanden, um es gegebenenfalls zu einem späteren Zeitpunkt einfach integrieren zu können. 
 
-Diese `"div"`-Elemente werden anchließend der resultsSection zugewiesen, also dem Bereich, im HTML-Dokument `browse.html`, wo die Ergebnisse angezeigt werden sollen und jedes `"div"`-Element bekommt einen Download-Button zugewiesen, beidem die `docID`als `data-id` mitgegeben wird.. 
+Diese `"div"`-Elemente werden anschließend der resultsSection zugewiesen, also dem Bereich, im HTML-Dokument `browse.html`, wo die Ergebnisse angezeigt werden sollen und jedes `"div"`-Element bekommt einen Download-Button zugewiesen, beidem die `docID`als `data-id` mitgegeben wird. 
 
 ~~~js
 try {
@@ -1133,7 +1133,7 @@ try {
 }
 ~~~
 #### Download
-Damit der Benutzer einen Download durchführen kann, wird ein EventListener auf sämtliche `"click"`-Events in der `resultsSection` erstellt. Zusätzlich wird geprüft, ob das `"click"`-Event auf ein Element mit der Klasse `"download-btn"` stattfindet, da nur die aus den Suchergebnissen erstellten `"div"`-Elemente dieser Klasse zugewiesen sind. Wird also eines der vorher erstellen `"div"`-Elemente angeclickt, wird die docID dieses spezifischen Elements ausgelesen und der Client wird zu `/browse/download?docID=${docID}` navigiert, wodurch die `docID` durch das Backend (hier: `/src/routes/browse.js`) genutzt wird um das ausgewählte Dokument zurückzusenden, was den Download auslöst.
+Damit der Benutzer einen Download durchführen kann, wird ein EventListener auf sämtliche `"click"`-Events in der `resultsSection` erstellt. Zusätzlich wird geprüft, ob das `"click"`-Event auf ein Element mit der Klasse `"download-btn"` stattfindet, da nur die aus den Suchergebnissen erstellten `"div"`-Elemente dieser Klasse zugewiesen sind. Wird also eines der vorher erstellen `"div"`-Elemente angeklickt, wird die docID dieses spezifischen Elements ausgelesen und der Client wird zu `/browse/download?docID=${docID}` navigiert, wodurch die `docID` durch das Backend (hier: `/src/routes/browse.js`) genutzt wird, um das ausgewählte Dokument zurückzusenden, was den Download auslöst.
 
 ~~~js
 resultsSection.addEventListener("click", (e) => {
@@ -1148,7 +1148,7 @@ resultsSection.addEventListener("click", (e) => {
 ## Serverseitige Implementierung
 ### Grundsätzliche Anforderungen
 
-Das Backend soll einen schnellen und effizienten Umgang mit den Requests der Users ermöglichen. 
+Das Backend soll einen schnellen und effizienten Umgang mit den Requests der User ermöglichen. 
 
 Das Backend basiert auf der Node.js-Runtime und ist in der Datei `src/app.js` implementiert. Zudem wird Express.js als Web-Applikations-Framework verwendet, um einfach Handling von Requests und Responses zu ermöglichen. Als Datenbank wird MongoDB verwendet, mehr dazu unter [Datenbank](#datenbank).
 
@@ -1270,7 +1270,7 @@ Dieser Router verfolgt eine von den anderen Unterseiten-Routern abweichende Logi
 
 Die Aufgabe der Browse-Seite ist es, dem User die Möglichkeit zum Durchsuchen der in der Datenbank hinterlegten Dokumente zu geben. `searchTerm` ist hierbei der Suchbegriff, welcher im Titel oder der Beschreibung eines Dokuments vorkommen muss, damit das Dokument als mögliches Suchergebnis in Frage kommt.
 
-Darüber hinaus kann der User nach Tags filtern, d.h. nur Dokumente mit einem der spezifizierten Tags werden ihm angezeigt. Dieser Filter wird ebenfalls bereits in der Serverseitigen Business-Logik angewendet.
+Darüber hinaus kann der User nach Tags filtern, d.h. nur Dokumente mit einem der spezifizierten Tags werden ihm angezeigt. Dieser Filter wird ebenfalls bereits in der serverseitigen Business-Logik angewendet.
 
 Es wird also erst versucht, der Request diese beiden Queries zu entnehmen:
 ~~~js
@@ -1316,7 +1316,7 @@ Gibt es einen `searchTerm`, wird der passende Filter `query` formuliert, welcher
 ~~~
 Anschließend wird die Suche in der Datenbank mit dem Filter durchgeführt und die Ergebnisse auf die Attribute `userID`, `title`, `uploadDate`, `description` und `tag` projiziert. Diese Projektion findet statt, da client-seitig keine anderen Informationen über die Dokumente benötigt werden.
 
-Außerdem werden mit Hilfe des `User`-Modells die `userID`s um die `firstName`-Attribute der User ergänzt, und ein Mapping der aktuellen Attribut-Werte zu den im Frontend erwartetetn Keys vollzogen:
+Außerdem werden mithilfe des `User`-Modells die `userID`s um die `firstName`-Attribute der User ergänzt, und ein Mapping der aktuellen Attribut-Werte zu den im Frontend erwarteten Keys vollzogen:
 ~~~js
     // Populate with user info
     const populatedMatches = await Doc.populate(matches, {
@@ -1380,7 +1380,7 @@ router.get("/download", async (req, res) => {
       return res.status(400).send("The document you requested does not seem to exist");
     }
 ~~~
-Existiert ein Dokument mit der angfragten ID in der Datenbank, so wird ein passender Response-Header formuliert und die Datei mit Status 200 an den Client zurückgesendet:
+Existiert ein Dokument mit der angefragten ID in der Datenbank, so wird ein passender Response-Header formuliert und die Datei mit Status 200 an den Client zurückgesendet:
 ~~~js
       // If the document exists, send it to the client
       console.log(file);
@@ -1441,7 +1441,7 @@ router.post("/", async (req, res) => {
         const tag = body.tag;
         const userID = body.userID;
 ~~~
-Wurde die Request entsprechend destrukturiert, kann überprüft werden, ob es einen entsprechenden User mit dieser ID in der Datenbank gibt und wenn ja, ein neues `Doc`-Objekt mit den passenden Attributen erzeugt, gespeichert und die Response über den Erfolgreichen Upload an den Client gesendet werden:
+Wurde die Request entsprechend destrukturiert, kann überprüft werden, ob es einen entsprechenden User mit dieser ID in der Datenbank gibt und wenn ja, ein neues `Doc`-Objekt mit den passenden Attributen erzeugt, gespeichert und die Response über den erfolgreichen Upload an den Client gesendet werden:
 ~~~js
         // Checking if user exists
         const user = await User.findById(userID).exec();
@@ -1466,7 +1466,7 @@ Wurde die Request entsprechend destrukturiert, kann überprüft werden, ob es ei
         await doc.save();
         return res.status(200).json({ message: "Doc saved successfully" });
 ~~~
-Gibt es bei einem dieser Schritte einen Fehler, wird dem Client ein Status 500 gesendet, um zu signalisieren, dass es serverseitig ein Problem gegegben haben muss (es könnte auch das Format der Request falsch sein, allerdings lassen sich auch Fehler durch serverseitige Schwächen wie die Inkompatibilität des aktuellen [Datenbank-Setups](#datenbank) für Dateien mit mehr als 16MB hervorrufen):
+Gibt es bei einem dieser Schritte einen Fehler, wird dem Client ein Status 500 gesendet, um zu signalisieren, dass es serverseitig ein Problem gegeben haben muss (es könnte auch das Format der Request falsch sein, allerdings lassen sich auch Fehler durch serverseitige Schwächen wie die Inkompatibilität des aktuellen [Datenbank-Setups](#datenbank) für Dateien mit mehr als 16 MB hervorrufen):
 ~~~js
     } catch (err) {
         // Error handling
@@ -1481,7 +1481,7 @@ module.exports = router;
 #### Signup, Login und Signup durch `userRoutes.js`
 Aufgabe von `userRoutes.js` ist es, drei Routen - `api/users/signup`, `api/users/login` und `api/users/logout` - zu erstellen, welche dem Client POST-Requests für die Registrierung, den Login oder den Logout eines Users ermöglichen.
 
-Hierzu wird das `User`-Schema der Datenbank benötigt, sowie ein Modul `bcrypt` zum Hashig des vom User vergebenen Passworts mit Hilfe eines ebenfalls durch `bcrypt` generierten Salts. Dieser `passwordHash` wird initial bei der Registrierung eines neuen Nutzers berechnet und als dessen Passwort in der Datenbank hinterlegt. Zuvor werden die Validität der Signup-POST-Request überprüft und sichgerstellt, dass es nicht bereits einen Nutzer mit derselben E-Mail-Adresse gibt. Diese Einmaligkeit ist wichtig, da die E-Mail-Adresse später auch beim Login vom Nutzer verwendet wird. Zeitliche Kontinuität hingegen ist keine Anforderung an die E-Mail-Adresse, da alle mit dem User verknüpften Daten anderer Collections in der Datenbank hierfür den Primärschlüssel `_id` des Users für die Zuordnung nutzen.
+Hierzu wird das `User`-Schema der Datenbank benötigt, sowie ein Modul `bcrypt` zum Hashing des vom User vergebenen Passworts mithilfe eines ebenfalls durch `bcrypt` generierten Salts. Dieser `passwordHash` wird initial bei der Registrierung eines neuen Nutzers berechnet und als dessen Passwort in der Datenbank hinterlegt. Zuvor werden die Validität der Signup-POST-Request überprüft und sichergestellt, dass es nicht bereits einen Nutzer mit derselben E-Mail-Adresse gibt. Diese Einmaligkeit ist wichtig, da die E-Mail-Adresse später auch beim Login vom Nutzer verwendet wird. Zeitliche Kontinuität hingegen ist keine Anforderung an die E-Mail-Adresse, da alle mit dem User verknüpften Daten anderer Collections in der Datenbank hierfür den Primärschlüssel `_id` des Users für die Zuordnung nutzen.
 
 Die oben beschriebenen Abläufe sind folgendermaßen implementiert:
 ~~~js
@@ -1572,7 +1572,7 @@ router.post('/logout', (req, res) => {
   });
 });
 ~~~
-Eine letzte Route `/api/users/status` gibt es außerdem zur Abfrage des Session-Status - ob der Client aktuell mit einem User eingeloggt ist oder nicht. Hier wird eine entsprechende GET-Request mit einer Response mit JSON-Body beantwortet, der einen mit Booleschem Wert belegten Key `loggedIn` enhtält und auch die User-Informationen zurücksendet, sollte dieser eingeloggt sein (`id`, `firstName` und `email`):
+Eine letzte Route `/api/users/status` gibt es außerdem zur Abfrage des Session-Status - ob der Client aktuell mit einem User eingeloggt ist oder nicht. Hier wird eine entsprechende GET-Request mit einer Response mit JSON-Body beantwortet, der einen mit Booleschem Wert belegten Key `loggedIn` enthält und auch die User-Informationen zurücksendet, sollte dieser eingeloggt sein (`id`, `firstName` und `email`):
 ~~~js
 // request session status (logged in or not)
 router.get('/status', (req, res) => {
@@ -1590,7 +1590,7 @@ router.get('/status', (req, res) => {
 ### Datenzugriff und Modellinteraktion
 Bei der verwendeten Datenbank handelt es sich um eine MongoDB-Datenbank, welche alle CRUD-Operationen unterstützt. Vorteile dieser NoSQL-Datenbank sind die BSON-Datenstruktur, welche JSON stark ähnelt, und die allgemein sehr einfache Integration von MongoDB und JavaScript miteinander durch das `mongoose`-Modul.
 
-Für das Prototyping und die Nutzung der Datenbank zur Entwicklung dieses Projektes mit verhältnismäßig knappem Zeitrahmen hat sich MongoDB insbesondere auch angeboten, da die Collections einer MongoDB-Datenbank keinem festen Schema folgen müssen. Dokumente derselben Collection dürfen sich in den hinterlegten Feldern und den Datentypen dieser Felder voneinander unterscheiden. Das hat es einfach gemacht, die Datenbank schnell um  neue Daten zu erweitern und die hinterlegten Daten im Entwicklungsprozess anzupassen.
+Für das Prototyping und die Nutzung der Datenbank zur Entwicklung dieses Projektes mit verhältnismäßig knappem Zeitrahmen hat sich MongoDB insbesondere auch angeboten, da die Collections einer MongoDB-Datenbank keinem festen Schema folgen müssen. Dokumente derselben Collection dürfen sich in den hinterlegten Feldern und den Datentypen dieser Felder voneinander unterscheiden. Das hat es einfach gemacht, die Datenbank schnell um neue Daten zu erweitern und die hinterlegten Daten im Entwicklungsprozess anzupassen.
 
 Auch die Möglichkeit, beispielsweise PDF-Dateien in Buffern direkt in Dokumenten der Datenbank zu speichern - nicht nur deren Pfade im Dateiverzeichnis - und die Datenbank selbst per `mongodump`-Befehl als JSON-Datei zu exportieren, hat in Kombination mit Git zum Versionsmanagement die synchrone Projektarbeit über mehrere Geräte hinweg erleichtert.
 
@@ -1643,7 +1643,7 @@ module.exports = mongoose.model("Doc", docSchema);
 
 Identisch verfahren wird für das Modell der Dokumente. Eine Besonderheit ist hier, dass neben den anderen Attributen - auf diese wird nicht näher eingegangen, da sie auch bereits dem [ER-Modell](#er-model) entnommen werden können - auch die zu speichernde Datei selbst in einem Feld namens `file` vom Typ `Buffer` hinterlegt wird.
 
-Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16MB zu unterstützen [^3]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
+Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16 MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16 MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16 MB zu unterstützen [^3]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
 
 #### Praxisbezogene Optimierungen
 
@@ -1693,8 +1693,8 @@ Kapitel behandeln die Themen HTML und CSS.
 https://designer.microsoft.com/home 
 
 Die Bildgenerierung Software Microsoft Designer wurde zur Erstellung der Grafiken verwendet.  
-Mittels des Prompts "Logo für eine App mit Namen "StudyBuddy" in blau und 
-lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
+Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in Blau und 
+Lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
 Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
 Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
 hatte. Trotz des Hinweisens der KI auf diesen Fehler konnte keine 
@@ -1702,7 +1702,7 @@ Korrektur erfolgen.
 Deshalb wurde der Schriftzug manuell erstellt.
 
 Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
-erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
+erstellt. Der hier verwendete Prompt ist _"In Blau und Lila. Gezeichnete 
 Figur, die am PC etwas sucht. "studybuddy""._ Dort wurden aus vier 
 generierten Bildern die zwei Grafiken ausgewählt, die auch auf der Homepage 
 zu sehen sind.
@@ -1744,7 +1744,7 @@ svg-Element kopiert und in der HTML-Datei eingefügt werden.
 https://www.iana.org/assignments/media-types/media-types.xhtml#image
 
 Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
-Dies wurde für die Bestimmung der erlaubten Upload Dateien auf der Seite 
+Dies wurde für die Bestimmung der erlaubten Upload-Dateien auf der Seite 
 "Share" benötigt.  
 Codeauszug:  
 ```html
