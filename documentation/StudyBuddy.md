@@ -663,9 +663,9 @@ Letztendlich konnte die Webseite trotz dieser Herausforderung erfolgreich respon
 ## Serverseitige Implementierung
 ### Grundsätzliche Anforderungen
 
-Das Backend soll einen schnellen und effizienten Umgang mit den Requests der Users ermöglichen. 
+Das Backend soll einen schnellen und effizienten Umgang mit den Requests der User ermöglichen. 
 
-Das Backend basiert auf der Node.js-Runtime und ist in der Datei `src/app.js` implementiert. Zudem wird Express.js als Web-Applikations-Framework verwendet, um einfach Handling von Requests und Responses zu ermöglichen. Als Datenbank wird MongoDB verwendet, mehr dazu unter [Datenbank](#datenbank).
+Das Backend basiert auf der Node.js-Runtime und ist in der Datei `src/app.js` implementiert. Zudem wird Express.js als Web-Applikations-Framework verwendet, um einfaches Handling von Requests und Responses zu ermöglichen. Als Datenbank wird MongoDB verwendet, mehr dazu unter [Datenbank](#datenbank).
 
 Besondere Sicherheitsanforderungen werden explizit nicht gestellt. In der Realität wäre es empfehlenswert, neben anderen Sicherheitsvorkehrungen beispielsweise HTTPS statt HTTP zu verwenden. Darauf wird hier jedoch verzichtet, um unnötige Komplexität zu vermeiden und das Projekt auf dessen funktionale Kernbestandteile zu beschränken.
 
