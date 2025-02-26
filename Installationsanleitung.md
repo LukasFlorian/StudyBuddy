@@ -51,7 +51,7 @@ npm install
 ## Schritt 5 (app.js)
 Navigieren Sie nun im Terminal in das entpackte Verzeichnis und führen folgenden Befehl aus aus.
 ~~~bash
-src/app.js
+node src/app.js
 ~~~
 
 ## Schritt 6 (localhost:3000)
