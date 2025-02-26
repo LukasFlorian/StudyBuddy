@@ -7,7 +7,7 @@ Entpacken Sie die ZIP-Datei `"Programmentwurf_Atussa_Chiara_Lukas_Nils.zip"`
 Stellen Sie sicher, dass Node.js (mindestens Version 12 oder höher installiert ist)
 
 ## Schritt 3 (Abhängigkeiten installieren)
-**1.** Öffnen Sie ein Terminal und wechseln Sie in das Projektverzeichnis, in dem die Datei entpackt wurde.
+**1.** Öffnen Sie ein Terminal und wechseln Sie in das Projektverzeichnis, in dem die Datei entpackt wurde und navigieren Sie in das entpackte Verzeichnis.
 **2.** Führen Sie anschließend den Befehl aus.
 ~~~bash
 npm install
@@ -47,3 +47,12 @@ npm install
 ![alt text](image-12.png)
 
 **13.** Hier müssen nun keine Änderungen vorgenommen werden. Wählen Sie `"Save & Connect"`
+
+## Schritt 5 (app.js)
+Navigieren Sie nun im Terminal in das entpackte Verzeichnis und führen folgenden Befehl aus aus.
+~~~bash
+src/app.js
+~~~
+
+## Schritt 6 (localhost:3000)
+Öffnen Sie in einem Browser localhost:3000. Viel Spaß!
