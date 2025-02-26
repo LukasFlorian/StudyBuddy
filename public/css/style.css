@@ -789,10 +789,6 @@ from this we take the direct child label*/
         width: 100%;
         z-index: 2;
     }
-    /* Verschiebung um 50 % nach unten*/
-    div.hp-main-cards:nth-of-type(2){
-        top: 50%
-    }
 
     .hp-button {
         font-size: 0.8rem;
