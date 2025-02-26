@@ -23,17 +23,31 @@
     - [Responsives Design](#responsives-design)
       - [Breakpoints](#breakpoints)
       - [Umsetzung der Responsivität](#umsetzung-der-responsivität)
+  - [Clientseitige Implementierung](#clientseitige-implementierung)
+    - [Grundlegende Struktur](#grundlegende-struktur)
+    - [Login/Signup-Handling in `validation.js`](#loginsignup-handling-in-validationjs)
+      - [Signup](#signup)
+      - [Login](#login)
+    - [Verarbeitung des Uploads in `upload.js`](#verarbeitung-des-uploads-in-uploadjs)
+    - [Anpassung der Navigationsleiste, wenn Benutzer eingeloggt in `navbar.js`:](#anpassung-der-navigationsleiste-wenn-benutzer-eingeloggt-in-navbarjs)
+      - [Anpassung Navigationsleiste](#anpassung-navigationsleiste)
+      - [Logout-Verarbeitung](#logout-verarbeitung)
+      - [GateKeeper-Funktion für den Share-Button](#gatekeeper-funktion-für-den-share-button)
+    - [Suchfunktion über `frontendBrowse.js`](#suchfunktion-über-frontendbrowsejs)
+      - [Grundfunktionen und Suchanfrage an das Backend](#grundfunktionen-und-suchanfrage-an-das-backend)
+      - [Erstellen der Browse-Cards](#erstellen-der-browse-cards)
+      - [Download](#download)
   - [Serverseitige Implementierung](#serverseitige-implementierung)
     - [Grundsätzliche Anforderungen](#grundsätzliche-anforderungen)
     - [Server-Einstiegspunkt `app.js`](#server-einstiegspunkt-appjs)
     - [Routing und API-Endpunkte](#routing-und-api-endpunkte)
-      - [`browse.js`](#browsejs)
-      - [`uploadRoute.js`](#uploadroutejs)
-      - [`userRoutes.js`](#userroutesjs)
+      - [Dokumenten-Browsing mit `browse.js`](#dokumenten-browsing-mit-browsejs)
+      - [Dokumenten-Upload mit `uploadRoute.js`](#dokumenten-upload-mit-uploadroutejs)
+      - [Signup, Login und Signup durch `userRoutes.js`](#signup-login-und-signup-durch-userroutesjs)
     - [Datenzugriff und Modellinteraktion](#datenzugriff-und-modellinteraktion)
+      - [User-Modell: `userModel.js`](#user-modell-usermodeljs)
+      - [Dokumenten-Modell: `docModel.js`](#dokumenten-modell-docmodeljs)
       - [Praxisbezogene Optimierungen](#praxisbezogene-optimierungen)
-      - [`userModel.js`](#usermodeljs)
-      - [`docModel.js`](#docmodeljs)
   - [Hilfsmittel](#hilfsmittel)
     - [Literatur](#literatur)
     - [Artificial Intelligence](#artificial-intelligence)
@@ -48,6 +62,9 @@
       - [Abb. 6: Kompositionsdiagramm Impressum](#abb-6-kompositionsdiagramm-impressum)
       - [Abb. 7: Kompositionsdiagramm Browse](#abb-7-kompositionsdiagramm-browse)
       - [Abb. 8: Kompositionsdiagramm Share](#abb-8-kompositionsdiagramm-share)
+      - [Abb. 9: Browse-Schema](#abb-9-browse-schema)
+      - [Abb. 10: Download-Schema](#abb-10-download-schema)
+      - [Abb. 11: Upload-Schema](#abb-11-upload-schema)
   - [Stichwortverzeichnis](#stichwortverzeichnis)
 
 
@@ -58,60 +75,90 @@
   </summary>
 
 ~~~console
-/StudyBuddy
-|-- /config
-|   |-- config.js
-|   |-- nginx.conf
-|
-|-- /src
-|   |-- /controllers
-|   |   |-- userController.js
-|   |   |-- productController.js
-|   |
-|   |-- /models
-|   |   |-- userModel.js
-|   |   |-- productModel.js
-|   |
-|   |-- /routes
-|   |   |-- userRoutes.js
-|   |   |-- productRoutes.js
-|   |
-|   |-- /middleware
-|   |   |-- authMiddleware.js
-|   |   |-- errorHandling.js
-|   |
-|   |-- /utils
-|   |   |-- helper.js
-|   |
-|   |-- app.js
-|
-|-- /public
-|   |-- /css
-|   |   |-- main.css
-|   |
-|   |-- /js
-|   |   |-- main.js
-|   |
-|   |-- /images
-|   |   |-- logo.png
-|
-|-- /scripts
-|   |-- migrate.js
-|   |-- seed.js
-|
-|-- /static
-|   |-- /html
-|   |   |-- index.html
-|   |   |-- user.html
-|   |   |-- product.html
-|
-|-- .env
-|-- .gitignore
-|-- package.json
-|-- package-lock.json
-|-- README.md
+.
+├── config
+│   └── commit_file.md
+├── db
+│   └── StudyBuddy
+│       ├── docs.bson
+│       ├── docs.metadata.json
+│       ├── users.bson
+│       └── users.metadata.json
+├── documentation
+│   ├── img
+│   │   ├── 1_Erster_Entwurf.png
+│   │   ├── 2_Sitemap.png
+│   │   ├── 3_KompDia_Homepage.png
+│   │   ├── 4_KompDia_Login.png
+│   │   ├── 5_KompDia_Signup.png
+│   │   ├── 6_KompDia_Impressum.png
+│   │   ├── 7_KompDia_Browse.png
+│   │   ├── 8_KompDia_Share.png
+│   │   ├── browse.png
+│   │   ├── download.png
+│   │   ├── image-1.png
+│   │   ├── image-10.png
+│   │   ├── image-11.png
+│   │   ├── image-12.png
+│   │   ├── image-2.png
+│   │   ├── image-3.png
+│   │   ├── image-4.png
+│   │   ├── image-5.png
+│   │   ├── image-6.png
+│   │   ├── image-7.png
+│   │   ├── image-8.png
+│   │   ├── image-9.png
+│   │   ├── image.png
+│   │   └── upload.png
+│   └── StudyBuddy.md
+├── public
+│   ├── css
+│   │   └── style.css
+│   ├── img
+│   │   ├── browse_placeholder.png
+│   │   ├── favicon-96x96.png
+│   │   ├── favicon.svg
+│   │   ├── group_picture.png
+│   │   ├── hp_card1.jpeg
+│   │   ├── hp_card2.jpeg
+│   │   ├── login_email_icon.svg
+│   │   ├── login_lock_icon.svg
+│   │   ├── login_person_icon.svg
+│   │   ├── logo.png
+│   │   └── search.png
+│   └── js
+│       ├── frontendBrowse.js
+│       ├── navbar.js
+│       ├── upload.js
+│       └── validation.js
+├── src
+│   ├── models
+│   │   ├── docModel.js
+│   │   └── userModel.js
+│   ├── routes
+│   │   ├── browse.js
+│   │   ├── homepage.js
+│   │   ├── impressum.js
+│   │   ├── login.js
+│   │   ├── share.js
+│   │   ├── signup.js
+│   │   ├── uploadRoute.js
+│   │   └── userRoutes.js
+│   └── app.js
+├── static
+│   ├── browse.html
+│   ├── homepage.html
+│   ├── impressum.html
+│   ├── login.html
+│   ├── share.html
+│   └── signup.html
+├── Installationsanleitung.md
+├── README.md
+├── package-lock.json
+└── package.json
 ~~~
 </details>
+
 
 ## Frontend: HTML und CSS
 Mithilfe von HTML und CSS können die Struktur, der Inhalt und das Design von Webseiten
@@ -658,7 +705,445 @@ gewissen Programmier- und Testaufwand - der Desktop-First-Ansatz
 implementiert werden. 
 
 Letztendlich konnte die Webseite trotz dieser Herausforderung erfolgreich responsiv gestaltet werden.
+
+
+
+## Clientseitige Implementierung
+### Grundlegende Struktur
+
+Die clientseitige JavaScript Architektur folgt dem Prinzip der Seperation of Concers, wodurch hie die unterschiedlichen Verantwortungen klar voneinander getrennt sind. 
+
+Die für viele Funtkionalitäten benötigten Routen sind unter `src/routes` defniert und werden verwiesen unter `app.js`.
+
+Die im Verzeichnis `public/js` befindlichen JavaScript Dateien `frontendBrowse.js`, `navbar.js`, `upload.js`und `validation.js`, gewährleisten mittels Einbindungen in die statischen HTML-Seiten im Verzeichnis `/static`, und über Kommunikationsschnittstellen mit dem Backend, ein angenehmes User-Interface und eine sinnvolle Interaktionssteuerung.
+
+### Login/Signup-Handling in `validation.js`
+`validation.js` wird cleintseitig zur Abwicklung der Signup und Login Funktionen verwendet und ist eingebunden in `/static/login.html`und `/static/signup.html`. 
+
+Zunächst wird über einen EventListener geprüft ob, das HTML Dokument fertig geladen und geparst ist. Im Anschluss werden die Login- und Signup-Formulare über die jeweils festgelegte ID aufgerufen:
+
+~~~js
+document.addEventListener('DOMContentLoaded', () => {
+    const signupForm = document.getElementById('signup-form');
+    const loginForm = document.getElementById('login-form');
+    ...
+});
+~~~
+
+#### Signup
+Das Skript prüft zunächst, ob das signupForm-Element auf der Seite existiert. Falls ja, wird ein Event Listener hinzugefügt, der auf das submit-Ereignis des Formulars reagiert:
+
+~~~js
+if (signupForm) {
+      // event listener for the signup form
+      signupForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        ...
+    });
+}
+~~~
+
+Im Anschluss werden die Eingaben `firstName`, `email` und `password` aus dem Formular über die festgelgte ElementId ausgelesen:
+
+~~~js
+const firstName = document.getElementById('firstname-input').value;
+const email = document.getElementById('email-input').value;
+const password = document.getElementById('password-input').value;
+~~~
+
+Innerhalb einer try-catch funktion werden nun die Usereingaben an das Backend gesendet, wobei über `catch` mögliche Serverfehler abgefangen werden. 
+
+Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URL `/api/users/signup` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird.
+
+ `if(res.ok)`überprüft ob die Antwort von `/api/users/signup` zwischen 200-299 liegt, da Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung einer erfolgreichen Registrierung und der User wird auf die Loginseite weitergeleitet wird. Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung ausgegeben mit der übermittelten Message. 
+
+ Falls die Kommunikation mit `/api/users/signup` gänzlich fehltschlägt wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
+
+~~~js
+try {
+    const res = await fetch('/api/users/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName, email, password })
+          });
+          
+    const data = await res.json();
+
+    if (res.ok) {
+        alert('Registrierung erfolgreich!');
+        window.location.href = './login';
+    } else {
+        alert(`Fehler: ${data.message}`);
+    }
+}   catch (error) {
+    alert('Serverfehler!');
+    console.error('Fehler beim Signup:', error);
+}
+~~~
+
+#### Login
+
+Die Kommunikation des Login funktioniert nach dem gleichen Muster wie beim Signup, mit der Ausnahme, das hier `email` und `password` ausreichend sind, und der `firstName` nicht übertragen wird
+
+Das Skript prüft zunächst, ob das loginForm-Element auf der Seite existiert. Falls ja, wird ein Event Listener hinzugefügt, der auf das submit-Ereignis des Formulars reagiert:
+
+~~~js
+if (loginForm) {
+      // event listener for the signup form
+      loginForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        ...
+});
+}
+~~~
+
+Im Anschluss werden die Eingaben `email` und `password` aus dem Formular über die festgelgte ElementId ausgelesen:
+
+~~~js
+const email = document.getElementById('email-input').value;
+const password = document.getElementById('password-input').value;
+~~~
+
+Innerhalb einer try-catch funktion werden nun die Usereingaben an das Backend gesendet, wobei über `catch` mögliche Serverfehler abgefangen werden. 
+
+Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URL `/api/users/login` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird. Zudem zeigt `credentials: 'include` dem Backend, dass der Client noch keine Cookies hat, da sie dadurch normalerweise mitgesendet würden, allerdings noch nicht vorhanden sind. Zusätzlich akzeptiert der Browser aufgrunddessen Cookies, die vom Server gesendet werden. Als Resultat erstellt der Server ein Cookie, der dem Client gesendet wird und bei zukünftigen Anfragen an den Server mitgesendet wird. 
+
+ `if(res.ok)`überprüft ob die Antwort von `/api/users/signup` im 200er Bereich liegt, da Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung eines ergolgreichen Logins und der User wird auf die `./homepage` weitergeleitet. Zudem wird der firstName im `localStorage` des Browsers gespeichert.Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung ausgegeben mit der übermittelten Message. 
+
+ Falls die Kommunikation mit `/api/users/signup` gänzlich fehltschlägt wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
+
+~~~js
+try {
+    const res = await fetch('/api/users/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password })
+    });
     
+    const data = await res.json();
+    
+    if (res.ok) {
+        localStorage.setItem("firstName", data.firstName);
+        alert("Login erfolgreich!");
+        window.location.href = "./homepage";
+    } else {
+        alert(`Fehler: ${data.message}`);
+    }
+} catch (error) {
+    alert('Serverfehler!');
+    console.error('Fehler beim Login:', error);
+}
+~~~
+
+### Verarbeitung des Uploads in `upload.js`
+Das Dokument `upload.js` ist im Rahmen der Dateiverarbeitungslogik dafür zuständig, die vom User ausgewählte Datei zusammen mit vom User gewähltem Titel, Beschreibung, Tag an den Server zu übermitteln, damit dieser das File dann in der Mongo-Datenbank speichern kann. Einbindung: `upload.js`ist in `share.html` eingebunden.
+
+Zunächst wird ein EventListener für den Upload-Button erstellt, der auf das Event `'click'` reagiert. Falls das Event eintrit, werden der Titel und die Beschreibung, ausgewählte File sowie der Tag ausgelesen. Falls es einen Tag gibt, wird außerdem, der dazugehörige value erfasst (hier:Exercises, Summary, Scribbled Notes) Sollte kein Tag ausgewählt sein, erscheint ein Altert mit der Aufforderung, einen Tag auszuwählen: 
+
+~~~js
+document.getElementById('upload-btn').addEventListener('click', async function(event) {
+  event.preventDefault();
+
+  // collect form data
+  const documentTitle = document.getElementById('title').value;
+  const documentDescription = document.getElementById('description').value;
+  const uploadFile = document.getElementById('upload').files[0];
+  
+  // collect tag
+  const selectedTag = document.querySelector('input[name="tag"]:checked');
+  if (!selectedTag) {
+    alert('Bitte wähle einen Tag aus.');
+    return;
+  }
+  const tag = selectedTag.value;
+})
+~~~
+
+Für die Fehlerbehandlung in der Kommunikation wird `try-catch` verwendet.
+Zunächst wird eine GET-Anfrage an dei Route `/api/users/status`gesendet, wodurch überprüft wird, ob der User eingeloggt ist. Die Antwort wird dass in ein JavaScript-Obejekt umgewandelt.
+
+~~~js
+const response = await fetch('/api/users/status');
+const status = await response.json();
+~~~
+
+Die Antwort des Servers könnte beispielsweise so aussehen: 
+
+~~~js
+{
+  "loggedIn": true,
+  "user": {
+    "id": "12345",
+    "firstName": "Bob"
+  }
+}
+~~~
+
+Falls der Benutzer nicht eingeloggt, wird ein Alert mit `'Du bist nicht eingeloggt'` generiert.
+~~~js
+alert('Du bist nicht eingeloggt.')
+~~~
+
+Ist der Benutzer allerdings eingeloggt, wird ein FormData-Objekt erstellt, um die Daten für den Upload zu speichern. Infolgedessen wird dieses Objekt per POST-Anfrage an die API-Route `/api/upload` gesendet, wo es über weitere Verarbeitungsschritte in der Datenbank gespeichert wird:
+
+~~~js
+if (status.loggedIn) {
+      const userID = status.user.id;
+
+      // create form data object containing all necessary information
+      const formData = new FormData();
+      formData.append('docTitle', documentTitle);
+      formData.append('description', documentDescription);
+      formData.append('uploadFile', uploadFile);
+      formData.append('tag', tag);
+      formData.append('userID', userID);
+
+      // send POST request with fromData to /api/upload
+      const uploadResponse = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      });
+      ...
+}
+~~~
+
+In Anbhängigkeit der Antwort von der API-Route werden Alerts über den Status des Hochladens generiert: 
+
+~~~js
+if (uploadResponse.status === 200) {
+    alert('Dokument erfolgreich hochgeladen!');
+    document.getElementById('upload-form').reset(); // Formular zurücksetzen
+} else if (uploadResponse.status === 400) {
+    alert('Fehler: UserID nicht gefunden.');
+} else {
+    alert('Serverfehler. Bitte versuche es später erneut.');
+}
+~~~
+
+Sollte die Kommunikation mit dem Server fehlschlagen, wird der `catch` ausgelöst:
+
+~~~js
+} catch (error) {
+    console.error('Fehler:', error);
+    alert('Netzwerkfehler. Überprüfe deine Verbindung.');
+}
+~~~
+
+
+### Anpassung der Navigationsleiste, wenn Benutzer eingeloggt in `navbar.js`:
+#### Anpassung Navigationsleiste
+Mittels des Dokuments `navbar.js` wird in die Navigationsleiste nach erfolgreichem Einloggen ein Logout-Button integriert. Dies geschieht auf allen statischen HTML-Seiten. Ebenso wird der logout hier über die Schnittstelle `/api/users/logout` abgewickelt und eine GateKeeper Funktion sorgt dafür, dass nur eingeloggt Benutzer auf die Share-Seite gelangen.
+
+Zu Beginn stellt der DOMContentLoaded-Event Listener sicher, dass die Seite fertig geladen ist, bevor das Sktipt ausgeführt wird. Darauffolgend wird durch eine GET- Anfrage überprüft ob der Nutzer eingeloggt ist, wobei die Antowort des Servers in JSON geparst wird: 
+
+~~~js
+fetch('/api/users/status', { credentials: 'include' })
+  .then(response => response.json())
+  .then(data => { ... })
+  .catch(err => console.error("Error fetching user status:", err));
+~~~
+
+Eine Antwort des Servers kann beispielsweise so aussehen: 
+
+~~~js
+{
+  "loggedIn": true,
+  "user": {
+    "id": "12345",
+    "firstName": "Bob"
+  }
+}
+~~~
+
+Bei erfolgreichem Login und wenn das DOM-Element `user-menu` existiert, wird das `user-menu` ersetzt durch eine personalisierte Bergrüßung: `Hallo {firstName}` und einen Logout-Button:
+
+~~~js
+if (data.loggedIn && userMenu) {
+    userMenu.innerHTML = `
+        <div class="user-hover">
+        <span class="greeting">Hallo ${data.user.firstName}</span>
+        <span class="logout">Logout</span>
+        </div>
+    `;
+    ...
+}
+~~~
+
+#### Logout-Verarbeitung
+Auf den Logout im darauffolgend ein EventListener gesetzt, der beim klick auf Logout eine POST-Anfrage an  `/api/users/logout` sendet und die Cookies mitsendet. Wenn die Antwort des Servers im 200er Bereich liegt, wird der User auf die Login-Seite navigiert:
+
+~~~js
+const logoutEl = userMenu.querySelector(".logout");
+logoutEl.addEventListener("click", async () => {
+    try {
+    const res = await fetch('/api/users/logout', {
+        method: 'POST',
+        credentials: 'include'
+    });
+    // if successful logout, redirect to login page
+    if (res.ok) {
+        window.location.href = "/login";
+    }
+    } catch (error) {
+    console.error("Logout Error:", error);
+    }
+});
+~~~
+
+#### GateKeeper-Funktion für den Share-Button 
+Die GateKeeper-Funktion überprüft beim betätigen des `share-btn` in der Navigationsleiste ober Benutzer eingeloggt ist. Das ist deshalb relevant, da beim Hochladen einer Datei eine UserID erwartet wird. Dieser Schutzmechanismus koexistiert mit einer Funktion in `/src/routes/share.js`, die von der Backendseite ebenfalls gewährleisten soll, dass nur eingeloggte Nutzer auf die Share-Seite geroutet werde. Da clientseitige Beschränkungen umgangen werden können, haben wir uns entschieden, dies sowohl im Front- als auch im Backend zu überprüfen.
+
+Per GET-Anfrage wird an die Route `api/users/status` die Anfrage gestellt ob der Benutzer eingeloggt ist und die Antwort wird in JSON geparst. Siehe Oben, wie eine Mögliche Antwort vom Server aussehen kann. 
+
+Nachfolgend wird die Antwort überprüft. Ist der Benutzer eingeloggt, wird zu `/share` navigiert, ansonsten zur Login-Seite. Sollte ein Fehler auftreten, der durch try-catch abgefangen wird, wird ebenfalls auf die Login-Seite navigiert: 
+
+~~~js
+const shareButton = document.getElementById("share-btn");
+  if (shareButton) {
+    shareButton.addEventListener("click", async (e) => {
+      e.preventDefault();
+      try {
+        // check if user is logged in
+        const response = await fetch('/api/users/status', { credentials: 'include' });
+        const data = await response.json();
+        // grant acess to /share page if user is logged in
+        if (data.loggedIn) {
+          window.location.href = "/share";
+        //if user is not logged in, redirect to login page
+        } else {
+          window.location.href = "/login?redirect=share";
+        }
+      } catch (error) {
+        console.error("Fehler beim Prüfen des Login-Status:", error);
+        window.location.href = "/login?redirect=share";
+      }
+    });
+  }
+~~~
+
+### Suchfunktion über `frontendBrowse.js`
+#### Grundfunktionen und Suchanfrage an das Backend
+Das Skript `frontendBrowse.js` trägt mit dazu bei, ein anschauliches und funktinieredes User Interface für eine Dokumentensuche zu generieren.
+
+Anfänglich wird ein EventListener auf das Event `DOMContentLoaded` angewandt und auf die DOM-Elemente `search-form` und `search-results` des HTML-Dokumts `browse.html` zugegriffen. `searchForm` verweist auf das Suchformular, `resultsSection` auf den Abschnitt, in dem die Suchergebnisse angezeigt werden sollen und bekommt die CSS-Klasse `browse-card-container`: 
+
+~~~js
+document.addEventListener("DOMContentLoaded", () => {
+  const searchForm = document.getElementById("search-form");
+  const resultsSection = document.getElementById("search-results");
+  ...
+});
+~~~
+
+Um die Suchparameter abzugreifen, wird ein EventListener auf das Event `'submit'` der `searchForm` gelegt, wodurch bei eintreten des Events die searchForm in eine neues FormData-Objekt verpackt, woraus dann der vom User ausgewählte Tag und Suchbegriff extrahiert werden: 
+
+~~~js
+searchForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const formData = new FormData(searchForm);
+    const searchTerm = formData.get("searchTerm");
+    const tag = formData.get("tag");
+...
+}
+~~~
+
+Aus den extrahierten Suchparametern wird nun eine URL gebaut: 
+
+~~~js
+let url = `/browse?searchTerm=${encodeURIComponent(searchTerm)}`;
+if (tag) {
+    url += `&tag=${encodeURIComponent(tag)}`;
+}
+~~~
+
+Im Anschluss wird über `fetch()`eine GET-Anfrage an die URL gesendet, wo die Suchparameter aus der URL extrahiert werden und eine Datenbank abfrage gestartet wird. Die Antwort wird in JSON geparst:
+
+~~~js
+try {
+    const response = await fetch(url);
+    const data = await response.json();
+...
+}
+~~~
+
+Eine mögliche *vollständige* Antwort des Servers an den Client könnte wie folgt ausssehen, wenn 2 Dokumente zu den Suchparametern `searchTerm`: "JavaScript" und `tag`: "exercises" gefunden werden:
+
+~~~js
+res.status(200).json({
+  numDocs: 2,
+  documents: [
+    {
+      docID: "645a7e4b8f5d4e1f34b7a9c1",
+      docTitle: "Learn JavaScript",
+      docDescription: "A beginner's guide to JavaScript programming.",
+      docTag: "scribbledNotes",
+      docAuthor: "Marc",
+      docDate: "2025-02-24T09:23:16.126Z"
+    },
+    {
+      docID: "645a7e4b8f5d4e1f34b7a9c2",
+      docTitle: "Advanced JavaScript",
+      docDescription: "Deep dive into JavaScript ES6 and beyond.",
+      docTag: "summary",
+      docAuthor: "Bob",
+      docDate: "2025-01-24T09:22:12.126Z"
+    }
+  ]
+});   const data = await response.json();
+
+~~~
+
+Bevor die Antwort verarbeitet wird, wird die `resultssection` gecleared, damit es bei aufeinanderfolgenden Suchen keine Konflikte gibt.  
+
+#### Erstellen der Browse-Cards
+Werden keine Dokumente gefunen (`data.numDocs === 0`), wird der Schriftzug `"No documents found."` in der resultsSection angezeigt. Andernffalls erstellt das Skript für jedes Dokument ein `"div"`-Element und weist die CSS-Klasse `"browse-grid-container"` zu. Innerhalb des `"div"`-Elements wird nun ein Bild eingefügt, das als Platzhalter dient, für eine mögliche spätere Funktion der Dokumentenvorschau, die wir uns als Zukunftsausblick vorbehalten möchten. Zudem werden der Dokumententitel, die Beschreibung und der Autor angezeigt. Das Uploaddatum wird zum jetztigen Zeitpunkt nicht angezeigt, ist allerdings in der Antwort des Servers vorhanden, um es gegebenenfalls zu einem späteren Zeitpunkt einfach integrieren zu können. 
+
+Diese `"div"`-Elemente werden anchließend der resultsSection zugewiesen, also dem Bereich, im HTML-Dokument `browse.html`, wo die Ergebnisse angezeigt werden sollen und jedes `"div"`-Element bekommt einen Download-Button zugewiesen, beidem die `docID`als `data-id` mitgegeben wird.. 
+
+~~~js
+try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    resultsSection.innerHTML = "";
+    
+    if (data.numDocs === 0) {
+        resultsSection.innerHTML = "<p>No documents found.</p>";
+    } else {
+        data.documents.forEach(doc => {
+            const card = document.createElement("div");
+            card.classList.add("browse-grid-container");
+
+            card.innerHTML = `
+            <div class="browse-card">
+            <img src="../public/img/browse_placeholder.png" alt="Search result" />
+            <p>${doc.docTitle}</p>
+            <p>${doc.docDescription}</p>
+            <p>Author: ${doc.docAuthor}</p>
+            </div>
+            <button class="download-btn" data-id="${doc.docID}">Download</button>
+            `;
+            resultsSection.appendChild(card);
+    });
+    }
+} catch (err) {
+    console.error("Error fetching search results:", err);
+    resultsSection.innerHTML = "<p>Error fetching search results.</p>";
+}
+~~~
+#### Download
+Damit der Benutzer einen Download durchführen kann, wird ein EventListener auf sämtliche `"click"`-Events in der `resultsSection` erstellt. Zusätzlich wird geprüft, ob das `"click"`-Event auf ein Element mit der Klasse `"download-btn"` stattfindet, da nur die aus den Suchergebnissen erstellten `"div"`-Elemente dieser Klasse zugewiesen sind. Wird also eines der vorher erstellen `"div"`-Elemente angeclickt, wird die docID dieses spezifischen Elements ausgelesen und der Client wird zu `/browse/download?docID=${docID}` navigiert, wodurch die `docID` durch das Backend (hier: `/src/routes/browse.js`) genutzt wird um das ausgewählte Dokument zurückzusenden, was den Download auslöst.
+
+~~~js
+resultsSection.addEventListener("click", (e) => {
+    if (e.target.classList.contains("download-btn")) {
+      const docID = e.target.getAttribute("data-id");
+      window.location.href = `/browse/download?docID=${docID}`;
+    }
+});
+~~~
+
 
 ## Serverseitige Implementierung
 ### Grundsätzliche Anforderungen
@@ -774,10 +1259,14 @@ Ausnahmen von diesem Schema stellen `uploadRoute.js`, `userRoutes.js`, `browse.j
 
 Die Besonderheiten der anderen Router werden im Folgenden erläutert:
 
-#### `browse.js`
+#### Dokumenten-Browsing mit `browse.js`
+
+
 Dieses Skript importiert neben den zuvor genannten zwei Modulen auch die `mongoose`-Schemata `Doc` und `User`, welche jeweils unter `/src/models` als [Modelle von Kollektionen der MongoDB-Datenbank](#datenbank) erstellt werden.
 
 Dieser Router verfolgt eine von den anderen Unterseiten-Routern abweichende Logik: Die GET-Request dient hier nicht dazu, dem Client in der Response das korrespondiere HTML-File bereitzustellen. Stattdessen werden der Request hier zwei Queries `searchTerm` und `tags` entnommen.
+
+[Abbildung 9](#abb-9-browse-schema) stellt schematisch die verkürzten HTTP-Request und Response bei fehlerfreiem Ablauf der Browse-GET-Request dar.
 
 Die Aufgabe der Browse-Seite ist es, dem User die Möglichkeit zum Durchsuchen der in der Datenbank hinterlegten Dokumente zu geben. `searchTerm` ist hierbei der Suchbegriff, welcher im Titel oder der Beschreibung eines Dokuments vorkommen muss, damit das Dokument als mögliches Suchergebnis in Frage kommt.
 
@@ -871,6 +1360,8 @@ router.post("/", (req, res) => {
 
 Der Dokumenten-Download erfolgt ebenfalls per GET-Request, über die Route `"/browse/download"`, mit der ID des herunterzuladenden Dokumemts im Query.
 
+[Abbildung 10](#abb-10-download-schema) stellt schematisch die verkürzte HTTP-Request und -Response bei fehlerfreiem Ablauf der Download-GET-Request dar.
+
 Sollte die angefragte Datei nicht gefunden werden, wird dem Client der Status 400 wegen der invaliden Anfrage sowie eine entsprechende Fehlernachricht gesendet:
 
 ~~~js
@@ -916,13 +1407,15 @@ module.exports = router;
 ~~~
 
 
-#### `uploadRoute.js`
+#### Dokumenten-Upload mit `uploadRoute.js`
 `uploadRoutes.js` ist das Skript, welchen den Upload der Dokumente über die Route `"/api/upload` ermöglicht. Hierzu werden auch hier wieder die Dokumenten- und User-Modelle importiert und ein Express-Router instanziiert.
 
 Ziel ist es, dass der Client per POST-Request eine Datei an den Server senden kann und dieser folgende Antwort gibt:
 - Status 200 im Falle eines erfolgreichen Uploads
 - Status 400 bei einer inavliden User-ID
 - Status 500 ansonsten
+
+[Abbildung 11](#abb-11-upload-schema) stellt schematisch die verkürzte HTTP-Request und -Response bei fehlerfreiem Ablauf der Upload-POST-Request dar.
 
 Hierzu muss zuerst die Validität der POST-Request sichergestellt werden. Diese sollte im Body den Dokumententitel, dessen Beschreibung, einen Tag (Exercise, Summary oder Scribbled Notes, quasi die Art des Lerninhalts) und die ID des Users enthalten, welcher den Upload tätigt.
 
@@ -985,7 +1478,7 @@ Gibt es bei einem dieser Schritte einen Fehler, wird dem Client ein Status 500 g
 module.exports = router;
 ~~~
 
-#### `userRoutes.js`
+#### Signup, Login und Signup durch `userRoutes.js`
 Aufgabe von `userRoutes.js` ist es, drei Routen - `api/users/signup`, `api/users/login` und `api/users/logout` - zu erstellen, welche dem Client POST-Requests für die Registrierung, den Login oder den Logout eines Users ermöglichen.
 
 Hierzu wird das `User`-Schema der Datenbank benötigt, sowie ein Modul `bcrypt` zum Hashig des vom User vergebenen Passworts mit Hilfe eines ebenfalls durch `bcrypt` generierten Salts. Dieser `passwordHash` wird initial bei der Registrierung eines neuen Nutzers berechnet und als dessen Passwort in der Datenbank hinterlegt. Zuvor werden die Validität der Signup-POST-Request überprüft und sichgerstellt, dass es nicht bereits einen Nutzer mit derselben E-Mail-Adresse gibt. Diese Einmaligkeit ist wichtig, da die E-Mail-Adresse später auch beim Login vom Nutzer verwendet wird. Zeitliche Kontinuität hingegen ist keine Anforderung an die E-Mail-Adresse, da alle mit dem User verknüpften Daten anderer Collections in der Datenbank hierfür den Primärschlüssel `_id` des Users für die Zuordnung nutzen.
@@ -1104,19 +1597,8 @@ Auch die Möglichkeit, beispielsweise PDF-Dateien in Buffern direkt in Dokumente
 Weitere Vorteile von MongoDB sind gute Skalierbarkeit durch die verteilte Speicherung sowie die hohe Performance bei Lese- und Schreiboperationen einzelner Dokumente.
 
 
-#### Praxisbezogene Optimierungen
 
-Perspektivisch könnte es jedoch sinnvoller Sein, auf eine relationale Datenbank umzusteigen, welche höhere formelle Standards erfordert. Damit würde ein Maß an Flexibilität verloren gehen. Mit dem Hintergedanken, dass das Projekt in der Realität den Zweck hätte, große Mengen an Dokumenten, Usern und weiteren Daten zu speichern, während potenziell mehrere Tausend Clients simultane Suchanfragen durchführen, könnte StudyBuddy von den schnelleren Lookup-Times einer relationen Datenbank profitieren.
-
-Denn das Bottleneck in Sachen Performance wird in diesem Fall vermutlich nicht in der Lese- und Schreibgeschwindigkeit auf einzelnen Dokumenten zu finden sein, sondern eher in der Anwendung vieler Queries auf die gesamte Datenbank bei der Dokumentensuche durch User.
-
-Zudem bietet die Flexibilität, welche uneinheitliche Datenbankeinträge in der Entwicklung erlauben, im Production-Kontext keinen Vorteil mehr, erhöht jedoch die Fehleranfälligkeit.
-
-Dennoch wird MongoDB aktuell noch genutzt, sodass die beiden in `/src/models/userModel.js` und `/src/models/docModel.js` definierten Modelle hier erläutert werden sollen.
-
-Auch die Speicherung der PDF-Dokumente außerhalb der Datenbank und stattdessen ein schlichter Verweis auf deren Pfad könnte hinsichtlich der Performance empfehlenswert sein.
-
-#### `userModel.js`
+#### User-Modell: `userModel.js`
 ~~~js
 // import mongoose
 const mongoose = require("mongoose");
@@ -1138,7 +1620,7 @@ Dieser "Bauplan" wird mittels des `mongoose.Schema`-Konstruktors formuliert und 
 
 Die Collection wird bei der ersten Speicherung eines mit dem `User`-Modell instanziierten Objekts automatisch erstellt. Ihr Name entspricht dann dem Namen des Modells - hier `User` - in lowercase-Buchstaben und mit einem angehängten "s". In diesem Beispiel wird die MongoDB-Collection, die alle gespeicherten `User`-Objekte enthält, also mit "users" bezeichnet.
 
-#### `docModel.js`
+#### Dokumenten-Modell: `docModel.js`
 ~~~js
 // import mongoose
 const mongoose = require("mongoose");
@@ -1163,10 +1645,21 @@ Identisch verfahren wird für das Modell der Dokumente. Eine Besonderheit ist hi
 
 Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16MB zu unterstützen [^3]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
 
+#### Praxisbezogene Optimierungen
+
+Perspektivisch könnte es jedoch sinnvoller Sein, auf eine relationale Datenbank umzusteigen, welche höhere formelle Standards erfordert. Damit würde ein Maß an Flexibilität verloren gehen. Mit dem Hintergedanken, dass das Projekt in der Realität den Zweck hätte, große Mengen an Dokumenten, Usern und weiteren Daten zu speichern, während potenziell mehrere Tausend Clients simultane Suchanfragen durchführen, könnte StudyBuddy von den schnelleren Lookup-Times einer relationen Datenbank profitieren.
+
+Denn das Bottleneck in Sachen Performance wird in diesem Fall vermutlich nicht in der Lese- und Schreibgeschwindigkeit auf einzelnen Dokumenten zu finden sein, sondern eher in der Anwendung vieler Queries auf die gesamte Datenbank bei der Dokumentensuche durch User.
+
+Zudem bietet die Flexibilität, welche uneinheitliche Datenbankeinträge in der Entwicklung erlauben, im Production-Kontext keinen Vorteil mehr, erhöht jedoch die Fehleranfälligkeit.
+
+Dennoch wird MongoDB aktuell noch genutzt, sodass die beiden in `/src/models/userModel.js` und `/src/models/docModel.js` definierten Modelle hier erläutert werden sollen.
+
+Auch die Speicherung der PDF-Dokumente außerhalb der Datenbank und stattdessen ein schlichter Verweis auf deren Pfad könnte hinsichtlich der Performance empfehlenswert sein.
+
 [^3]: MongoDB, Inc. (2024). 
 GridFS for Self-Managed Deployments. 
 [MongoDB Manual](https://www.mongodb.com/docs/manual/core/gridfs/).
-
 
 
 ## Hilfsmittel
@@ -1199,14 +1692,14 @@ Kapitel behandeln die Themen HTML und CSS.
 **Microsoft Designer**  
 https://designer.microsoft.com/home 
 
-Die Bildgenerierung Software Microsoft Desinger wurde zur Erstellung der Grafiken verwendet.  
-Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
+Die Bildgenerierung Software Microsoft Designer wurde zur Erstellung der Grafiken verwendet.  
+Mittels des Prompts "Logo für eine App mit Namen "StudyBuddy" in blau und 
 lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
 Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
 Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
-hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
+hatte. Trotz des Hinweisens der KI auf diesen Fehler konnte keine 
 Korrektur erfolgen. 
-Deshalb wurde der Schritfzug manuell erstellt.
+Deshalb wurde der Schriftzug manuell erstellt.
 
 Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
 erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
@@ -1221,12 +1714,14 @@ https://caniuse.com/
 
 Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf ihre Kompatibilität mit Browsern zu prüfen. 
 
-Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
+Dementsprechend würde diese Anwendung dafür genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browsern Mozilla Firefox, 
+Google Chrome, Microsoft Edge und Safari abzufragen.
 
-**Coloors Image Picker**
+**Coloors Image Picker**  
 https://coolors.co/image-picker/
 
-Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
+Diese Anwendung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos konnten verschiedene Farben
+aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
 Die hier erstellte Farbauswahl findet sich in den "UI"-Farben wieder, welche im :root-Element des CSS-Codes definiert wurden.
 
 **Figma**  
@@ -1236,20 +1731,20 @@ Figma ist ein Design-Tool, mit dem der erste Webseitenentwurf erstellt wurde.
 Dieser wird in der Einleitung dieses Kapitels beschrieben.
 
 
-**Google Font Icons**
+**Google Font Icons**  
 https://fonts.google.com/icons
 
 Google Font bietet eine große Bibliothek von u. A. Icons an. 
-Die Symbole im Login-Formular und Signup-Formular als svg-Elemente über 
+Die Symbole im Login-Formular und Signup-Formular wurden als svg-Elemente über 
 Google Font bezogen. Dabei kann z. B. die Farbe und das Filling der Icons 
-über Google Font definert werden. Im Anschluss kann der Code zum 
+über Google Font definiert werden. Im Anschluss kann der Code zum 
 svg-Element kopiert und in der HTML-Datei eingefügt werden.
 
 **IANA Media Types**  
 https://www.iana.org/assignments/media-types/media-types.xhtml#image
 
 Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
-Dies wurde für die Bestimmung der erlaubten Uploaddatein auf der Seite 
+Dies wurde für die Bestimmung der erlaubten Upload Dateien auf der Seite 
 "Share" benötigt.  
 Codeauszug:  
 ```html
@@ -1265,20 +1760,23 @@ https://developer.mozilla.org/en-US/docs/Web/CSS
 Diese Webseite bietet ausführliche Erklärungen zu den Funktionsweisen, dem Syntax und der Browser-Kompatibilität von HTML- und CSS-Elementen. 
 Deshalb wurde diese Webseite zur Schaffung eines tieferen Verständnisses 
 für die Anwendung und die korrekte Implementierung einiger CSS-Elemente 
-verwendet. Beispielhaft können hier das aside-Element oder der Border-Style
- genannt werden.
+verwendet. Beispielhaft können hier das aside-Element oder der Border-Style genannt werden.
+
+https://developer.mozilla.org/en-US/docs/Web/HTTP
+
+Hier wurden Erklärungen und Hilfestellungen zum Umgang mit HTTP entnommen.
 
 **RealFaviconGenerator**  
 https://realfavicongenerator.net/
 
 Diese Seite kann zur Erstellung von eines Favicon in verschiedenen 
 Dateiformaten verwendet werden. 
-Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mit 
-Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
+Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mithilfe der Applikation erstellt. 
+Grundlage dafür war das zuvor generierte 
 Logo-Design.
 
 
-**svg repo**
+**svg repo**  
 https://www.svgrepo.com/svg/408497/arrow-03
 
 Svg repo ist eine Bibliothek für svg-Dateien. Von dort wurde der pinke Pfeil der Homepage kopiert und im HTML-Code eingebunden.
@@ -1294,114 +1792,99 @@ werden.
 **W3 Schools**  
 https://www.w3schools.com/
 
-Die Lernplattform W3 School wurde zum Lernen und Testen genutzt. Auf der 
+Die Lernplattform W3 Schools wurde zum Lernen und Testen genutzt. Auf der 
 einen Seite konnten, mittels der ausführlichen und gut strukturierten 
 Beispiele, neue Kenntnisse zur Funktionsweise von HTML und CSS gewonnen 
-werden. Auf der anderen Seite wurden mit Hilfe des integrierten 
-"Try-it-Yourself"-Editors die Auswirkung von unterschiedlichen 
+werden. Auf der anderen Seite wurden mithilfe des integrierten 
+"Try-it-Yourself"-Editors die Auswirkungen von unterschiedlichen 
 Programmbestandteilen getestet. 
+
+
+**OpenJS Foundation, Express.js**  
+https://expressjs.com/en/guide/routing.html
+
+Hier wurde auf die Dokumentation des verwendeten Express-Moduls zurückgegriffen.
+
+**MongoDB**  
+https://www.mongodb.com/docs/manual/introduction/
+
+Hier wurde auf die Dokumentation der verwendeten MongoDB-Datenbank zurückgegriffen.
+
+
+**MongoPlayground**
+https://mongoplayground.net/
+
+Diese Webseite wurde zum schnellen Austesten von MongoDB-Methoden genutzt.
+
+
+
 
 ### Weitere Anwendungen
 
-**Microsoft PowerPoint**
+**Microsoft PowerPoint**  
 PowerPoint wurde zur Erstellung der Kompositionsdiagramme und zur Skalierung von
 Grafiken verwendet.
 
+**Figma**  
+Figma wurde zur Erstellung der schematischen Veranschaulichungen der HTTP-Kommunikation genutzt.
+
 ## Abbildungsverzeichnis
 #### Abb. 1: Erster Entwurf der Homepage  
-![Erster Entwurf der Homepage](img/1_Erster_Entwurf.png)
+![Erster Entwurf der Homepage](./img\1_Erster_Entwurf.png)
 
 #### Abb. 2: Sitemap  
-![Sitemap](img/2_Sitemap.png)
+![Sitemap](./img\2_Sitemap.png)
 
 #### Abb. 3: Kompositionsdiagramm Homepage  
-![Kompositionsdiagramm Homepage](img/3_KompDia_Homepage.png)
+![Kompositionsdiagramm Homepage](./img\3_KompDia_Homepage.png)
 
 #### Abb. 4: Kompositionsdiagramm Login   
-![Kompositionsdiagramm Login](img/4_KompDia_Login.png)
+![Kompositionsdiagramm Login](./img\4_KompDia_Login.png)
 
 #### Abb. 5: Kompositionsdiagramm Signup  
-![Kompositionsdiagramm Signup](img/5_KompDia_Signup.png)
+![Kompositionsdiagramm Signup](./img\5_KompDia_Signup.png)
 
 #### Abb. 6: Kompositionsdiagramm Impressum   
-![Kompositionsdiagramm Impressum](img/6_KompDia_Impressum.png)
+![Kompositionsdiagramm Impressum](./img\6_KompDia_Impressum.png)
 
 #### Abb. 7: Kompositionsdiagramm Browse  
-![Kompositionsdiagramm Browse](img/7_KompDia_Browse.png)
+![Kompositionsdiagramm Browse](./img\7_KompDia_Browse.png)
 
 #### Abb. 8: Kompositionsdiagramm Share   
-![Kompositionsdiagramm Share](img/8_KompDia_Share.png)
+![Kompositionsdiagramm Share](./img\8_KompDia_Share.png)
+
+#### Abb. 9: Browse-Schema  
+![Browse-Schema](./img/browse.png)
+
+#### Abb. 10: Download-Schema  
+![Download-Schema](./img/download.png)
+
+#### Abb. 11: Upload-Schema  
+![Upload-Schema](./img/upload.png)
+
+
 
 ## Stichwortverzeichnis
-
-API:
-Application Programming Interface. Eine Schnittstelle, die es ermöglichte, verschiedene Software-Komoponenten miteinder kommunizieren zu lassen.
-
-Alert:
-Browserfunktion zur Anzeige von Nachrichten an den Benutzer.
-
-Asynchron:
-Hier: async/wait. eine Programmiertechnik, um auf asynchrone Operationen wie Netzwerkaufrufe (z.B. `fetch()`) zu warten, ohne den Ablauf des Programms zu blockieren
-
-Backend:
-Serverseitiger Teil der Anwendung, der Anfragen des Frontends entgegennimmt, verarbeitet und Antworten gibt.
-
-Catch:
-methode in JavaScript zur Fehlerbehandlung. Wird hier verwendet, um Netzwerkfehler bei Anfragen an das Backend abzuhängen.
 
 CSS:  
 Cascading Style Sheet
 
-Credentials:
-Eine Einstellung in `fetch()`, die angibt, dass unter anderem Cookies bei Anfragen an das Backend gesendet werden, um Sessions zu validieren.
-
-Cookie:
-Kleine Datei, die auf dem Client gespeichert wird. Enthält Session-Informationen und wird hier genutzt um Anmeldung des Benutzers zu verfolgen, damit User angemeldet bleibt
-
-DOM:
-Document Object Model, eine Schnittstelle zur Manipulation und Darstellung von HTML-Dokumenten. Wird hier für den Zugriff auf HTML-Elemente verwendet.
-
-Event Listener:
-Eine Funktion, die auf bestimmte Ereignisse wie Button-Clicks oder Formular-Submits reagiert.
-
-Fetch():
-Methode zum Senden von HTTP_Anfragen an das Backend. 
-
-FormData:
-Ein JavaScript-Objekt zum Erstellen von Key-Value-Paaren, um Formulardaten zu senden.
-
-GET-Request:
-HTTP-Methode um Daten vom Server zu erhalten.
-
-GateKeeper-Funtkion:
-Funktion, die überprüft, ob Benutzer eingelogg ist, bevor er auf bestimmte Seiten (hier: /share) zugreifen darf.
-
-HTTP-Statuscodes:
-Codes, die die Antword des Servers auf eine Anfrage darstellen.
-
 HTML:   
 Hypertext Markup Language
 
-JSON:
-Ein Datenformat zur Übertragung von Daten zwischen Client und Server.
-
-LocalStorage:
-Web-API, die es ermöglicht, Daten lokal im Browserdes Benutzers zu speichern. Hier wird `locasStorage.setItem() verwendet, um den firstName zu speichern.
-
-Middleware:
-Eine Exüress.js-Funktion, die verwendet wird, um Anfragen zu verarbeiten, bevor sie den Endpunkt erreichen.
-
-POST-Request:
-HTTP-Methode, um Daten an den Server zu senden. 
-
-Route:
-Eione Definition der URL-Endpunkte.
-
-Session-Management:
-Methode, um Benutzer-Sitzungen zu verfolgen. Wird hier durch Cookies realisiert.
-
 SVG:   
-Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
+Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. 
+Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. 
+Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
 
-Try-Catch:
-Ein Konstrukt zum Abfangen von Fehlern. 
+Viewport:  
+Der Viewport ist der sichtbare Bereich innerhalb z. B. einem Browser-Fenster
+
+MongoDB:  
+Eine NoSQL-Datenbankplattform.
+
+Schema (Mongoose):  
+Ein Muster oder eine Vorlage, die die Struktur eines MongoDB-Dokuments beschreibt. Es definiert Felder, Datentypen und andere Eigenschaften der Dokumente.
+
+Model (Mongoose):  
+Eine Klasse, die die Instanziierung von Objekten ermöglicht, welche einem MongoDB-Schema entsprechen.
