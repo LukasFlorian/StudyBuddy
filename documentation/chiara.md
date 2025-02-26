@@ -1,5 +1,5 @@
 ## Frontend: HTML und CSS
-Mit Hilfe von HTML und CSS können die Struktur, der Inhalt und das Design von Webseiten
+Mithilfe von HTML und CSS können die Struktur, der Inhalt und das Design von Webseiten
 erstellt werden. Beide Sprachen arbeiten Hand in Hand, um einen ansprechenden und funktionalen 
 Web-Auftritt zu erstellen.
 
@@ -47,7 +47,7 @@ Zu Beginn des Projekts wurde ein erster Entwurf der Homepage erstellt.
 Dafür wurde das Design-Programm [Figma](#webseiten-und--applikationen) genutzt. Damit war es möglich, als Team gemeinsam 
 an einem Entwurf zu arbeiten.
 
-[**Abbilung 1**](#abb-1-erster-entwurf-der-homepage) stellt den ersten Entwurf dar.
+[**Abbildung 1**](#abb-1-erster-entwurf-der-homepage) stellt den ersten Entwurf dar.
 
 Bereits beim initialen Design wurde die Auffassung geteilt, dass die Homepage möglichst 
 übersichtlich gestaltet sein soll. Dazu gehörte, dass sich das Design auf die Funktionen 
@@ -59,7 +59,7 @@ ihre Nutzenden darstellen soll - eine angenehme, positive Unterstützung beim Le
 "Buddy" - im Sinne von Freund - dass man mit anderen Lernenden zusammenarbeiten kann, indem man 
 seine Lernunterlagen austauscht.
 
-Abweichend von ursprünglichen Entwurf wurde die Farbauswahl getroffen. Wie in der Einleitung 
+Abweichend vom ursprünglichen Entwurf wurde die Farbauswahl getroffen. Wie in der Einleitung 
 beschrieben, wurden Blau- und Lilatöne als Hauptfarben definiert.  
 Zudem wurden Anpassungen bei den Bildern vorgenommen. Wie in Abbildung 1 zu sehen ist, wirken 
 die ersten Grafiken tendenziell kalt und wenig ansprechend. Deshalb wurden mit 
@@ -69,7 +69,7 @@ im Header zu finden ist. Da diese Unterseite keine der Hauptfunktionen von Study
 beinhaltet, wurde die Verknüpfung im footer der Webseiten aufgenommen.
 
 Hiermit wurde der initiale Entwurf des Webseiten-Designs aufgezeigt. 
-Im folgenden Teil wird auf die Erstellung der Struktur und des Inhalt mittels HTML
+Im folgenden Teil wird auf die Erstellung der Struktur und des Inhalts mittels HTML
 eingegangen. Anschließend wird die Gestaltung mit CSS dokumentiert.
 
 
@@ -160,7 +160,7 @@ Die beiden Seiten haben den Zweck, neue Nutzer*innen für die Webapplikation zu 
 
 Die [Abbildung 6](#abb-6-kompositionsdiagramm-impressum) zeigt das Kompositionsdiagramm des Impressums.
 
-Der Aufbau des Impressum ist relativ schlicht gehalten.  
+Der Aufbau des Impressums ist relativ schlicht gehalten.  
 Innerhalb des main-Elements wird nach der Einleitung ein sektion-Element mit der Klasse "impressum-container" eingebettet. 
 Dieses enthält eine h2-Überschrift und drei Paragrafen in Form von p-Elementen. 
  
@@ -347,7 +347,7 @@ Die Umrandung des Buttons wird deaktiviert.
 **padding: 1rem;**  
 Der Abstand zwischen Inhalt und Rahmen des Elementes wird auf 1 rem (root em) festgelegt. 
 Diese Schreibweise gibt den Abstand für alle 4 Seiten um den Inhalt an.
-1 rem entspricht der Schriftgröße, die im root-Element (entspricht html-Element oder :root-Element definiert wurde.
+1 rem entspricht der Schriftgröße, die im html-Element oder :root-Element definiert wurde.
 In diesem Programm sind 1 rem 16 Pixel bei einer Bildschirmbreite von mindestens 768 Pixeln.
 
 **text-align: center;**  
@@ -440,7 +440,7 @@ Diese werden im Folgenden genauer beleuchtet.
 
 Mit Flexboxen können die Kindelemente eines Elements flexibel angeordnet werden.  
 Zum einen wird die Position der Kindelemente über justify-content (horizontal) und align-items (vertikal) 
-relativ zueinander oder innerhalb des Elternelements festgelegt. Dadurch ergibt sich der Vorteil, das keine absoluten Größen benötigt werden.  
+relativ zueinander oder innerhalb des Elternelements festgelegt. Dadurch ergibt sich der Vorteil, dass keine absoluten Größen benötigt werden.  
 Zum anderen ist es möglich, das Verhalten der untergeordneten Elemente bei 
 einer Vergrößerung, Verkleinerung und deren Größe im Elternelement zu 
 steuern. Mittels der Eigenschaft flex können der Wachstums-, der 
@@ -576,11 +576,11 @@ Kapitel behandeln die Themen HTML und CSS.
 https://designer.microsoft.com/home 
 
 Die Bildgenerierung Software Microsoft Designer wurde zur Erstellung der Grafiken verwendet.  
-Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
+Mittels des Prompts "Logo für eine App mit Namen "StudyBuddy" in blau und 
 lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
 Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
 Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
-hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
+hatte. Trotz des Hinweisens der KI auf diesen Fehler konnte keine 
 Korrektur erfolgen. 
 Deshalb wurde der Schriftzug manuell erstellt.
 
