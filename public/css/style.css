@@ -93,16 +93,6 @@ li.nav-items {
     color: var(--ui-blue);
 }
 
-#logout {
-    padding-left: max(4vw, 10px);
-    color: var(--ui-blue);
-    cursor: pointer;
-}
-
-#logout:hover {
-    color: var(--ui-dark-blue);
-}
-
 .nav-items a:link {
     color: var(--ui-blue);
     text-decoration: none;
@@ -122,11 +112,13 @@ li.nav-items {
 
 .logout{
     background-color: white;
-    opacity: 0;
+    color: var(--ui-blue);
+    cursor: pointer;
+    padding-left: max(4vw, 10px);
 }
 
 .logout:hover{
-    opacity: 1;
+    color: var(--ui-dark-blue)
 }
 
 /***************************
