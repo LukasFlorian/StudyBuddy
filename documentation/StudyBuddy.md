@@ -933,9 +933,9 @@ Sollte die Kommunikation mit dem Server fehlschlagen, wird der `catch` ausgelös
 
 ### Anpassung der Navigationsleiste, wenn Benutzer eingeloggt in `navbar.js`:
 #### Anpassung Navigationsleiste
-Mittels des Dokuments `navbar.js` wird in die Navigationsleiste nach erfolgreichem Einloggen ein Logout-Button integriert. Dies geschieht auf allen statischen HTML-Seiten. Ebenso wird der logout hier über die Schnittstelle `/api/users/logout` abgewickelt und eine GateKeeper Funktion sorgt dafür, dass nur eingeloggt Benutzer auf die Share-Seite gelangen.
+Mittels des Dokuments `navbar.js` wird in die Navigationsleiste nach erfolgreichem Einloggen ein Logout-Button integriert. Dies geschieht auf allen statischen HTML-Seiten. Ebenso wird der Logout hier über die Schnittstelle `/api/users/logout` abgewickelt und eine GateKeeper Funktion sorgt dafür, dass nur eingeloggte Benutzer auf die Share-Seite gelangen.
 
-Zu Beginn stellt der DOMContentLoaded-Event Listener sicher, dass die Seite fertig geladen ist, bevor das Sktipt ausgeführt wird. Darauffolgend wird durch eine GET- Anfrage überprüft ob der Nutzer eingeloggt ist, wobei die Antowort des Servers in JSON geparst wird: 
+Zu Beginn stellt der DOMContentLoaded-Event Listener sicher, dass die Seite fertig geladen ist, bevor das Sktipt ausgeführt wird. Darauffolgend wird durch eine GET- Anfrage überprüft, ob der Nutzer eingeloggt ist, wobei die Antowort des Servers in JSON geparst wird: 
 
 ~~~js
 fetch('/api/users/status', { credentials: 'include' })
@@ -971,7 +971,7 @@ if (data.loggedIn && userMenu) {
 ~~~
 
 #### Logout-Verarbeitung
-Auf den Logout im darauffolgend ein EventListener gesetzt, der beim klick auf Logout eine POST-Anfrage an  `/api/users/logout` sendet und die Cookies mitsendet. Wenn die Antwort des Servers im 200er Bereich liegt, wird der User auf die Login-Seite navigiert:
+Auf den Logout wird ein EventListener gesetzt, der beim Klick auf Logout eine POST-Anfrage an  `/api/users/logout` sendet und die Cookies mitsendet. Wenn die Antwort des Servers im 200er Bereich liegt, wird der User auf die Login-Seite navigiert:
 
 ~~~js
 const logoutEl = userMenu.querySelector(".logout");
@@ -992,9 +992,9 @@ logoutEl.addEventListener("click", async () => {
 ~~~
 
 #### GateKeeper-Funktion für den Share-Button 
-Die GateKeeper-Funktion überprüft beim betätigen des `share-btn` in der Navigationsleiste ober Benutzer eingeloggt ist. Das ist deshalb relevant, da beim Hochladen einer Datei eine UserID erwartet wird. Dieser Schutzmechanismus koexistiert mit einer Funktion in `/src/routes/share.js`, die von der Backendseite ebenfalls gewährleisten soll, dass nur eingeloggte Nutzer auf die Share-Seite geroutet werde. Da clientseitige Beschränkungen umgangen werden können, haben wir uns entschieden, dies sowohl im Front- als auch im Backend zu überprüfen.
+Die GateKeeper-Funktion überprüft beim betätigen des `share-btn` in der Navigationsleiste ob der Benutzer eingeloggt ist. Das ist deshalb relevant, da beim Hochladen einer Datei eine UserID erwartet wird. Dieser Schutzmechanismus koexistiert mit einer Funktion in `/src/routes/share.js`, die von der Backendseite ebenfalls gewährleisten soll, dass nur eingeloggte Nutzer auf die Share-Seite geroutet werden. Da clientseitige Beschränkungen umgangen werden können, haben wir uns entschieden, dies sowohl im Front- als auch im Backend zu überprüfen.
 
-Per GET-Anfrage wird an die Route `api/users/status` die Anfrage gestellt ob der Benutzer eingeloggt ist und die Antwort wird in JSON geparst. Siehe Oben, wie eine Mögliche Antwort vom Server aussehen kann. 
+Per GET-Anfrage wird an die Route `api/users/status` die Anfrage gestellt, ob der Benutzer eingeloggt ist und die Antwort wird in JSON geparst. Siehe oben, wie eine Mögliche Antwort vom Server aussehen kann. 
 
 Nachfolgend wird die Antwort überprüft. Ist der Benutzer eingeloggt, wird zu `/share` navigiert, ansonsten zur Login-Seite. Sollte ein Fehler auftreten, der durch try-catch abgefangen wird, wird ebenfalls auf die Login-Seite navigiert: 
 
