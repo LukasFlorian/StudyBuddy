@@ -1302,11 +1302,74 @@ Grafiken verwendet.
 
 ## Stichwortverzeichnis
 
+API:
+Application Programming Interface. Eine Schnittstelle, die es ermöglichte, verschiedene Software-Komoponenten miteinder kommunizieren zu lassen.
+
+Alert:
+Browserfunktion zur Anzeige von Nachrichten an den Benutzer.
+
+Asynchron:
+Hier: async/wait. eine Programmiertechnik, um auf asynchrone Operationen wie Netzwerkaufrufe (z.B. `fetch()`) zu warten, ohne den Ablauf des Programms zu blockieren
+
+Backend:
+Serverseitiger Teil der Anwendung, der Anfragen des Frontends entgegennimmt, verarbeitet und Antworten gibt.
+
+Catch:
+methode in JavaScript zur Fehlerbehandlung. Wird hier verwendet, um Netzwerkfehler bei Anfragen an das Backend abzuhängen.
+
 CSS:  
 Cascading Style Sheet
+
+Credentials:
+Eine Einstellung in `fetch()`, die angibt, dass unter anderem Cookies bei Anfragen an das Backend gesendet werden, um Sessions zu validieren.
+
+Cookie:
+Kleine Datei, die auf dem Client gespeichert wird. Enthält Session-Informationen und wird hier genutzt um Anmeldung des Benutzers zu verfolgen, damit User angemeldet bleibt
+
+DOM:
+Document Object Model, eine Schnittstelle zur Manipulation und Darstellung von HTML-Dokumenten. Wird hier für den Zugriff auf HTML-Elemente verwendet.
+
+Event Listener:
+Eine Funktion, die auf bestimmte Ereignisse wie Button-Clicks oder Formular-Submits reagiert.
+
+Fetch():
+Methode zum Senden von HTTP_Anfragen an das Backend. 
+
+FormData:
+Ein JavaScript-Objekt zum Erstellen von Key-Value-Paaren, um Formulardaten zu senden.
+
+GET-Request:
+HTTP-Methode um Daten vom Server zu erhalten.
+
+GateKeeper-Funtkion:
+Funktion, die überprüft, ob Benutzer eingelogg ist, bevor er auf bestimmte Seiten (hier: /share) zugreifen darf.
+
+HTTP-Statuscodes:
+Codes, die die Antword des Servers auf eine Anfrage darstellen.
 
 HTML:   
 Hypertext Markup Language
 
+JSON:
+Ein Datenformat zur Übertragung von Daten zwischen Client und Server.
+
+LocalStorage:
+Web-API, die es ermöglicht, Daten lokal im Browserdes Benutzers zu speichern. Hier wird `locasStorage.setItem() verwendet, um den firstName zu speichern.
+
+Middleware:
+Eine Exüress.js-Funktion, die verwendet wird, um Anfragen zu verarbeiten, bevor sie den Endpunkt erreichen.
+
+POST-Request:
+HTTP-Methode, um Daten an den Server zu senden. 
+
+Route:
+Eione Definition der URL-Endpunkte.
+
+Session-Management:
+Methode, um Benutzer-Sitzungen zu verfolgen. Wird hier durch Cookies realisiert.
+
 SVG:   
 Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
+
+Try-Catch:
+Ein Konstrukt zum Abfangen von Fehlern. 
