@@ -478,7 +478,7 @@ Der zweite Wert 0.3s definiert, dass der Übergang 0.3 Sekunden, also 300 Millis
 Der letzte Wert ease-in-out legt den Ablauf der Animation fest. Die Animation startet langsam, beschleunigt in der Mitte und endet langsam.
 Dadurch soll ein sanfter Effekt entstehen.
 
-**width:45%;**   
+**width: 45%;**   
 Die Breite des Buttons wird auf 45 % des Eltern-Elements festgelegt.
 
 **will-change: transform;**  
@@ -781,7 +781,7 @@ Dieser Router verfolgt eine von den anderen Unterseiten-Routern abweichende Logi
 
 Die Aufgabe der Browse-Seite ist es, dem User die Möglichkeit zum Durchsuchen der in der Datenbank hinterlegten Dokumente zu geben. `searchTerm` ist hierbei der Suchbegriff, welcher im Titel oder der Beschreibung eines Dokuments vorkommen muss, damit das Dokument als mögliches Suchergebnis in Frage kommt.
 
-Darüber hinaus kann der User nach Tags filtern, d.h. nur Dokumente mit einem der spezifizierten Tags werden ihm angezeigt. Dieser Filter wird ebenfalls bereits in der Serverseitigen Business-Logik angewendet.
+Darüber hinaus kann der User nach Tags filtern, d.h. nur Dokumente mit einem der spezifizierten Tags werden ihm angezeigt. Dieser Filter wird ebenfalls bereits in der serverseitigen Business-Logik angewendet.
 
 Es wird also erst versucht, der Request diese beiden Queries zu entnehmen:
 ~~~js
@@ -827,7 +827,7 @@ Gibt es einen `searchTerm`, wird der passende Filter `query` formuliert, welcher
 ~~~
 Anschließend wird die Suche in der Datenbank mit dem Filter durchgeführt und die Ergebnisse auf die Attribute `userID`, `title`, `uploadDate`, `description` und `tag` projiziert. Diese Projektion findet statt, da client-seitig keine anderen Informationen über die Dokumente benötigt werden.
 
-Außerdem werden mit Hilfe des `User`-Modells die `userID`s um die `firstName`-Attribute der User ergänzt, und ein Mapping der aktuellen Attribut-Werte zu den im Frontend erwartetetn Keys vollzogen:
+Außerdem werden mithilfe des `User`-Modells die `userID`s um die `firstName`-Attribute der User ergänzt, und ein Mapping der aktuellen Attribut-Werte zu den im Frontend erwarteten Keys vollzogen:
 ~~~js
     // Populate with user info
     const populatedMatches = await Doc.populate(matches, {
@@ -869,7 +869,7 @@ router.post("/", (req, res) => {
 });
 ~~~
 
-Der Dokumenten-Download erfolgt ebenfalls per GET-Request, über die Route `"/browse/download"`, mit der ID des herunterzuladenden Dokumemts im Query.
+Der Dokumenten-Download erfolgt ebenfalls per GET-Request, über die Route `"/browse/download"`, mit der ID des herunterzuladenden Dokuments im Query.
 
 Sollte die angefragte Datei nicht gefunden werden, wird dem Client der Status 400 wegen der invaliden Anfrage sowie eine entsprechende Fehlernachricht gesendet:
 
@@ -889,7 +889,7 @@ router.get("/download", async (req, res) => {
       return res.status(400).send("The document you requested does not seem to exist");
     }
 ~~~
-Existiert ein Dokument mit der angfragten ID in der Datenbank, so wird ein passender Response-Header formuliert und die Datei mit Status 200 an den Client zurückgesendet:
+Existiert ein Dokument mit der angefragten ID in der Datenbank, so wird ein passender Response-Header formuliert und die Datei mit Status 200 an den Client zurückgesendet:
 ~~~js
       // If the document exists, send it to the client
       console.log(file);
@@ -921,7 +921,7 @@ module.exports = router;
 
 Ziel ist es, dass der Client per POST-Request eine Datei an den Server senden kann und dieser folgende Antwort gibt:
 - Status 200 im Falle eines erfolgreichen Uploads
-- Status 400 bei einer inavliden User-ID
+- Status 400 bei einer invaliden User-ID
 - Status 500 ansonsten
 
 Hierzu muss zuerst die Validität der POST-Request sichergestellt werden. Diese sollte im Body den Dokumententitel, dessen Beschreibung, einen Tag (Exercise, Summary oder Scribbled Notes, quasi die Art des Lerninhalts) und die ID des Users enthalten, welcher den Upload tätigt.
@@ -948,7 +948,7 @@ router.post("/", async (req, res) => {
         const tag = body.tag;
         const userID = body.userID;
 ~~~
-Wurde die Request entsprechend destrukturiert, kann überprüft werden, ob es einen entsprechenden User mit dieser ID in der Datenbank gibt und wenn ja, ein neues `Doc`-Objekt mit den passenden Attributen erzeugt, gespeichert und die Response über den Erfolgreichen Upload an den Client gesendet werden:
+Wurde die Request entsprechend destrukturiert, kann überprüft werden, ob es einen entsprechenden User mit dieser ID in der Datenbank gibt und wenn ja, ein neues `Doc`-Objekt mit den passenden Attributen erzeugt, gespeichert und die Response über den erfolgreichen Upload an den Client gesendet werden:
 ~~~js
         // Checking if user exists
         const user = await User.findById(userID).exec();
@@ -973,7 +973,7 @@ Wurde die Request entsprechend destrukturiert, kann überprüft werden, ob es ei
         await doc.save();
         return res.status(200).json({ message: "Doc saved successfully" });
 ~~~
-Gibt es bei einem dieser Schritte einen Fehler, wird dem Client ein Status 500 gesendet, um zu signalisieren, dass es serverseitig ein Problem gegegben haben muss (es könnte auch das Format der Request falsch sein, allerdings lassen sich auch Fehler durch serverseitige Schwächen wie die Inkompatibilität des aktuellen [Datenbank-Setups](#datenbank) für Dateien mit mehr als 16MB hervorrufen):
+Gibt es bei einem dieser Schritte einen Fehler, wird dem Client ein Status 500 gesendet, um zu signalisieren, dass es serverseitig ein Problem gegeben haben muss (es könnte auch das Format der Request falsch sein, allerdings lassen sich auch Fehler durch serverseitige Schwächen wie die Inkompatibilität des aktuellen [Datenbank-Setups](#datenbank) für Dateien mit mehr als 16MB hervorrufen):
 ~~~js
     } catch (err) {
         // Error handling
@@ -988,7 +988,7 @@ module.exports = router;
 #### `userRoutes.js`
 Aufgabe von `userRoutes.js` ist es, drei Routen - `api/users/signup`, `api/users/login` und `api/users/logout` - zu erstellen, welche dem Client POST-Requests für die Registrierung, den Login oder den Logout eines Users ermöglichen.
 
-Hierzu wird das `User`-Schema der Datenbank benötigt, sowie ein Modul `bcrypt` zum Hashig des vom User vergebenen Passworts mit Hilfe eines ebenfalls durch `bcrypt` generierten Salts. Dieser `passwordHash` wird initial bei der Registrierung eines neuen Nutzers berechnet und als dessen Passwort in der Datenbank hinterlegt. Zuvor werden die Validität der Signup-POST-Request überprüft und sichgerstellt, dass es nicht bereits einen Nutzer mit derselben E-Mail-Adresse gibt. Diese Einmaligkeit ist wichtig, da die E-Mail-Adresse später auch beim Login vom Nutzer verwendet wird. Zeitliche Kontinuität hingegen ist keine Anforderung an die E-Mail-Adresse, da alle mit dem User verknüpften Daten anderer Collections in der Datenbank hierfür den Primärschlüssel `_id` des Users für die Zuordnung nutzen.
+Hierzu wird das `User`-Schema der Datenbank benötigt, sowie ein Modul `bcrypt` zum Hashing des vom User vergebenen Passworts mithilfe eines ebenfalls durch `bcrypt` generierten Salts. Dieser `passwordHash` wird initial bei der Registrierung eines neuen Nutzers berechnet und als dessen Passwort in der Datenbank hinterlegt. Zuvor werden die Validität der Signup-POST-Request überprüft und sichergestellt, dass es nicht bereits einen Nutzer mit derselben E-Mail-Adresse gibt. Diese Einmaligkeit ist wichtig, da die E-Mail-Adresse später auch beim Login vom Nutzer verwendet wird. Zeitliche Kontinuität hingegen ist keine Anforderung an die E-Mail-Adresse, da alle mit dem User verknüpften Daten anderer Collections in der Datenbank hierfür den Primärschlüssel `_id` des Users für die Zuordnung nutzen.
 
 Die oben beschriebenen Abläufe sind folgendermaßen implementiert:
 ~~~js
@@ -1079,7 +1079,7 @@ router.post('/logout', (req, res) => {
   });
 });
 ~~~
-Eine letzte Route `/api/users/status` gibt es außerdem zur Abfrage des Session-Status - ob der Client aktuell mit einem User eingeloggt ist oder nicht. Hier wird eine entsprechende GET-Request mit einer Response mit JSON-Body beantwortet, der einen mit Booleschem Wert belegten Key `loggedIn` enhtält und auch die User-Informationen zurücksendet, sollte dieser eingeloggt sein (`id`, `firstName` und `email`):
+Eine letzte Route `/api/users/status` gibt es außerdem zur Abfrage des Session-Status - ob der Client aktuell mit einem User eingeloggt ist oder nicht. Hier wird eine entsprechende GET-Request mit einer Response mit JSON-Body beantwortet, der einen mit Booleschem Wert belegten Key `loggedIn` enthält und auch die User-Informationen zurücksendet, sollte dieser eingeloggt sein (`id`, `firstName` und `email`):
 ~~~js
 // request session status (logged in or not)
 router.get('/status', (req, res) => {
@@ -1097,7 +1097,7 @@ router.get('/status', (req, res) => {
 ### Datenzugriff und Modellinteraktion
 Bei der verwendeten Datenbank handelt es sich um eine MongoDB-Datenbank, welche alle CRUD-Operationen unterstützt. Vorteile dieser NoSQL-Datenbank sind die BSON-Datenstruktur, welche JSON stark ähnelt, und die allgemein sehr einfache Integration von MongoDB und JavaScript miteinander durch das `mongoose`-Modul.
 
-Für das Prototyping und die Nutzung der Datenbank zur Entwicklung dieses Projektes mit verhältnismäßig knappem Zeitrahmen hat sich MongoDB insbesondere auch angeboten, da die Collections einer MongoDB-Datenbank keinem festen Schema folgen müssen. Dokumente derselben Collection dürfen sich in den hinterlegten Feldern und den Datentypen dieser Felder voneinander unterscheiden. Das hat es einfach gemacht, die Datenbank schnell um  neue Daten zu erweitern und die hinterlegten Daten im Entwicklungsprozess anzupassen.
+Für das Prototyping und die Nutzung der Datenbank zur Entwicklung dieses Projektes mit verhältnismäßig knappem Zeitrahmen hat sich MongoDB insbesondere auch angeboten, da die Collections einer MongoDB-Datenbank keinem festen Schema folgen müssen. Dokumente derselben Collection dürfen sich in den hinterlegten Feldern und den Datentypen dieser Felder voneinander unterscheiden. Das hat es einfach gemacht, die Datenbank schnell um neue Daten zu erweitern und die hinterlegten Daten im Entwicklungsprozess anzupassen.
 
 Auch die Möglichkeit, beispielsweise PDF-Dateien in Buffern direkt in Dokumenten der Datenbank zu speichern - nicht nur deren Pfade im Dateiverzeichnis - und die Datenbank selbst per `mongodump`-Befehl als JSON-Datei zu exportieren, hat in Kombination mit Git zum Versionsmanagement die synchrone Projektarbeit über mehrere Geräte hinweg erleichtert.
 
@@ -1161,7 +1161,7 @@ module.exports = mongoose.model("Doc", docSchema);
 
 Identisch verfahren wird für das Modell der Dokumente. Eine Besonderheit ist hier, dass neben den anderen Attributen - auf diese wird nicht näher eingegangen, da sie auch bereits dem [ER-Modell](#er-model) entnommen werden können - auch die zu speichernde Datei selbst in einem Feld namens `file` vom Typ `Buffer` hinterlegt wird.
 
-Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16MB zu unterstützen [^3]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
+Das heißt, die zu speichernde Datei ist hier in binärer Form direkt in der Datenbank gespeichert. Dabei ist zu beachten, dass `mongoose` die Größe des Buffers auf 16 MB beschränkt (konkreter wird die Größe jedes BSON-Dokuments in der Datenbank auf 16 MB limitiert). Größere Dokumente werden vorerst nicht unterstützt, wobei die GridFS-Spezifizierung womöglich einen Weg bieten könnte, durch Aufteilung großer Dokumente in mehrere kleinere Einheiten auch Dateien über 16 MB zu unterstützen [^3]. Die Praktikabilität dessen im Vergleich zum einfachen Speichern der Dateipfade müsste separat weiter evaluiert werden.
 
 [^3]: MongoDB, Inc. (2024). 
 GridFS for Self-Managed Deployments. 
@@ -1199,17 +1199,17 @@ Kapitel behandeln die Themen HTML und CSS.
 **Microsoft Designer**  
 https://designer.microsoft.com/home 
 
-Die Bildgenerierung Software Microsoft Desinger wurde zur Erstellung der Grafiken verwendet.  
-Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in blau und 
-lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
+Die Bildgenerierung Software Microsoft Designer wurde zur Erstellung der Grafiken verwendet.  
+Mittels des Prompts _"Logo für eine App mit Namen "StudyBuddy" in Blau und 
+Lila. Mit dem text "studybuddy"."_ wurden mehrere Varianten des gewählten
 Logos bzw. Icons erzeugt. Eine Schwierigkeit stellte dabei dar, dass die 
 Bilder meist den Schriftzug "Studdybuddy" erhielten, der einen Tippfehler 
-hatte. Trotz des Hinweisens der KI auf diesen Fehler, konnte keine 
+hatte. Trotz des Hinweisens der KI auf diesen Fehler konnte keine 
 Korrektur erfolgen. 
-Deshalb wurde der Schritfzug manuell erstellt.
+Deshalb wurde der Schriftzug manuell erstellt.
 
 Weiterhin wurden die beiden Bilder auf der Homepage mit Microsoft Designer 
-erstellt. Der hier verwendete Prompt ist _"In blau und lila. Gezeichnete 
+erstellt. Der hier verwendete Prompt ist _"In Blau und Lila. Gezeichnete 
 Figur, die am PC etwas sucht. "studybuddy""._ Dort wurden aus vier 
 generierten Bildern die zwei Grafiken ausgewählt, die auch auf der Homepage 
 zu sehen sind.
@@ -1221,12 +1221,12 @@ https://caniuse.com/
 
 Diese Webseite bietet die Möglichkeit, CSS-Selektoren oder -Eigenschaften auf ihre Kompatibilität mit Browsern zu prüfen. 
 
-Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browser Mozilla Firefor, Google Chrome, Microsoft Edge und Safari abzufragen.
+Dementsprechend für diese Anwendung genutzt, um die Kompatibilität des erstellen CSS-Codes mit den Browsern Mozilla Firefox, Google Chrome, Microsoft Edge und Safari abzufragen.
 
 **Coloors Image Picker**
 https://coolors.co/image-picker/
 
-Diese Anwenung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos, konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
+Diese Anwendung wurde zur Erstellung der Farbauswahl für die Webseite genutzt. Nach dem Hochladen des Logos konnten verschiedene Farben aus dem Logo extrahiert und die HEX-Werte für diese Farben ausgelesen werden.
 Die hier erstellte Farbauswahl findet sich in den "UI"-Farben wieder, welche im :root-Element des CSS-Codes definiert wurden.
 
 **Figma**  
@@ -1242,14 +1242,14 @@ https://fonts.google.com/icons
 Google Font bietet eine große Bibliothek von u. A. Icons an. 
 Die Symbole im Login-Formular und Signup-Formular als svg-Elemente über 
 Google Font bezogen. Dabei kann z. B. die Farbe und das Filling der Icons 
-über Google Font definert werden. Im Anschluss kann der Code zum 
+über Google Font definiert werden. Im Anschluss kann der Code zum 
 svg-Element kopiert und in der HTML-Datei eingefügt werden.
 
 **IANA Media Types**  
 https://www.iana.org/assignments/media-types/media-types.xhtml#image
 
 Hier kanne eine gesammelte Auskunft über Medientypen eingesehen werden. 
-Dies wurde für die Bestimmung der erlaubten Uploaddatein auf der Seite 
+Dies wurde für die Bestimmung der erlaubten Uploaddateien auf der Seite 
 "Share" benötigt.  
 Codeauszug:  
 ```html
@@ -1273,8 +1273,7 @@ https://realfavicongenerator.net/
 
 Diese Seite kann zur Erstellung von eines Favicon in verschiedenen 
 Dateiformaten verwendet werden. 
-Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mit 
-Hilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
+Für dieses Projekt wurden die Dateien favicon.svg und favicon-96x96.png mithilfe der Applikation erstellt. Grundlage dafür war das zuvor generierte 
 Logo-Design.
 
 
@@ -1297,7 +1296,7 @@ https://www.w3schools.com/
 Die Lernplattform W3 School wurde zum Lernen und Testen genutzt. Auf der 
 einen Seite konnten, mittels der ausführlichen und gut strukturierten 
 Beispiele, neue Kenntnisse zur Funktionsweise von HTML und CSS gewonnen 
-werden. Auf der anderen Seite wurden mit Hilfe des integrierten 
+werden. Auf der anderen Seite wurden mithilfe des integrierten 
 "Try-it-Yourself"-Editors die Auswirkung von unterschiedlichen 
 Programmbestandteilen getestet. 
 
@@ -1335,7 +1334,7 @@ Grafiken verwendet.
 ## Stichwortverzeichnis
 
 API:
-Application Programming Interface. Eine Schnittstelle, die es ermöglichte, verschiedene Software-Komoponenten miteinder kommunizieren zu lassen.
+Application Programming Interface. Eine Schnittstelle, die es ermöglichte, verschiedene Software-Komponenten miteinander kommunizieren zu lassen.
 
 Alert:
 Browserfunktion zur Anzeige von Nachrichten an den Benutzer.
@@ -1356,7 +1355,7 @@ Credentials:
 Eine Einstellung in `fetch()`, die angibt, dass unter anderem Cookies bei Anfragen an das Backend gesendet werden, um Sessions zu validieren.
 
 Cookie:
-Kleine Datei, die auf dem Client gespeichert wird. Enthält Session-Informationen und wird hier genutzt um Anmeldung des Benutzers zu verfolgen, damit User angemeldet bleibt
+Kleine Datei, die auf dem Client gespeichert wird. Enthält Session-Informationen und wird hier genutzt, um Anmeldung des Benutzers zu verfolgen, damit User angemeldet bleibt
 
 DOM:
 Document Object Model, eine Schnittstelle zur Manipulation und Darstellung von HTML-Dokumenten. Wird hier für den Zugriff auf HTML-Elemente verwendet.
@@ -1373,11 +1372,11 @@ Ein JavaScript-Objekt zum Erstellen von Key-Value-Paaren, um Formulardaten zu se
 GET-Request:
 HTTP-Methode um Daten vom Server zu erhalten.
 
-GateKeeper-Funtkion:
-Funktion, die überprüft, ob Benutzer eingelogg ist, bevor er auf bestimmte Seiten (hier: /share) zugreifen darf.
+GateKeeper-Funktion:
+Funktion, die überprüft, ob Benutzer eingeloggt ist, bevor er auf bestimmte Seiten (hier: /share) zugreifen darf.
 
 HTTP-Statuscodes:
-Codes, die die Antword des Servers auf eine Anfrage darstellen.
+Codes, die die Antwort des Servers auf eine Anfrage darstellen.
 
 HTML:   
 Hypertext Markup Language
@@ -1386,16 +1385,16 @@ JSON:
 Ein Datenformat zur Übertragung von Daten zwischen Client und Server.
 
 LocalStorage:
-Web-API, die es ermöglicht, Daten lokal im Browserdes Benutzers zu speichern. Hier wird `locasStorage.setItem() verwendet, um den firstName zu speichern.
+Web-API, die es ermöglicht, Daten lokal im Browser des Benutzers zu speichern. Hier wird `locasStorage.setItem() verwendet, um den firstName zu speichern.
 
 Middleware:
-Eine Exüress.js-Funktion, die verwendet wird, um Anfragen zu verarbeiten, bevor sie den Endpunkt erreichen.
+Eine Express.js-Funktion, die verwendet wird, um Anfragen zu verarbeiten, bevor sie den Endpunkt erreichen.
 
 POST-Request:
 HTTP-Methode, um Daten an den Server zu senden. 
 
 Route:
-Eione Definition der URL-Endpunkte.
+Eine Definition der URL-Endpunkte.
 
 Session-Management:
 Methode, um Benutzer-Sitzungen zu verfolgen. Wird hier durch Cookies realisiert.
