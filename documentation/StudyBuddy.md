@@ -540,13 +540,13 @@ Mittels des Selektor :hover wird die Gestaltung definiert, die sichtbar wird, so
 
 **box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;**  
 Der Button bekommt einen Schatten zugewiesen. Der RGBA-Wert definiert dabei die Farbe des Schattens. 
-RGBA steht für Rot, Blau, Grün und Alpha. Mittels dieser Parameter kann eine Farbe codiert werden. 
+RGBA steht für Rot, Grün, Blau und Alpha. Mittels dieser Parameter kann eine Farbe codiert werden. 
 Dabei legen Rot, Grün und Blau den jeweiligen Anteil in der Farbe fest und Alpha steht für die Deckkraft bzw. Transparenz. 
 In diesem Beispiel wurde eine schwarze Farbe mit einer Deckkraft von 25 % bzw. einer Transparenz von 75 % gewählt.  
 Die darauf folgenden drei Werte legen die Breite, Höhe und Unschärfe des Schattens fest.  
 Der erste Wert ist die horizontale Breite - hier 0 Pixel.  
 Der zweite Wert bestimmt die vertikale Höhe des Schattens - hier 8 Pixel.  
-Der letzte Wert definiert die Unschärfe, also wie verschwommen der Schatten sein soll. Die im Code gewählte Unschärfe von 15 Pixel sorgt dafür, 
+Der letzte Wert definiert die Unschärfe, also wie verschwommen der Schatten sein soll. Die im Code gewählte Unschärfe von 15 Pixeln sorgt dafür, 
 dass der Schatten optisch einen fließenden Übergang hat und keine harten Kanten entstehen.  
 
 **transform: translateY(-3px);**
@@ -575,7 +575,7 @@ um eine optimale Nutzererfahrung auf allen Bildschirmgrößen zu ermöglichen.
 Damit soll das ansprechende Design und die Lesbarkeit für alle Endgeräte sichergestellt werden.
 
 #### Breakpoints
-Als Grundlage für das Responsive Design wurden Breakpoint festgelegt. 
+Als Grundlage für das Responsive Design wurden Breakpoints festgelegt. 
 Dabei handelt es sich um Bildschirmgrößen, bei denen eine maßgebliche Veränderung der Gestaltung angewendet wird.
 
 In Anlehnung an die Breakpoints des ChromeDevTool (Developer Tool) sind folgende Intervalle definiert:
@@ -713,14 +713,14 @@ Letztendlich konnte die Webseite trotz dieser Herausforderung erfolgreich respon
 
 Die clientseitige JavaScript Architektur folgt dem Prinzip der Seperation of Concers, wodurch hie die unterschiedlichen Verantwortungen klar voneinander getrennt sind. 
 
-Die für viele Funtkionalitäten benötigten Routen sind unter `src/routes` defniert und werden verwiesen unter `app.js`.
+Die für viele Funtkionalitäten benötigten Routen sind unter `src/routes` definiert und werden verwiesen unter `app.js`.
 
-Die im Verzeichnis `public/js` befindlichen JavaScript Dateien `frontendBrowse.js`, `navbar.js`, `upload.js`und `validation.js`, gewährleisten mittels Einbindungen in die statischen HTML-Seiten im Verzeichnis `/static`, und über Kommunikationsschnittstellen mit dem Backend, ein angenehmes User-Interface und eine sinnvolle Interaktionssteuerung.
+Die im Verzeichnis `public/js` befindlichen JavaScript-Dateien `frontendBrowse.js`, `navbar.js`, `upload.js`und `validation.js`, gewährleisten mittels Einbindungen in die statischen HTML-Seiten im Verzeichnis `/static`, und über Kommunikationsschnittstellen mit dem Backend, ein angenehmes User-Interface und eine sinnvolle Interaktionssteuerung.
 
 ### Login/Signup-Handling in `validation.js`
-`validation.js` wird cleintseitig zur Abwicklung der Signup und Login Funktionen verwendet und ist eingebunden in `/static/login.html`und `/static/signup.html`. 
+`validation.js` wird cleintseitig zur Abwicklung der Signup- und Login-Funktionen verwendet und ist eingebunden in `/static/login.html` sowie `/static/signup.html`. 
 
-Zunächst wird über einen EventListener geprüft ob, das HTML Dokument fertig geladen und geparst ist. Im Anschluss werden die Login- und Signup-Formulare über die jeweils festgelegte ID aufgerufen:
+Zunächst wird über einen EventListener geprüft, ob das HTML-Dokument fertig geladen und geparst ist. Im Anschluss werden die Login- und Signup-Formulare über die jeweils festgelegte ID aufgerufen:
 
 ~~~js
 document.addEventListener('DOMContentLoaded', () => {
@@ -751,13 +751,13 @@ const email = document.getElementById('email-input').value;
 const password = document.getElementById('password-input').value;
 ~~~
 
-Innerhalb einer try-catch funktion werden nun die Usereingaben an das Backend gesendet, wobei über `catch` mögliche Serverfehler abgefangen werden. 
+Innerhalb einer try-catch Kontrollinstanz werden nun die Usereingaben an das Backend gesendet, wobei über `catch` mögliche Serverfehler abgefangen werden. 
 
 Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URL `/api/users/signup` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird.
 
  `if(res.ok)`überprüft ob die Antwort von `/api/users/signup` zwischen 200-299 liegt, da Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung einer erfolgreichen Registrierung und der User wird auf die Loginseite weitergeleitet wird. Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung ausgegeben mit der übermittelten Message. 
 
- Falls die Kommunikation mit `/api/users/signup` gänzlich fehltschlägt wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
+ Falls die Kommunikation mit `/api/users/signup` gänzlich fehlschlägt, wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
 
 ~~~js
 try {
@@ -783,7 +783,7 @@ try {
 
 #### Login
 
-Die Kommunikation des Login funktioniert nach dem gleichen Muster wie beim Signup, mit der Ausnahme, das hier `email` und `password` ausreichend sind, und der `firstName` nicht übertragen wird
+Die Kommunikation des Login funktioniert nach dem gleichen Muster wie beim Signup, mit der Ausnahme, dass hier `email` und `password` ausreichend sind, und der `firstName` nicht übertragen wird
 
 Das Skript prüft zunächst, ob das loginForm-Element auf der Seite existiert. Falls ja, wird ein Event Listener hinzugefügt, der auf das submit-Ereignis des Formulars reagiert:
 
@@ -806,11 +806,11 @@ const password = document.getElementById('password-input').value;
 
 Innerhalb einer try-catch funktion werden nun die Usereingaben an das Backend gesendet, wobei über `catch` mögliche Serverfehler abgefangen werden. 
 
-Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URL `/api/users/login` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird. Zudem zeigt `credentials: 'include` dem Backend, dass der Client noch keine Cookies hat, da sie dadurch normalerweise mitgesendet würden, allerdings noch nicht vorhanden sind. Zusätzlich akzeptiert der Browser aufgrunddessen Cookies, die vom Server gesendet werden. Als Resultat erstellt der Server ein Cookie, der dem Client gesendet wird und bei zukünftigen Anfragen an den Server mitgesendet wird. 
+Hierbei wird fetch() verwendet, um eine asynchrone POST-Anfrage an die URI `/api/users/login` zu senden. Die Userdaten werden dabei in einen JSON-String umgewandelt, was über `headers:` dem Empfänger mitgeteilt wird. Zudem zeigt `credentials: 'include` dem Backend, dass der Client noch keine Cookies hat, da sie dadurch normalerweise mitgesendet würden, allerdings noch nicht vorhanden sind. Zusätzlich akzeptiert der Browser aufgrunddessen Cookies, die vom Server gesendet werden. Als Resultat erstellt der Server einen Cookie, der dem Client gesendet wird und bei zukünftigen Anfragen an den Server mitgesendet wird. 
 
- `if(res.ok)`überprüft ob die Antwort von `/api/users/signup` im 200er Bereich liegt, da Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung eines ergolgreichen Logins und der User wird auf die `./homepage` weitergeleitet. Zudem wird der firstName im `localStorage` des Browsers gespeichert.Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung ausgegeben mit der übermittelten Message. 
+ `if(res.ok)`überprüft, ob die Antwort von `/api/users/signup` im 200er Bereich liegt, da im Normalfall  `res.status(200)` erhalten wird, erscheint dann die Mitteilung eines erfolgreichen Logins und der User wird auf die `./homepage` weitergeleitet. Zudem wird der firstName im `localStorage` des Browsers gespeichert. Falls die Antwort nicht zwischen 200 und 299 liegt, wird eine Fehlermeldung mit der übermittelten Message ausgegeben. 
 
- Falls die Kommunikation mit `/api/users/signup` gänzlich fehltschlägt wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
+ Falls die Kommunikation mit `/api/users/signup` gänzlich fehlschlägt, wird das über `catch` abgefangen und es erscheint ebenfalls eine Fehlermeldung:
 
 ~~~js
 try {
