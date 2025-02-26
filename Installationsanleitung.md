@@ -55,4 +55,8 @@ src/app.js
 ~~~
 
 ## Schritt 6 (localhost:3000)
-Öffnen Sie in einem Browser localhost:3000. Viel Spaß!
+Öffnen Sie in einem Browser `http://localhost:3000`. Viel Spaß!
+
+Um die Anwendung über eine Virtuelle Maschine auszuführen und vom Host-System aus die Website verwenden, muss die VM mit NGINX als Reverse Proxy konfiguriert werden.  
+Hierzu funktioniert beispielsweise das Setup gemäß https://dev.to/logrocket/how-to-run-a-node-js-server-with-nginx-588 , ab dem Abschnitt "Configuring Nginx".  
+Die Website kann dann vom Host-System aus über `http://<IP_Adresse_der_VM>:3000` oder auch hier in der VM selbst über `http://localhost:3000` aufgerufen werden.
