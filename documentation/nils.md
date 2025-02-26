@@ -1,68 +1,11 @@
-# Gliederung zur Dokumentation des Client-seitigen User-Handlings und der public/js Komponenten
-
-1. **Einleitung**  
-   - Ziel: Darstellung der Client-seitigen Architektur und Interaktion zum User-Handling  
-   - Überblick über die Trennung von UI, Logik und Kommunikation mit den Backend-Endpunkten  
-
-2. **Struktur und Aufbau der public/js Komponenten**  
-   2.1. **Dateien im Ordner public/js**  
-       - upload.js  
-       - navbar.js  
-       - frontendBrowse.js  
-       - validation.js  
-   2.2. **Prinzip der Separation of Concerns**  
-       - Darstellung der Zuständigkeiten: Interaktion (Events & DOM-Manipulation), Datenvalidierung, API-Kommunikation
-
-3. **Detaillierte Dokumentation der einzelnen Dateien**  
-   3.1. **upload.js**  
-       - Zweck: Dateiupload und FormData-Zusammenstellung  
-       - Erklärungen zu Fehlerbehandlung, Tag-Auswahl und Verweis auf Login-Status  
-   3.2. **navbar.js**  
-       - Zweck: Dynamische Anpassung der Navigation (Anzeige von "Hallo {firstName}" und Logout)  
-       - Implementierung der Gatekeeper-Funktion: Weiterleitung bei fehlendem Login  
-   3.3. **frontendBrowse.js**  
-       - Zweck: Umsetzung der Dokumentensuche und Darstellung der Suchergebnisse  
-       - Aufbau des Suchformulars, Verarbeitung der Query-Parameter und Download-Handling  
-   3.4. **validation.js**  
-       - Zweck: Client-seitige Validierung und Abgleich von Login/Signup-Formularen  
-       - Erfassung, Validierung und Übertragung der Formular-Daten an API-Endpunkte
-
-4. **Ausführliche Erklärung der Login-Logik**  
-   4.1. **Client-seitiger Ablauf bei der Anmeldung**  
-       - Erfassung der Nutzereingaben (Email, Password) im Login-Formular (HTML + validation.js)  
-       - Einsatz der Fetch-API, inklusive "credentials" für Cookie-Handling  
-       - Verarbeitung der JSON-Antwort und Speicherung von Daten (z. B. firstName in localStorage)  
-       - Fehlerbehandlung und Rückmeldung an den Nutzer
-   4.2. **Interaktion mit der dynamischen Navbar**  
-       - Abruf des Login-Status via /api/users/status in navbar.js  
-       - Dynamische UI-Anpassung: Umwandlung des Login-Links in einen Greeting-Bereich  
-       - Implementierung des Logout-Mechanismus (Fetch POST /api/users/logout, Session-Clearing und Weiterleitung)
-   4.3. **Zusätzliche Aspekte der Login-Logik**  
-       - Session-Management: Wie das Cookie "connect.sid" genutzt wird  
-       - Sicherheitsaspekte: Verschlüsselung von Passworten im Backend und Client-seitige Validierung
-
-5. **Zusammenfassung und Ausblick**  
-   - Fazit der dokumentierten Prozesse und Komponenten  
-   - Überblick über die Interaktion aller Module im public/js Verzeichnis  
-   - Mögliche Erweiterungen und Verbesserungen im User-Handling (z. B. Einsatz eines Template-Engines, zusätzliche Client-seitige Sicherheitsmaßnahmen)
-
-- frontendBrowse.js
-- navbar.js
-- upload.js
-- validation.js
-
-- Gatekeeper Clientseitig
-    - Verweise auf Gatekeeper Serverseitig falls vorhanden
-- Loginlogik
-
 ## Clientseitige Implementierung
 ### Grundlegende Struktur
 
 Die clientseitige JavaScript Architektur folgt dem Prinzip der Seperation of Concers, wodurch hie die unterschiedlichen Verantwortungen klar voneinander getrennt sind. 
 
-Die für viele Funtkionalitäten benötigten Routen sind unter `src/routes` defniert und werden unter verwiesen unter `app.js`.
+Die für viele Funtkionalitäten benötigten Routen sind unter `src/routes` defniert und werden verwiesen unter `app.js`.
 
-Die im Verzeichnis `public/js` befindlichen JavaScript Dateien `frontendBrowse.js`, `navbar.js`, `upload.js`und `validation.js`, gewährleisten mittels Einbindungen in die statischen HTML-Seiten in `/static` und über Kommunikationsschnittstellen mit dem Backend, ein angenehmes User-Interface und eine sinnvolle Interaktionssteuerung.
+Die im Verzeichnis `public/js` befindlichen JavaScript Dateien `frontendBrowse.js`, `navbar.js`, `upload.js`und `validation.js`, gewährleisten mittels Einbindungen in die statischen HTML-Seiten im Verzeichnis `/static`, und über Kommunikationsschnittstellen mit dem Backend, ein angenehmes User-Interface und eine sinnvolle Interaktionssteuerung.
 
 ### Login/Signup-Handling in `validation.js`
 `validation.js` wird cleintseitig zur Abwicklung der Signup und Login Funktionen verwendet und ist eingebunden in `/static/login.html`und `/static/signup.html`. 
