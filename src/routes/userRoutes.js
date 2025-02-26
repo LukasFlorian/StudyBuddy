@@ -10,10 +10,10 @@ const router = express.Router();
 router.post('/signup', async (req, res) => {
   try {
     // Destructuring request body
-    const { firstname, email, password } = req.body;
+    const { firstName, email, password } = req.body;
 
     // Making sure body is valid
-    if (!firstname || !email || !password) {
+    if (!firstName || !email || !password) {
       return res.status(400).json({ msg: "All fields are required" });
     }
 
@@ -29,7 +29,7 @@ router.post('/signup', async (req, res) => {
 
     // Creating a new user based on the model defined in src/models/userModel.js
     user = new User({
-      firstName: firstname,
+      firstName: firstName,
       email,
       password: hashedPassword
     });
@@ -58,6 +58,7 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Falsches Passwort" });
     }
     // Saved logged in user in session
+    // Sets property req.session.user that saves user information in session and sends cookie to client
     req.session.user = {
       id: user._id,
       firstName: user.firstName,
