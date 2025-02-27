@@ -544,6 +544,7 @@ implementiert werden.
 
 Letztendlich konnte die Webseite trotz dieser Herausforderung erfolgreich responsiv gestaltet werden.
     
+<!-- DONE -->
 
 ### Hilfsmittel
 
