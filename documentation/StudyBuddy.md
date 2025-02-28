@@ -76,12 +76,12 @@
 
 ~~~console
 .
-├── config
-│   └── commit_file.md
 ├── db
 │   └── StudyBuddy
 │       ├── docs.bson
 │       ├── docs.metadata.json
+│       ├── documents.bson
+│       ├── documents.metadata.json
 │       ├── users.bson
 │       └── users.metadata.json
 ├── documentation
@@ -110,7 +110,8 @@
 │   │   ├── image-9.png
 │   │   ├── image.png
 │   │   └── upload.png
-│   └── StudyBuddy.md
+│   ├── StudyBuddy.md
+│   └── StudyBuddy.pdf
 ├── public
 │   ├── css
 │   │   └── style.css
@@ -154,6 +155,7 @@
 │   └── signup.html
 ├── Installationsanleitung.md
 ├── README.md
+├── StudyBuddy.pdf
 ├── package-lock.json
 └── package.json
 ~~~
@@ -1866,25 +1868,85 @@ Figma wurde zur Erstellung der schematischen Veranschaulichungen der HTTP-Kommun
 
 ## Stichwortverzeichnis
 
+
+
+API:
+Application Programming Interface. Eine Schnittstelle, die es ermöglichte, verschiedene Software-Komoponenten miteinder kommunizieren zu lassen.
+
+Alert:
+Browserfunktion zur Anzeige von Nachrichten an den Benutzer.
+
+Asynchron:
+Hier: async/wait. eine Programmiertechnik, um auf asynchrone Operationen wie Netzwerkaufrufe (z.B. `fetch()`) zu warten, ohne den Ablauf des Programms zu blockieren
+
+Backend:
+Serverseitiger Teil der Anwendung, der Anfragen des Frontends entgegennimmt, verarbeitet und Antworten gibt.
+
+Catch:
+methode in JavaScript zur Fehlerbehandlung. Wird hier verwendet, um Netzwerkfehler bei Anfragen an das Backend abzuhängen.
+
 CSS:  
 Cascading Style Sheet
+
+Credentials:
+Eine Einstellung in `fetch()`, die angibt, dass unter anderem Cookies bei Anfragen an das Backend gesendet werden, um Sessions zu validieren.
+
+Cookie:
+Kleine Datei, die auf dem Client gespeichert wird. Enthält Session-Informationen und wird hier genutzt um Anmeldung des Benutzers zu verfolgen, damit User angemeldet bleibt
+
+DOM:
+Document Object Model, eine Schnittstelle zur Manipulation und Darstellung von HTML-Dokumenten. Wird hier für den Zugriff auf HTML-Elemente verwendet.
+
+Event Listener:
+Eine Funktion, die auf bestimmte Ereignisse wie Button-Clicks oder Formular-Submits reagiert.
+
+Fetch():
+Methode zum Senden von HTTP_Anfragen an das Backend. 
+
+FormData:
+Ein JavaScript-Objekt zum Erstellen von Key-Value-Paaren, um Formulardaten zu senden.
+
+GET-Request:
+HTTP-Methode um Daten vom Server zu erhalten.
+
+GateKeeper-Funtkion:
+Funktion, die überprüft, ob Benutzer eingelogg ist, bevor er auf bestimmte Seiten (hier: /share) zugreifen darf.
+
+HTTP-Statuscodes:
+Codes, die die Antword des Servers auf eine Anfrage darstellen.
 
 HTML:   
 Hypertext Markup Language
 
-SVG:   
-Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. 
-Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. 
-Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
+JSON:
+Ein Datenformat zur Übertragung von Daten zwischen Client und Server.
 
-Viewport:  
-Der Viewport ist der sichtbare Bereich innerhalb z. B. einem Browser-Fenster
+LocalStorage:
+Web-API, die es ermöglicht, Daten lokal im Browserdes Benutzers zu speichern. Hier wird `locasStorage.setItem() verwendet, um den firstName zu speichern.
+
+Middleware:
+Eine Exüress.js-Funktion, die verwendet wird, um Anfragen zu verarbeiten, bevor sie den Endpunkt erreichen.
+
+Model (Mongoose):  
+Eine Klasse, die die Instanziierung von Objekten ermöglicht, welche einem MongoDB-Schema entsprechen.
 
 MongoDB:  
 Eine NoSQL-Datenbankplattform.
 
+POST-Request:
+HTTP-Methode, um Daten an den Server zu senden. 
+
+Route:
+Eione Definition der URL-Endpunkte.
+
 Schema (Mongoose):  
 Ein Muster oder eine Vorlage, die die Struktur eines MongoDB-Dokuments beschreibt. Es definiert Felder, Datentypen und andere Eigenschaften der Dokumente.
 
-Model (Mongoose):  
-Eine Klasse, die die Instanziierung von Objekten ermöglicht, welche einem MongoDB-Schema entsprechen.
+Session-Management:
+Methode, um Benutzer-Sitzungen zu verfolgen. Wird hier durch Cookies realisiert.
+
+SVG:   
+Scalable Vector Graphics. Dieses Dateiformat stellt vektorbasierte Grafiken dar. Es eignet sich gut für den Einsatz im Webdesign, da es eine Skalierung ohne Qualitätsverlust ermöglicht. Weiterhin kann eine svg-Datei als svg-Element in HTML eingebunden und mit CSS bearbeitet werden.
+
+Try-Catch:
+Ein Konstrukt zum Abfangen von Fehlern. 
