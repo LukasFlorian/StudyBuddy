@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <section id="home-page">
+        <h1>Willkommen beim Web-Engineering Portal</h1>
+        <form id="login-form">
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="button" onclick="handleLogin()">Login</button>
+        </form>
+        <p>Noch keinen Account? <a href="register.html">Registrieren</a></p>
+    </section>
+</body>
+</html>

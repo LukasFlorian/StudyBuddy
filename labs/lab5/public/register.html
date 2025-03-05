@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrierung</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <section id="register-page">
+        <h1>Registrierung</h1>
+        <form id="registration-form">
+            <label for="first-name">Vorname:</label>
+            <input type="text" id="first-name" name="first-name" pattern="[A-Za-z\-]+" maxlength="20" required>
+            
+            <label for="last-name">Nachname:</label>
+            <input type="text" id="last-name" name="last-name" pattern="[A-Za-z\-]+" maxlength="20" required>
+            
+            <label for="chosen-username">Benutzername:</label>
+            <input type="text" id="chosen-username" name="chosen-username" pattern="[A-Za-z\-_]+" required>
+            
+            <label for="register-password">Passwort:</label>
+            <input type="password" id="register-password" name="register-password" minlength="8" pattern=".*(?=.*\d)(?=.*[!#,+\-_?]).*" required>
+            
+            <fieldset>
+                <legend>Geschlecht:</legend>
+                <label><input type="radio" name="gender" value="male" required> Männlich</label>
+                <label><input type="radio" name="gender" value="female"> Weiblich</label>
+                <label><input type="radio" name="gender" value="other"> Divers</label>
+            </fieldset>
+            
+            <label for="interest">Interessengebiete:</label>
+            <select id="interest" name="interest">
+                <option value="html5">HTML5</option>
+                <option value="css">CSS</option>
+                <option value="javascript">JavaScript</option>
+                <option value="flexbox">FlexBox</option>
+                <option value="gridbox">GridBox</option>
+            </select>
+            
+            <label for="comments">Kommentare:</label>
+            <textarea id="comments" name="comments" maxlength="100"></textarea>
+            
+            <label>
+                <input type="checkbox" name="terms" required> Ich akzeptiere die Nutzungsbedingungen
+            </label>
+            
+            <button type="button" onclick="handleRegistration()">Registrieren</button>
+        </form>
+    </section>
+</body>
+</html>

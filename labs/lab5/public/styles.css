@@ -1,0 +1,143 @@
+/* Allgemeine Stile */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+    text-align: center;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1em;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+label {
+    margin-top: 1em;
+    display: block;
+}
+
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    width: calc(100% - 22px); /* Anpassung für mögliche Ränder/Padding */
+    padding: 0.5em;
+    margin-top: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Spezialstile für Inhaltseite basierend auf Interessengebiete */
+#html5-content {
+    background-color: #FFA07A;
+    color: #000;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+#css-content {
+    background-color: #8A2BE2;
+    color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+#javascript-content {
+    background-color: #F0E68C;
+    color: #000;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+#flexbox-content {
+    background-color: #20B2AA;
+    color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+#gridbox-content {
+    background-color: #FF6347;
+    color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.content {
+    margin: 1em;
+}
+
+/* Feedback und Fehler-Meldungen */
+input:invalid,
+textarea:invalid {
+    border-color: #e74c3c;
+}
+
+input:valid,
+textarea:valid {
+    border-color: #2ecc71;
+}
+
+fieldset {
+    margin-top: 1em;
+    padding: 0.5em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#geo-coords,
+#system-time {
+    font-style: italic;
+}
+
+/* Z-Möglichkeiten (falls manuelle Z-Index Einstufungen gebraucht werden) */
+.content {
+    position: relative;
+    z-index: 0;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 600px) {
+    body {
+        padding: 1em;
+    }
+
+    form {
+        padding: 1em;
+    }
+}

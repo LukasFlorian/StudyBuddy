@@ -1,0 +1,42 @@
+[
+  {
+    "firstName": "Anna",
+    "lastName": "Schmidt",
+    "username": "anna_schmidt",
+    "password": "Passwort!123",
+    "gender": "female",
+    "interest": "html5"
+  },
+  {
+    "firstName": "Max",
+    "lastName": "Mustermann",
+    "username": "max1985",
+    "password": "Sicher#456",
+    "gender": "male",
+    "interest": "javascript"
+  },
+  {
+    "firstName": "Julia",
+    "lastName": "Neumann",
+    "username": "julia.n",
+    "password": "Geheim_789",
+    "gender": "female",
+    "interest": "css"
+  },
+  {
+    "firstName": "Lukas",
+    "lastName": "Richter",
+    "username": "LukasR",
+    "password": "123_l",
+    "gender": "male",
+    "interest": "flexbox"
+  },
+  {
+    "firstName": "Diego",
+    "lastName": "Carrera",
+    "username": "DatingCoach007",
+    "password": "SexOnFirstDate_123",
+    "gender": "male",
+    "interest": "flexbox"
+  }
+]
