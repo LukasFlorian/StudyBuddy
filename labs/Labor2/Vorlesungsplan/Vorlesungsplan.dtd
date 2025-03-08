@@ -1,0 +1,8 @@
+<!ELEMENT vorlesungsplan (vorlesung+, raumplan+)>
+<!ELEMENT vorlesung (titel, dozent, zeit)>
+<!ELEMENT titel (#PCDATA)>
+<!ELEMENT dozent (#PCDATA)>
+<!ELEMENT zeit (#PCDATA)>
+<!ELEMENT raumplan (raumBezeichnung, raumBeschreibung)>
+<!ELEMENT raumBezeichnung (#PCDATA)>
+<!ELEMENT raumBeschreibung (#PCDATA)>

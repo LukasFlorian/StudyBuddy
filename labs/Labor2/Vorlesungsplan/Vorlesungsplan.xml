@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE vorlesungsplan SYSTEM "./Vorlesungsplan.dtd">
+<vorlesungsplan xmlns:modul="http://example.com/modul"
+                xmlns:raum="http://example.com/raum">
+    <modul:vorlesung>
+        <titel>Web Engineering</titel>
+        <dozent>Prof. Schneider</dozent>
+        <zeit>Mo 10:00 - 12:00</zeit>
+    </modul:vorlesung>
+    <raum:raumplan>
+        <raumBezeichnung>H222</raumBezeichnung>
+        <raumBeschreibung>Hörsaal</raumBeschreibung>
+    </raum:raumplan>
+</vorlesungsplan>

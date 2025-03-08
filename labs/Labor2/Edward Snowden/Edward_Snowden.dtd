@@ -1,0 +1,6 @@
+<!ELEMENT dokument (ueberschrift, absatz+, leerzeile*)>
+<!ELEMENT ueberschrift (#PCDATA)>
+<!ELEMENT absatz (#PCDATA | fett | kursiv)*>
+<!ELEMENT fett (#PCDATA)>
+<!ELEMENT kursiv (#PCDATA)>
+<!ELEMENT leerzeile EMPTY>
